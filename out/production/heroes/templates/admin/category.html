@@ -1,0 +1,161 @@
+<html xmlns:th="http://www.thymeleaf.org" th:include="~{admin/layout/layout.html :: layout (~{::body},'home')}">
+<head></head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="custom-bread-crumb col-12 text-center">
+            <div class="main-container">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row categoryRow">
+            <table style="margin-top: 1%" class="table table-striped table-hover text-center">
+                <thead>
+                <tr>
+                    <th scope="col">N</th>
+                    <th scope="col">DÖYÜŞ</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <form action="#" th:object="${warRequest}" th:action="@{'categorization/war/create'}" method="post">
+                    <div class="row">
+                        <label class="form-label" for="contactNameLabel">KONTAKT ADI</label>
+                        <p style="display:inline" th:if="${#fields.hasErrors('warName')}"
+                           class="text-danger fw-bolder"
+                           th:errors="*{warName}"></p>
+                        <input th:field="*{warName}" name="warName" placeholder="Əlaqənin adını daxil edin" type="text"
+                               class="form-control" id="contactNameLabel">
+                    </div>
+                    <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
+                        <button class="btn btn-success text-uppercase mt-3" type="submit">ƏLAVƏ ET</button>
+                    </div>
+                </form>
+                <tr th:each="war : ${wars}">
+                    <th scope="row" th:text="${war.id}"></th>
+                    <td th:text="${war.warName}"></td>
+                    <td>
+                        <a href="/category/id" th:href="@{{id} (id=${war.id})}" class="card-link btn btn-success">
+                            DƏYİŞİKLİK ET
+                        </a>
+                    </td>
+                    <td>
+                        <form th:object="${war}" th:action="@{'/war/delete'}" method="post">
+                            <input type="hidden" name="id" th:value="${war.id}">
+                            <div class="text-left">
+                                <input class="btn btn-danger" type="submit" value="SİL">
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row categoryRow">
+            <table style="margin-top: 1%" class="table table-striped table-hover text-center">
+                <thead>
+                <tr>
+                    <th scope="col">N</th>
+                    <th scope="col">RÜTBƏ</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
+                    <a class="btn btn-success text-uppercase" th:href="@{/rank/create}">ƏLAVƏ ET</a>
+                </div>
+                <tr th:each="rank : ${ranks}">
+                    <th scope="row" th:text="${rank.id}"></th>
+                    <td th:text="${rank.rankName}"></td>
+                    <td>
+                        <a href="/category/id" th:href="@{{id} (id=${rank.id})}" class="card-link btn btn-success">
+                            DƏYİŞİKLİK ET
+                        </a>
+                    </td>
+                    <td>
+                        <form th:object="${rank}" th:action="@{'/rank/delete'}" method="post">
+                            <input type="hidden" name="id" th:value="${rank.id}">
+                            <div class="text-left">
+                                <input class="btn btn-danger" type="submit" value="SİL">
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row categoryRow">
+            <table style="margin-top: 1%" class="table table-striped table-hover text-center">
+                <thead>
+                <tr>
+                    <th scope="col">N</th>
+                    <th scope="col">MEDAL</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
+                    <a class="btn btn-success text-uppercase" th:href="@{/reward/create}">ƏLAVƏ ET</a>
+                </div>
+                <tr th:each="reward : ${rewards}">
+                    <th scope="row" th:text="${reward.id}"></th>
+                    <td th:text="${reward.rankName}"></td>
+                    <td>
+                        <a href="/category/id" th:href="@{{id} (id=${reward.id})}" class="card-link btn btn-success">
+                            DƏYİŞİKLİK ET
+                        </a>
+                    </td>
+                    <td>
+                        <form th:object="${reward}" th:action="@{'/reward/delete'}" method="post">
+                            <input type="hidden" name="id" th:value="${reward.id}">
+                            <div class="text-left">
+                                <input class="btn btn-danger" type="submit" value="SİL">
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row categoryRow">
+            <table style="margin-top: 1%" class="table table-striped table-hover text-center">
+                <thead>
+                <tr>
+                    <th scope="col">N</th>
+                    <th scope="col">PAYLAŞIM KATEQORİYASI</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
+                    <a class="btn btn-success text-uppercase" th:href="@{/post-category/create}">ƏLAVƏ ET</a>
+                </div>
+                <tr th:each="pc : ${postCategories}">
+                    <th scope="row" th:text="${pc.id}"></th>
+                    <td th:text="${pc.rankName}"></td>
+                    <td>
+                        <a href="/category/id" th:href="@{{id} (id=${pc.id})}" class="card-link btn btn-success">
+                            DƏYİŞİKLİK ET
+                        </a>
+                    </td>
+                    <td>
+                        <form th:object="${postCategory}" th:action="@{'/reward/delete'}" method="post">
+                            <input type="hidden" name="id" th:value="${pc.id}">
+                            <div class="text-left">
+                                <input class="btn btn-danger" type="submit" value="SİL">
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="container-fluid" th:fragment="globalException"
+     th:style="${uploadingError} ? 'display:block' : 'display:none'">
+    <p style="background-color: red;color: white" class="fw-bolder text-center" th:text="${uploadingError}"></p>
+</div>
+</html>
+

@@ -1,0 +1,38 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<nav th:fragment="header" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">ColorBrain</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav" style="margin-left: auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" aria-current="page" href="#">Əsas Səhİfə</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" th:href="@{/blog/all}">Bloglar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" th:href="@{/project/all}">Qəhrəmanlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" th:href="@{/media/all}">Medİa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" th:href="@{/team-member/all}">İstİfadəçİlər</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" th:href="@{/category/all}">Kateqorİyalar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" th:href="@{/contact/all}">Əlaqə məlumatları</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+</html>
