@@ -15,11 +15,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/categorization")
@@ -86,10 +87,14 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     /////////////////////////////////////////////////////////////////////////////////
-    @GetMapping(value = "/war/{id}")
-    public String getWar(@PathVariable("id") Long id) {
-        warService.getWar(id);
-        return "admin/category";
+    @GetMapping(value = "/war")
+    public String getWar(
+            @RequestParam("id") Long id,
+            Model model
+    ) {
+        model.addAttribute("warResponse", warService.getWar(id));
+        model.addAttribute("uuid", UUID.randomUUID().toString());
+        return "admin/categoryForm";
     }
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -130,9 +135,13 @@ public class CategorizationController implements ControllerConstraints {
 /////////////////////////////////////////////////////////////////////////////////
 
     @PostMapping(value = "/war/delete")
-    public String deleteWar(@RequestParam("id") Long warId) {
+    public String deleteWar(
+            @RequestParam("id") Long warId,
+            final RedirectAttributes redirectAttributes
+    ) {
         warService.deleteWar(warId);
-        return "admin/category";
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/categorization";
     }
 
     @PostMapping(value = "/rank/delete")

@@ -13,13 +13,17 @@ public class HeroesApplication {
 }
 
 /*{
-    5 - cu gun kateqoriyalari bitir
-    5 - ci gun post meseleleri
+    FORMLARI AYIR
+    SUCCESS MESSAGE'NI DUZELT
+    UUID MESELESINE HELL TAP
     ---------------------------------
-    6 - ci gun esger meseleleri
-    7 - ci gun fayllar
-    1 - ci gun security + front
-    2 - ci gun front
+    7 - ci gun post meseleleri
+    7 - ci gun esger meseleleri
+    ---------------------------------
+    1 - ci gun fayllar
+    2 - ci gun security
+    ---------------------------------
+    3 - ci gun front
 }*/
 
 // standard model, dto, mapping, services

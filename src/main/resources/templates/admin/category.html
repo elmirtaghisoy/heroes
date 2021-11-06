@@ -45,7 +45,8 @@
                                    type="text">
                         </td>
                         <td>
-                            <button class="btn btn-warning c mt-2" th:id="'war-update-button-' + ${war.id}"
+                            <button class="btn btn-warning c mt-2" style="color: white"
+                                    th:id="'war-update-button-' + ${war.id}"
                                     th:onclick="|activateUpdateButton(${war.id})|"
                                     type="button">
                                 DƏYİŞİKLİK ET
@@ -57,10 +58,14 @@
                         </td>
                     </form>
                     <td>
-                        <form method="post" th:action="@{'/war/delete'}" th:object="${war}">
-                            <input name="id" th:value="${war.id}" type="hidden">
-                            <input class="btn btn-danger mt-2 text-uppercase" type="submit" value="SİL">
-                        </form>
+                        <a class="delete-button btn btn-danger mt-2 text-uppercase"
+                           data-toggle="modal" th:onclick="|init(${war.id},'delete','war')|">
+                            SIL
+                        </a>
+                        <!--                        <form method="post" th:action="@{'/war/delete'}" th:object="${war}">-->
+                        <!--                            <input name="id" th:value="${war.id}" type="hidden">-->
+                        <!--                            <input class="btn btn-danger mt-2 text-uppercase" type="submit" value="SİL">-->
+                        <!--                        </form>-->
                     </td>
                 </tr>
                 </tbody>
@@ -89,12 +94,16 @@
                         </a>
                     </td>
                     <td>
-                        <form method="post" th:action="@{'/rank/delete'}" th:object="${rank}">
-                            <input name="id" th:value="${rank.id}" type="hidden">
-                            <div class="text-left">
-                                <input class="btn btn-danger" type="submit" value="SİL">
-                            </div>
-                        </form>
+                        <!--                                                <a th:onclick="'init(\'' + ${businessType.id} +'\',\'delete\',\'business\')'"-->
+                        <!--                                                   class="delete-button btn dark-button " data-toggle="modal">-->
+                        <!--                                                    <i class="fas fa-trash-alt"></i>-->
+                        <!--                                                </a>-->
+                        <!--                        <form method="post" th:action="@{'/rank/delete'}" th:object="${rank}">-->
+                        <!--                            <input name="id" th:value="${rank.id}" type="hidden">-->
+                        <!--                            <div class="text-left">-->
+                        <!--                                <input class="btn btn-danger" type="submit" value="SİL">-->
+                        <!--                            </div>-->
+                        <!--                        </form>-->
                     </td>
                 </tr>
                 </tbody>
@@ -167,6 +176,16 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="delete-modal"
+     role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="delSocModalBody"></div>
         </div>
     </div>
 </div>

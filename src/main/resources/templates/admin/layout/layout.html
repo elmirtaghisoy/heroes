@@ -16,45 +16,20 @@
     <link rel="stylesheet" th:href="@{/static/admin/css/main.css}"/>
     <script th:src="@{/static/admin/ckeditor/ckeditor.js}"></script>
     <script th:src="@{/static/admin/ckeditor/config.js}"></script>
-    <script th:src="@{/static/jquery-3.6.0.min.js}"></script>
 </head>
 <body>
 <div th:replace="admin/layout/header.html::header"></div>
 <div th:replace="admin/layout/globalException::globalException"></div>
 <th:block th:include="${template}"/>
 <div th:replace="admin/layout/footer.html::footer"></div>
-<script>
-    CKEDITOR.replace('editor');
-</script>
-<script>
-    var firstStep = true;
-    var prev;
-    var data;
 
-    function activateUpdateButton(id) {
-        if (firstStep) {
-            $('#war-update-button-' + id).fadeOut(1);
-            $('#war-update-form-' + id).fadeIn(1);
-            $('#war-update-input-' + id).prop('disabled', false);
-            data = $('#war-update-input-' + id).val();
-            firstStep = false;
-            prev = id;
-        } else if (firstStep === false && id !== prev) {
-            $('#war-update-button-' + prev).fadeIn(1);
-            $('#war-update-form-' + prev).fadeOut(1);
-            $('#war-update-input-' + prev).prop('disabled', true);
-            $('#war-update-input-' + prev).val(data);
-            $('#war-update-button-' + id).fadeOut(1);
-            $('#war-update-form-' + id).fadeIn(1);
-            $('#war-update-input-' + id).prop('disabled', false);
-            data = $('#war-update-input-' + id).val();
-            prev = id;
-        }
-    }
-</script>
-<!--<script crossorigin="anonymous"-->
-<!--        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
-<!--        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>-->
+
+<script>CKEDITOR.replace('editor');</script>
+<script crossorigin="anonymous"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script th:src="@{/static/jquery-1.10.2.js}"></script>
+<script th:src="@{/static/admin/js/for-back.js}"></script>
 <script crossorigin="anonymous"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
