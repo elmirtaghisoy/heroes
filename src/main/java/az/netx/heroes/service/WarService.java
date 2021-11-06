@@ -39,4 +39,7 @@ public class WarService {
         warRepository.save(entity);
     }
 
+    public WarResponse getWar(Long id) {
+        return objectMapper.E2R(warRepository.getById(id));
+    }
 }

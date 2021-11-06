@@ -5,6 +5,7 @@
     <div class="row">
         <div class="custom-bread-crumb col-12 text-center">
             <div class="main-container">
+                <p th:if="success != null" th:text="${success}"></p>
             </div>
         </div>
     </div>
@@ -20,34 +21,41 @@
                 </tr>
                 </thead>
                 <tbody>
-                <form action="#" method="post" th:action="@{'categorization/war/create'}" th:object="${warRequest}">
-                    <div class="row">
-                        <label class="form-label" for="contactNameLabel">KONTAKT ADI</label>
-                        <p class="text-danger fw-bolder" style="display:inline"
-                           th:errors="*{warName}"
-                           th:if="${#fields.hasErrors('warName')}"></p>
-                        <input class="form-control" id="contactNameLabel" name="warName"
-                               placeholder="Əlaqənin adını daxil edin"
-                               th:field="*{warName}" type="text">
-                    </div>
+                <form method="post" th:action="@{'/categorization/war/create'}" th:object="${warRequest}">
+                    <p class="text-danger fw-bolder" style="display:inline"
+                       th:errors="*{warName}"
+                       th:if="${#fields.hasErrors('warName')}"></p>
+                    <input class="form-control" id="contactNameLabel" name="warName"
+                           placeholder="Döyüşün adını daxil edin"
+                           th:field="*{warName}" type="text">
                     <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
                         <button class="btn btn-success text-uppercase mt-3" type="submit">ƏLAVƏ ET</button>
                     </div>
                 </form>
                 <tr th:each="war : ${wars}">
-                    <th scope="row" th:text="${war.id}"></th>
-                    <td th:text="${war.warName}"></td>
-                    <td>
-                        <a class="card-link btn btn-success" href="/category/id" th:href="@{{id} (id=${war.id})}">
-                            DƏYİŞİKLİK ET
-                        </a>
-                    </td>
+                    <form method="post" th:object="${warRequest}">
+                        <th scope="row" th:text="${war.id}"></th>
+                        <td>
+                            <input class="mt-3" disabled="disabled" name="warName"
+                                   th:id="'war-update-input-' + ${war.id}" th:value="${war.warName}"
+                                   type="text">
+                        </td>
+                        <td>
+                            <button class="btn btn-warning c mt-2" th:id="'war-update-button-' + ${war.id}"
+                                    th:onclick="|activateUpdateButton(${war.id})|"
+                                    type="button">
+                                DƏYİŞİKLİK ET
+                            </button>
+                            <button class="btn btn-success text-uppercase mt-2" style="display:none;"
+                                    th:id="'war-update-form-' + ${war.id}"
+                                    type="submit">YADDA SAXLA
+                            </button>
+                        </td>
+                    </form>
                     <td>
                         <form method="post" th:action="@{'/war/delete'}" th:object="${war}">
                             <input name="id" th:value="${war.id}" type="hidden">
-                            <div class="text-left">
-                                <input class="btn btn-danger" type="submit" value="SİL">
-                            </div>
+                            <input class="btn btn-danger mt-2 text-uppercase" type="submit" value="SİL">
                         </form>
                     </td>
                 </tr>

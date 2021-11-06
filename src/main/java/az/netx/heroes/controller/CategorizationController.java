@@ -12,18 +12,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.validation.Valid;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/categorization")
 @RequiredArgsConstructor
-public class CategorizationController {
+public class CategorizationController implements ControllerConstraints {
 
     private final WarService warService;
     private final RankService rankService;
@@ -31,12 +32,20 @@ public class CategorizationController {
     private final RewardService rewardService;
 
     @GetMapping
-    public String getCategorizationPage(Model model) {
-        model.addAttribute("warRequest", new WarRequest());
+    public String getCategorizationPage(
+            Model model
+    ) {
+        if (!model.containsAttribute("warRequest")) {
+            model.addAttribute("warRequest", new WarRequest());
+        }
         model.addAttribute("wars", warService.getAllWar());
         model.addAttribute("ranks", rankService.getAllRank());
         model.addAttribute("rewards", rewardService.getAllReward());
         model.addAttribute("postCategories", postCategoryService.getAllPostCategory());
+
+        if (model.containsAttribute("success")) {
+            model.addAttribute("success");
+        }
         return "admin/category";
     }
 
@@ -44,20 +53,24 @@ public class CategorizationController {
 
     @PostMapping(value = "/war/create")
     public String createWar(
-            @Valid @ModelAttribute("warRequest") WarRequest warRequest,
-            BindingResult bindingResult
+            @Validated @ModelAttribute("warRequest") final WarRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
     ) {
         if (bindingResult.hasErrors()) {
-            return "admin/category";
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.warRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("warRequest", request);
+            return "redirect:/categorization";
         }
-        warService.createWar(warRequest);
-        return "admin/category";
+        warService.createWar(request);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/categorization";
     }
 
     @PostMapping(value = "/rank/create")
     public String createRank(RankRequest request) {
         rankService.createRank(request);
-        return "admin/category";
+        return "redirect:/categorization";
     }
 
     @PostMapping(value = "/post-category/create")
@@ -72,11 +85,27 @@ public class CategorizationController {
         return "admin/category";
     }
 
+    /////////////////////////////////////////////////////////////////////////////////
+    @GetMapping(value = "/war/{id}")
+    public String getWar(@PathVariable("id") Long id) {
+        warService.getWar(id);
+        return "admin/category";
+    }
 /////////////////////////////////////////////////////////////////////////////////
 
     @PostMapping(value = "/war/update")
-    public String updateWar(WarRequest request) {
+    public String updateWar(
+            @Validated @ModelAttribute("warRequest") final WarRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.warRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("warRequest", request);
+            return "redirect:/categorization";
+        }
         warService.updateWar(request);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "admin/category";
     }
 
