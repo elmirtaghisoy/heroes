@@ -31,6 +31,7 @@ public class CategorizationController implements ControllerConstraints {
     private final RankService rankService;
     private final PostCategoryService postCategoryService;
     private final RewardService rewardService;
+    private String ACCEPT_UUID;
 
     @GetMapping
     public String getCategorizationPage(
@@ -46,6 +47,9 @@ public class CategorizationController implements ControllerConstraints {
 
         if (model.containsAttribute("success")) {
             model.addAttribute("success");
+        }
+        if (model.containsAttribute("error")) {
+            model.addAttribute("error");
         }
         return "admin/category";
     }
@@ -92,8 +96,9 @@ public class CategorizationController implements ControllerConstraints {
             @RequestParam("id") Long id,
             Model model
     ) {
+        ACCEPT_UUID = UUID.randomUUID().toString();
         model.addAttribute("warResponse", warService.getWar(id));
-        model.addAttribute("uuid", UUID.randomUUID().toString());
+        model.addAttribute("uuid", ACCEPT_UUID);
         return "admin/categoryForm";
     }
 /////////////////////////////////////////////////////////////////////////////////
@@ -137,10 +142,15 @@ public class CategorizationController implements ControllerConstraints {
     @PostMapping(value = "/war/delete")
     public String deleteWar(
             @RequestParam("id") Long warId,
+            @RequestParam("uuid") String uuid,
             final RedirectAttributes redirectAttributes
     ) {
-        warService.deleteWar(warId);
-        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        if (uuid.equals(ACCEPT_UUID)) {
+            warService.deleteWar(warId);
+            redirectAttributes.addFlashAttribute("success", SUCCESS);
+            return "redirect:/categorization";
+        }
+        redirectAttributes.addFlashAttribute("error", "Şifrə düzgün daxil edilməyib");
         return "redirect:/categorization";
     }
 

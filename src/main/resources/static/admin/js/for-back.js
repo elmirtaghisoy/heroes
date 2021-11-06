@@ -29,7 +29,7 @@ function init(id, opp, obj) {
     });
 }
 
-// open modal
+// modal operations
 $(document).ready(function () {
 
     $(".delete-button").click(function () {
@@ -41,12 +41,20 @@ $(document).ready(function () {
     });
 
     if ($('#war-error').val() != null) {
-        $('#error-modal').modal('show');
+        $('#field-error-modal').modal('show');
     }
 
     if ($('#success').text() !== "") {
         $('#success-modal').modal('show');
     }
+
+    if ($('#error').text() !== "") {
+        $('#error-modal').modal('show');
+    }
+
+    $("#close-field-error-modal").click(function () {
+        $('#field-error-modal').modal('hide');
+    });
 
     $("#close-error-modal").click(function () {
         $('#error-modal').modal('hide');

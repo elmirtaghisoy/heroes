@@ -13,7 +13,7 @@ public class HeroesApplication {
 }
 
 /*{
-    UUID MESELESINE HELL TAP
+    Optimization
     ---------------------------------
     //post kateqoriyasi menuda gorunsun ya yox
     7 - ci gun post meseleleri

@@ -31,10 +31,36 @@
                         </div>
                     </div>
                 </div>
+                <div aria-hidden="true"
+                     aria-labelledby="exampleModalLabel"
+                     class="modal fade" id="error-modal"
+                     role="dialog" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">XƏTA</h5>
+                            </div>
+                            <div class="modal-content">
+                                <p class="text-danger fw-bolder"
+                                   id="error"
+                                   style="display:inline;margin: 5%;font-size: 25px"
+                                   th:if="error != null"
+                                   th:text="${error}">
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger" data-dismiss="modal" id="close-error-modal"
+                                        type="button">
+                                    BAĞLA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div th:object="${warRequest}">
                     <div aria-hidden="true"
                          aria-labelledby="exampleModalLabel"
-                         class="modal fade" id="error-modal"
+                         class="modal fade" id="field-error-modal"
                          role="dialog" tabindex="-1">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -48,7 +74,7 @@
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-danger" data-dismiss="modal" id="close-error-modal"
+                                    <button class="btn btn-danger" data-dismiss="modal" id="close-field-error-modal"
                                             type="button">
                                         BAĞLA
                                     </button>
