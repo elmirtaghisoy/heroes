@@ -5,7 +5,58 @@
     <div class="row">
         <div class="custom-bread-crumb col-12 text-center">
             <div class="main-container">
-                <p th:if="success != null" th:text="${success}"></p>
+                <div aria-hidden="true"
+                     aria-labelledby="exampleModalLabel"
+                     class="modal fade" id="success-modal"
+                     role="dialog" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">UĞURLU ƏMƏLİYYAT</h5>
+                            </div>
+                            <div class="modal-content">
+                                <p class="text-success fw-bolder"
+                                   id="success"
+                                   style="display:inline;margin: 5%;font-size: 25px"
+                                   th:if="success != null"
+                                   th:text="${success}">
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" data-dismiss="modal" id="close-success-modal"
+                                        type="button">
+                                    BAĞLA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:object="${warRequest}">
+                    <div aria-hidden="true"
+                         aria-labelledby="exampleModalLabel"
+                         class="modal fade" id="error-modal"
+                         role="dialog" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">İSTİFADƏÇİ XƏTASI</h5>
+                                </div>
+                                <div class="modal-content">
+                                    <p class="text-danger fw-bolder" id="war-error"
+                                       style="display:inline;margin: 5%;font-size: 25px"
+                                       th:errors="*{warName}">
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal" id="close-error-modal"
+                                            type="button">
+                                        BAĞLA
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -22,9 +73,6 @@
                 </thead>
                 <tbody>
                 <form method="post" th:action="@{'/categorization/war/create'}" th:object="${warRequest}">
-                    <p class="text-danger fw-bolder" style="display:inline"
-                       th:errors="*{warName}"
-                       th:if="${#fields.hasErrors('warName')}"></p>
                     <input class="form-control" id="contactNameLabel" name="warName"
                            placeholder="Döyüşün adını daxil edin"
                            th:field="*{warName}" type="text">
@@ -37,9 +85,6 @@
                         <input name="id" th:value="${war.id}" type="hidden">
                         <th scope="row" th:text="${war.id}"></th>
                         <td>
-                            <p class="text-danger fw-bolder" style="display:inline"
-                               th:errors="*{warName}"
-                               th:if="${#fields.hasErrors('warName')}"></p>
                             <input class="mt-3" disabled="disabled" name="warName"
                                    th:id="'war-update-input-' + ${war.id}" th:value="${war.warName}"
                                    type="text">
@@ -62,10 +107,6 @@
                            data-toggle="modal" th:onclick="|init(${war.id},'delete','war')|">
                             SIL
                         </a>
-                        <!--                        <form method="post" th:action="@{'/war/delete'}" th:object="${war}">-->
-                        <!--                            <input name="id" th:value="${war.id}" type="hidden">-->
-                        <!--                            <input class="btn btn-danger mt-2 text-uppercase" type="submit" value="SİL">-->
-                        <!--                        </form>-->
                     </td>
                 </tr>
                 </tbody>
@@ -189,5 +230,7 @@
         </div>
     </div>
 </div>
+
+
 </body>
 </html>

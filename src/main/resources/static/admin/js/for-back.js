@@ -1,3 +1,4 @@
+// get data for modal
 function selectOperation(opp, response) {
     if (opp === "delete") {
         $("#delSocModalBody").html(response);
@@ -28,16 +29,37 @@ function init(id, opp, obj) {
     });
 }
 
+// open modal
 $(document).ready(function () {
+
     $(".delete-button").click(function () {
         $('#delete-modal').modal('show');
     });
+
     $(".save-delete-button").click(function () {
         window.refresh();
     });
+
+    if ($('#war-error').val() != null) {
+        $('#error-modal').modal('show');
+    }
+
+    if ($('#success').text() !== "") {
+        $('#success-modal').modal('show');
+    }
+
+    $("#close-error-modal").click(function () {
+        $('#error-modal').modal('hide');
+    });
+
+    $("#close-success-modal").click(function () {
+        $('#success-modal').modal('hide');
+    });
+
 });
 
 
+// for fading buttons
 var firstStep = true;
 var prev;
 var data;
