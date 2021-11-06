@@ -106,7 +106,7 @@ public class CategorizationController implements ControllerConstraints {
         }
         warService.updateWar(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "admin/category";
+        return "redirect:/categorization";
     }
 
     @PostMapping(value = "/rank/update")

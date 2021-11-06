@@ -33,9 +33,13 @@
                     </div>
                 </form>
                 <tr th:each="war : ${wars}">
-                    <form method="post" th:object="${warRequest}">
+                    <form method="post" th:action="@{'/categorization/war/update'}" th:object="${warRequest}">
+                        <input name="id" th:value="${war.id}" type="hidden">
                         <th scope="row" th:text="${war.id}"></th>
                         <td>
+                            <p class="text-danger fw-bolder" style="display:inline"
+                               th:errors="*{warName}"
+                               th:if="${#fields.hasErrors('warName')}"></p>
                             <input class="mt-3" disabled="disabled" name="warName"
                                    th:id="'war-update-input-' + ${war.id}" th:value="${war.warName}"
                                    type="text">
