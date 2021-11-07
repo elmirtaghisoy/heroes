@@ -4,7 +4,6 @@ import az.netx.heroes.component.mapper.ObjectMapper;
 import az.netx.heroes.entity.Rank;
 import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.response.RankResponse;
-import az.netx.heroes.model.response.WarResponse;
 import az.netx.heroes.repository.RankRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,7 +39,4 @@ public class RankService {
         rankRepository.save(entity);
     }
 
-    public RankResponse getRank(Long id) {
-        return objectMapper.E2R(rankRepository.getById(id));
-    }
 }

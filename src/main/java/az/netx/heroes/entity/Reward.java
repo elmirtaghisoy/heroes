@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -25,8 +23,6 @@ public class Reward extends Auditable<String> {
     @Column(name = "id")
     private Long id;
 
-    @NotNull(message = "Mükafatı daxil edin")
-    @NotBlank(message = "Mükafatı daxil edin")
     @Column(name = "reward_name")
     private String rewardName;
 
