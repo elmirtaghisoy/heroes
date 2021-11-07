@@ -2,18 +2,27 @@ package az.netx.heroes.controller;
 
 import az.netx.heroes.component.criteria.PostSearchCriteria;
 import az.netx.heroes.component.paging.Paged;
+import az.netx.heroes.model.request.PostCategoryRequest;
 import az.netx.heroes.model.request.PostRequest;
 import az.netx.heroes.model.response.PostResponse;
 import az.netx.heroes.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
+import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
 import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 
 @Controller
@@ -49,14 +58,48 @@ public class PostController {
 
         model.addAttribute("objectList", list);
         model.addAttribute("srcUrl", postSearchPathBuilder(request));
+
+        if (model.containsAttribute("success")) {
+            model.addAttribute("success");
+        }
+
         return "admin/post";
     }
 
-
-    @GetMapping("/create")
+    @GetMapping("/create-page")
     public String getCreatePage(Model model) {
-        model.addAttribute("postRequest", new PostRequest());
+        if (!model.containsAttribute("postRequest")) {
+            model.addAttribute("postRequest", new PostRequest());
+        }
+        model.addAttribute("postCategoryRequest", new PostCategoryRequest());
         return "admin/createPostPage";
+    }
+
+    @GetMapping("/{id}")
+    public String getById(
+            @PathVariable(value = "id") Long id,
+            Model model
+    ) {
+        PostResponse response = postService.getPostById(id);
+        model.addAttribute("postResponse", new PostResponse());
+        return "admin/updatePostPage";
+    }
+
+    @PostMapping("/create")
+    public String createPost(
+            @Validated @ModelAttribute("postRequest") final PostRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) throws IOException {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("postRequest", request);
+            System.out.println(request.getCategory());
+            return "redirect:/post/create-page";
+        }
+        postService.createPost(request);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/post";
     }
 
 }

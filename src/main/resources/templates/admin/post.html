@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <!--Standard-->
-                <a class="btn btn-primary text-uppercase" href="/post/create">Yenİ Layİhə Yarat</a>
+                <a class="btn btn-primary text-uppercase" href="/post/create-page">Yenİ Paylaşım Yarat</a>
                 <div aria-label="Basic mixed styles example" class="btn-group" role="group">
                     <a aria-controls="collapseExample" aria-expanded="false" class="btn btn-primary"
                        data-toggle="collapse"
@@ -122,7 +122,10 @@
                             <!--                                <h5 class="card-title" th:text="${post.category}"></h5>-->
                             <!--                            </div>-->
                             <div class="card-body text-center">
-                                <a class="card-link text-uppercase" th:href="@{{id}(id=${post.id})}">Ətraflı Məlumat</a>
+                                <!--                                + ${war.id}-->
+                                <!--                                <a class="card-link text-uppercase" th:href="@{{id}(id=${post.id})}">Ətraflı Məlumat</a>-->
+                                <a class="card-link text-uppercase" th:href="@{/{id}(id=${post.id})}">Ətraflı
+                                    Məlumat</a>
                             </div>
                         </div>
                     </div>

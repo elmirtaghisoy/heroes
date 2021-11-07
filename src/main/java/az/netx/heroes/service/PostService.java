@@ -36,6 +36,10 @@ public class PostService {
         postRepository.save(objectMapper.R2E(request));
     }
 
+    public PostResponse getPostById(Long id) {
+        return objectMapper.E2R(postRepository.getById(id));
+    }
+
     public void updatePost(PostRequest request) {
         postRepository.save(objectMapper.R2E(request));
     }
@@ -48,12 +52,14 @@ public class PostService {
 
     public Paged<PostResponse> searchPost(int page, int size, PostSearchCriteria searchRequest) {
         Pageable pageRequest = PageRequest.of(page - 1, size);
+
         Page<PostResponse> postPage = new PageImpl<>(
                 postRepository.findAll(SearchQueries.createPostSpecification(searchRequest), pageRequest)
                         .stream()
                         .map(objectMapper::E2R)
                         .collect(Collectors.toList())
         );
+
         return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
     }
 }

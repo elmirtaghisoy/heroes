@@ -15,18 +15,19 @@ public class HeroesApplication {
 /*{
     Optimization
     post search +
-    post create -
+    post create +
     post update -
     post delete -
+    post paging -
     // postcategory changes
-    ---------------------------------
-    //post kateqoriyasi menuda gorunsun ya yox
+    // post kateqoriyasi menuda gorunsun ya yox
     7 - ci gun post meseleleri
-
-    // hansi kateqoriyada esger varsa o gorunsun menuda
-    7 - ci gun esger meseleleri
     ---------------------------------
     1 - ci gun fayllar
+
+    // hansi kateqoriyada esger varsa o gorunsun menuda
+    1 - ci gun axsham esger meseleleri
+    ---------------------------------
     2 - ci gun security
     ---------------------------------
     3 - ci gun front
