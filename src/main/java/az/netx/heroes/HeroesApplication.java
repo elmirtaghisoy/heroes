@@ -14,6 +14,11 @@ public class HeroesApplication {
 
 /*{
     Optimization
+    post search +
+    post create -
+    post update -
+    post delete -
+    // postcategory changes
     ---------------------------------
     //post kateqoriyasi menuda gorunsun ya yox
     7 - ci gun post meseleleri

@@ -46,7 +46,7 @@ public class PostService {
         postRepository.save(entity);
     }
 
-    public Paged<PostResponse> searchPosts(int page, int size, PostSearchCriteria searchRequest) {
+    public Paged<PostResponse> searchPost(int page, int size, PostSearchCriteria searchRequest) {
         Pageable pageRequest = PageRequest.of(page - 1, size);
         Page<PostResponse> postPage = new PageImpl<>(
                 postRepository.findAll(SearchQueries.createPostSpecification(searchRequest), pageRequest)
