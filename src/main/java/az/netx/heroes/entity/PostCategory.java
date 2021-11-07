@@ -24,6 +24,9 @@ public class PostCategory extends Auditable<String> {
     @Column(name = "category_name")
     private String categoryName;
 
+    @Column(name = "visibility")
+    private Boolean isVisible;
+
     @OneToMany(mappedBy = "category")
     private List<Post> soldiers;
 }
