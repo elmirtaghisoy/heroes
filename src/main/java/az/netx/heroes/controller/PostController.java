@@ -2,6 +2,7 @@ package az.netx.heroes.controller;
 
 import az.netx.heroes.component.criteria.PostSearchCriteria;
 import az.netx.heroes.component.paging.Paged;
+import az.netx.heroes.model.request.PostRequest;
 import az.netx.heroes.model.response.PostResponse;
 import az.netx.heroes.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping(value = "/post")
+@RequiredArgsConstructor
 public class PostController {
 
     private final PostService postService;
@@ -50,4 +51,12 @@ public class PostController {
         model.addAttribute("srcUrl", postSearchPathBuilder(request));
         return "admin/post";
     }
+
+
+    @GetMapping("/create")
+    public String getCreatePage(Model model) {
+        model.addAttribute("postRequest", new PostRequest());
+        return "admin/createPostPage";
+    }
+
 }
