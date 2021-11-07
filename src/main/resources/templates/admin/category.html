@@ -5,6 +5,7 @@
     <div class="row">
         <div class="custom-bread-crumb col-12 text-center">
             <div class="main-container">
+                <!--Standard-->
                 <div aria-hidden="true"
                      aria-labelledby="exampleModalLabel"
                      class="modal fade" id="success-modal"
@@ -57,6 +58,7 @@
                         </div>
                     </div>
                 </div>
+                <!--Standard-->
                 <div th:object="${warRequest}">
                     <div aria-hidden="true"
                          aria-labelledby="exampleModalLabel"
@@ -118,7 +120,7 @@
                         <td>
                             <button class="btn btn-warning c mt-2" style="color: white"
                                     th:id="'war-update-button-' + ${war.id}"
-                                    th:onclick="|activateUpdateButton(${war.id})|"
+                                    th:onclick="|activateUpdateButtonWar(${war.id})|"
                                     type="button">
                                 DƏYİŞİKLİK ET
                             </button>

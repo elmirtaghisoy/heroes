@@ -40,10 +40,7 @@ $(document).ready(function () {
         window.refresh();
     });
 
-    if ($('#war-error').val() != null) {
-        $('#field-error-modal').modal('show');
-    }
-
+    // standard open close success error modals
     if ($('#success').text() !== "") {
         $('#success-modal').modal('show');
     }
@@ -52,10 +49,6 @@ $(document).ready(function () {
         $('#error-modal').modal('show');
     }
 
-    $("#close-field-error-modal").click(function () {
-        $('#field-error-modal').modal('hide');
-    });
-
     $("#close-error-modal").click(function () {
         $('#error-modal').modal('hide');
     });
@@ -63,32 +56,43 @@ $(document).ready(function () {
     $("#close-success-modal").click(function () {
         $('#success-modal').modal('hide');
     });
+    //
+
+
+    // field error modals (WAR)
+    if ($('#war-error').val() != null) {
+        $('#field-error-modal').modal('show');
+    }
+    $("#close-field-error-modal").click(function () {
+        $('#field-error-modal').modal('hide');
+    });
+    //
 
 });
 
 
 // for fading buttons
-var firstStep = true;
-var prev;
-var data;
+var warFirstStep = true;
+var warPrev;
+var warData;
 
-function activateUpdateButton(id) {
-    if (firstStep) {
+function activateUpdateButtonWar(id) {
+    if (warFirstStep) {
         $('#war-update-button-' + id).fadeOut(1);
         $('#war-update-form-' + id).fadeIn(1);
         $('#war-update-input-' + id).prop('disabled', false);
-        data = $('#war-update-input-' + id).val();
-        firstStep = false;
-        prev = id;
-    } else if (firstStep === false && id !== prev) {
-        $('#war-update-button-' + prev).fadeIn(1);
-        $('#war-update-form-' + prev).fadeOut(1);
-        $('#war-update-input-' + prev).prop('disabled', true);
-        $('#war-update-input-' + prev).val(data);
+        warData = $('#war-update-input-' + id).val();
+        warFirstStep = false;
+        warPrev = id;
+    } else if (warFirstStep === false && id !== warPrev) {
+        $('#war-update-button-' + warPrev).fadeIn(1);
+        $('#war-update-form-' + warPrev).fadeOut(1);
+        $('#war-update-input-' + warPrev).prop('disabled', true);
+        $('#war-update-input-' + warPrev).val(data);
         $('#war-update-button-' + id).fadeOut(1);
         $('#war-update-form-' + id).fadeIn(1);
         $('#war-update-input-' + id).prop('disabled', false);
-        data = $('#war-update-input-' + id).val();
-        prev = id;
+        warData = $('#war-update-input-' + id).val();
+        warPrev = id;
     }
 }

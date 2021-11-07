@@ -40,6 +40,7 @@ public class CategorizationController implements ControllerConstraints {
         if (!model.containsAttribute("warRequest")) {
             model.addAttribute("warRequest", new WarRequest());
         }
+
         model.addAttribute("wars", warService.getAllWar());
         model.addAttribute("ranks", rankService.getAllRank());
         model.addAttribute("rewards", rewardService.getAllReward());
@@ -51,6 +52,7 @@ public class CategorizationController implements ControllerConstraints {
         if (model.containsAttribute("error")) {
             model.addAttribute("error");
         }
+
         return "admin/category";
     }
 
@@ -99,7 +101,7 @@ public class CategorizationController implements ControllerConstraints {
         ACCEPT_UUID = UUID.randomUUID().toString();
         model.addAttribute("warResponse", warService.getWar(id));
         model.addAttribute("uuid", ACCEPT_UUID);
-        return "admin/categoryForm";
+        return "admin/warRequestForm";
     }
 /////////////////////////////////////////////////////////////////////////////////
 
