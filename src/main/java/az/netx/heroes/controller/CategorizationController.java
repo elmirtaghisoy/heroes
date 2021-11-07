@@ -4,6 +4,7 @@ import az.netx.heroes.model.request.PostCategoryRequest;
 import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.request.RewardRequest;
 import az.netx.heroes.model.request.WarRequest;
+import az.netx.heroes.model.response.WarResponse;
 import az.netx.heroes.service.PostCategoryService;
 import az.netx.heroes.service.RankService;
 import az.netx.heroes.service.RewardService;
@@ -41,10 +42,22 @@ public class CategorizationController implements ControllerConstraints {
             model.addAttribute("warRequest", new WarRequest());
         }
 
+        if (!model.containsAttribute("rankRequest")) {
+            model.addAttribute("rankRequest", new RankRequest());
+        }
+
+        if (!model.containsAttribute("postCategories")) {
+            model.addAttribute("postCategories", new PostCategoryRequest());
+        }
+
+        if (!model.containsAttribute("rewardRequest")) {
+            model.addAttribute("rewardRequest", new RewardRequest());
+        }
+
         model.addAttribute("wars", warService.getAllWar());
         model.addAttribute("ranks", rankService.getAllRank());
-        model.addAttribute("rewards", rewardService.getAllReward());
         model.addAttribute("postCategories", postCategoryService.getAllPostCategory());
+        model.addAttribute("rewards", rewardService.getAllReward());
 
         if (model.containsAttribute("success")) {
             model.addAttribute("success");
@@ -75,24 +88,55 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/rank/create")
-    public String createRank(RankRequest request) {
+    public String createRank(
+            @Validated @ModelAttribute("rankRequest") final RankRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.rankRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("rankRequest", request);
+            return "redirect:/categorization";
+        }
         rankService.createRank(request);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/categorization";
     }
 
     @PostMapping(value = "/post-category/create")
-    public String createPostCategory(PostCategoryRequest request) {
+    public String createPostCategory(
+            @Validated @ModelAttribute("postCategoryRequest") final PostCategoryRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postCategoryRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("postCategoryRequest", request);
+            return "redirect:/categorization";
+        }
         postCategoryService.createPostCategory(request);
-        return "admin/category";
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/categorization";
     }
 
     @PostMapping(value = "/reward/create")
-    public String createReward(RewardRequest request) {
+    public String createReward(
+            @Validated @ModelAttribute("rewardRequest") final RewardRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.rewardRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("rewardRequest", request);
+            return "redirect:/categorization";
+        }
         rewardService.createReward(request);
-        return "admin/category";
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/categorization";
     }
 
     /////////////////////////////////////////////////////////////////////////////////
+
     @GetMapping(value = "/war")
     public String getWar(
             @RequestParam("id") Long id,
@@ -103,6 +147,40 @@ public class CategorizationController implements ControllerConstraints {
         model.addAttribute("uuid", ACCEPT_UUID);
         return "admin/warRequestForm";
     }
+
+    @GetMapping(value = "/rank")
+    public String getRank(
+            @RequestParam("id") Long id,
+            Model model
+    ) {
+        ACCEPT_UUID = UUID.randomUUID().toString();
+        model.addAttribute("rankResponse", rankService.getRank(id));
+        model.addAttribute("uuid", ACCEPT_UUID);
+        return "admin/rankRequestForm";
+    }
+
+    @GetMapping(value = "/postCategory")
+    public String getPostCategory(
+            @RequestParam("id") Long id,
+            Model model
+    ) {
+        ACCEPT_UUID = UUID.randomUUID().toString();
+        model.addAttribute("postCategoryResponse", postCategoryService.getPostCategory(id));
+        model.addAttribute("uuid", ACCEPT_UUID);
+        return "admin/postCategoryRequestForm";
+    }
+
+    @GetMapping(value = "/reward")
+    public String getReward(
+            @RequestParam("id") Long id,
+            Model model
+    ) {
+        ACCEPT_UUID = UUID.randomUUID().toString();
+        model.addAttribute("rewardResponse", rewardService.getReward(id));
+        model.addAttribute("uuid", ACCEPT_UUID);
+        return "admin/rewardRequestForm";
+    }
+
 /////////////////////////////////////////////////////////////////////////////////
 
     @PostMapping(value = "/war/update")
@@ -122,21 +200,51 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/rank/update")
-    public String updateRank(RankRequest request) {
+    public String updateRank(
+            @Validated @ModelAttribute("rankRequest") final RankRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.rankRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("rankRequest", request);
+            return "redirect:/categorization";
+        }
         rankService.updateRank(request);
-        return "admin/category";
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/categorization";
     }
 
     @PostMapping(value = "/post-category/update")
-    public String updatePostCategory(PostCategoryRequest request) {
+    public String updatePostCategory(
+            @Validated @ModelAttribute("postCategoryRequest") final PostCategoryRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postCategoryRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("postCategoryRequest", request);
+            return "redirect:/categorization";
+        }
         postCategoryService.updatePostCategory(request);
-        return "admin/category";
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/categorization";
     }
 
     @PostMapping(value = "/reward/update")
-    public String updateReward(RewardRequest request) {
+    public String updateReward(
+            @Validated @ModelAttribute("rewardRequest") final RewardRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.rewardRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("rewardRequest", request);
+            return "redirect:/categorization";
+        }
         rewardService.updateReward(request);
-        return "admin/category";
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/categorization";
     }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -152,26 +260,52 @@ public class CategorizationController implements ControllerConstraints {
             redirectAttributes.addFlashAttribute("success", SUCCESS);
             return "redirect:/categorization";
         }
-        redirectAttributes.addFlashAttribute("error", "Şifrə düzgün daxil edilməyib");
+        redirectAttributes.addFlashAttribute("error", ERROR);
         return "redirect:/categorization";
     }
 
     @PostMapping(value = "/rank/delete")
-    public String deleteRank(@RequestParam("id") Long rankId) {
-        rankService.deleteRank(rankId);
-        return "admin/category";
+    public String deleteRank(
+            @RequestParam("id") Long rankId,
+            @RequestParam("uuid") String uuid,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (uuid.equals(ACCEPT_UUID)) {
+            rankService.deleteRank(rankId);
+            redirectAttributes.addFlashAttribute("success", SUCCESS);
+            return "redirect:/categorization";
+        }
+        redirectAttributes.addFlashAttribute("error", ERROR);
+        return "redirect:/categorization";
     }
 
     @PostMapping(value = "/post-category/delete")
-    public String deletePostCategory(@RequestParam("id") Long postCategoryId) {
-        postCategoryService.deletePostCategory(postCategoryId);
-        return "admin/category";
+    public String deletePostCategory(
+            @RequestParam("id") Long postCategoryId,
+            @RequestParam("uuid") String uuid,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (uuid.equals(ACCEPT_UUID)) {
+            postCategoryService.deletePostCategory(postCategoryId);
+            redirectAttributes.addFlashAttribute("success", SUCCESS);
+            return "redirect:/categorization";
+        }
+        redirectAttributes.addFlashAttribute("error", ERROR);
+        return "redirect:/categorization";
     }
 
     @PostMapping(value = "/reward/delete")
-    public String deleteReward(@RequestParam("id") Long rewardId) {
-        rewardService.deleteReward(rewardId);
-        return "admin/category";
+    public String deleteReward(
+            @RequestParam("id") Long rewardId,
+            @RequestParam("uuid") String uuid,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (uuid.equals(ACCEPT_UUID)) {
+            rewardService.deleteReward(rewardId);
+            redirectAttributes.addFlashAttribute("success", SUCCESS);
+            return "redirect:/categorization";
+        }
+        redirectAttributes.addFlashAttribute("error", ERROR);
+        return "redirect:/categorization";
     }
-
 }
