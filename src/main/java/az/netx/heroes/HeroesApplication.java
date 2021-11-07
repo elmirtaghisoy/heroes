@@ -16,8 +16,8 @@ public class HeroesApplication {
     Optimization
     post search +
     post create +
-    post update -
-    post delete -
+    post update +
+    post delete +
     post paging -
     // postcategory changes
     // post kateqoriyasi menuda gorunsun ya yox

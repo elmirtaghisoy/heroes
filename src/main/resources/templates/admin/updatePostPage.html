@@ -11,8 +11,9 @@
     <div class="container-fluid">
         <div class="main-container">
             <div class="row">
-                <form action="#" enctype="multipart/form-data" method="post" th:action="@{'/post/create'}"
-                      th:object="${postRequest}">
+                <form action="#" enctype="multipart/form-data" method="post" th:action="@{'/post/update'}"
+                      th:object="${postResponse}">
+                    <input name="id" th:value="${postResponse.id}" type="hidden">
                     <div class="row">
                         <div class="mb-3 col-6">
                             <label class="form-label text-uppercase" for="headerLabel">Başlıq</label>

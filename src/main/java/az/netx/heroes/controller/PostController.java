@@ -80,8 +80,10 @@ public class PostController {
             @PathVariable(value = "id") Long id,
             Model model
     ) {
-        PostResponse response = postService.getPostById(id);
-        model.addAttribute("postResponse", new PostResponse());
+        if (!model.containsAttribute("postResponse")) {
+            PostResponse response = postService.getPostById(id);
+            model.addAttribute("postResponse", response);
+        }
         return "admin/updatePostPage";
     }
 
@@ -94,11 +96,37 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postRequest", bindingResult);
             redirectAttributes.addFlashAttribute("postRequest", request);
-            System.out.println(request.getCategory());
             return "redirect:/post/create-page";
         }
         postService.createPost(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/post";
+    }
+
+    @PostMapping("/update")
+    public String updatePost(
+            @Validated @ModelAttribute("postRequest") final PostRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postResponse", bindingResult);
+            redirectAttributes.addFlashAttribute("postResponse", request);
+            System.err.println(request);
+            return "redirect:/post/" + request.getId();
+        }
+        System.out.println(request);
+        postService.updatePost(request);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/post";
+    }
+
+    @PostMapping("/delete")
+    public String deletePost(
+            @RequestParam("id") Long id
+    ) {
+        System.out.println("in serv");
+        postService.deletePost(id);
         return "redirect:/post";
     }
 

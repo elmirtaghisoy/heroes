@@ -124,8 +124,15 @@
                             <div class="card-body text-center">
                                 <!--                                + ${war.id}-->
                                 <!--                                <a class="card-link text-uppercase" th:href="@{{id}(id=${post.id})}">Ətraflı Məlumat</a>-->
-                                <a class="card-link text-uppercase" th:href="@{/{id}(id=${post.id})}">Ətraflı
+                                <a class="btn btn-primary text-uppercase" style="display: block"
+                                   th:href="@{/post/{id}(id=${post.id})}">Ətraflı
                                     Məlumat</a>
+                                <form method="post" th:action="@{'post/delete'}">
+                                    <input name="id" th:value="${post.id}" type="hidden">
+                                    <input class="btn mt-1 btn-warning text-uppercase"
+                                           style="display: block;width: 100%" type="submit"
+                                           value="sİl">
+                                </form>
                             </div>
                         </div>
                     </div>

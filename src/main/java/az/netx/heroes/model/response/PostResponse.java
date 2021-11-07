@@ -7,4 +7,5 @@ public class PostResponse {
     private Long id;
     private String header;
     private String context;
+    private PostCategoryResponse category;
 }
