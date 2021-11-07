@@ -1,0 +1,164 @@
+<html th:include="~{admin/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="custom-bread-crumb col-12 text-center">
+            <div class="main-container">
+                <!--Standard-->
+                <div aria-hidden="true"
+                     aria-labelledby="exampleModalLabel"
+                     class="modal fade" id="success-modal"
+                     role="dialog" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">UĞURLU ƏMƏLİYYAT</h5>
+                            </div>
+                            <div class="modal-content">
+                                <p class="text-success fw-bolder"
+                                   id="success"
+                                   style="display:inline;margin: 5%;font-size: 25px"
+                                   th:if="success != null"
+                                   th:text="${success}">
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" data-dismiss="modal" id="close-success-modal"
+                                        type="button">
+                                    BAĞLA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div aria-hidden="true"
+                     aria-labelledby="exampleModalLabel"
+                     class="modal fade" id="error-modal"
+                     role="dialog" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">XƏTA</h5>
+                            </div>
+                            <div class="modal-content">
+                                <p class="text-danger fw-bolder"
+                                   id="error"
+                                   style="display:inline;margin: 5%;font-size: 25px"
+                                   th:if="error != null"
+                                   th:text="${error}">
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger" data-dismiss="modal" id="close-error-modal"
+                                        type="button">
+                                    BAĞLA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Standard-->
+                <div aria-label="Basic mixed styles example" class="btn-group" role="group">
+                    <a aria-controls="collapseExample" aria-expanded="false" class="btn btn-primary"
+                       data-toggle="collapse"
+                       href="#collapseExample" role="button">
+                        AXTARIŞ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <form method="get" th:action="@{'/post'}">
+                    <div class="row d-flex justify-content-center">
+                        <div class="mb-3 col-6">
+                            <label class="form-label text-uppercase" for="headerLabel">Başlıq</label>
+                            <input class="form-control" id="headerLabel" name="header" type="search">
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="mb-4 col-2">
+                            <label class="form-label text-uppercase" for="lastRegDayLabel">Başlanğıc Tarİx</label>
+                            <input class="form-control" id="lastRegDayLabel" name="from"
+                                   type="date">
+                        </div>
+                        <div class="mb-4 col-2">
+                            <label class="form-label text-uppercase" for="startDayLabel">Son Tarix</label>
+                            <input class="form-control" id="startDayLabel" name="to" type="date">
+                        </div>
+                        <div class="mb-4 col-2">
+                            <label class="form-label text-uppercase" for="headerLabel">Kateqoriya</label>
+                            <select class="form-select" name="category">
+                                <option value="-1"></option>
+                                <option value="1">ŞƏHİD AİLƏLƏRİNƏ QAYĞI</option>
+                                <option value="2">ERMƏNİ TERRORU</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="mb-4 text-center col-2">
+                            <input class="btn btn-success text-uppercase" type="submit" value="AXTAR">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="main-container">
+            <div class="main-card-row-container">
+                <div class="row mt-4">
+                    <div class="col-3" th:each="post : ${objectList.page}">
+                        <div class="card">
+                            <!--                                                        <img alt="Cover Image" class="card-img-top" th:src="${post.coverPath}">-->
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${post.header}"></h5>
+                            </div>
+                            <!--                            <div class="card-body">-->
+                            <!--                                <h5 class="card-title" th:text="${post.category}"></h5>-->
+                            <!--                            </div>-->
+                            <div class="card-body text-center">
+                                <a class="card-link text-uppercase" th:href="@{{id}(id=${post.id})}">Ətraflı Məlumat</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--paging-->
+                <div class="row mt-4">
+                    <nav aria-label="Page navigation" class="paging">
+                        <ul class="pagination justify-content-center" th:if="${objectList.page.totalPages > 1}">
+                            <li class="page-item"
+                                th:classappend="${!objectList.paging.isPrevEnabled()? 'disabled' : ''}">
+                                <a class="page-link"
+                                   tabindex="-1"
+                                   th:href="@{'/post/?page=' + ${objectList.paging.pageNumber - 1}+ ${srcUrl}}">Previous</a>
+                            </li>
+                            <th:block th:each="item : ${objectList.paging.getItems()}">
+                                <li class="page-item"
+                                    th:classappend="${item.index == objectList.paging.pageNumber? 'active' : ''}"
+                                    th:if="${item.pageItemType.name() == 'PAGE'}">
+                                    <a class="page-link" th:href="@{'/post/?page=' + ${item.index}+ ${srcUrl}}"
+                                       th:text="${item.index}"></a>
+                                </li>
+                                <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                                    <a class="page-link" href="#">...</a>
+                                </li>
+                            </th:block>
+                            <li class="page-item"
+                                th:classappend="${!objectList.paging.isNextEnabled()? 'disabled' : ''}">
+                                <a class="page-link"
+                                   th:href="@{'/post/?page=' + ${objectList.paging.pageNumber + 1}+ ${srcUrl}}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!--paging-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,11 +1,19 @@
 package az.netx.heroes.service;
 
+import az.netx.heroes.component.criteria.PostSearchCriteria;
 import az.netx.heroes.component.mapper.ObjectMapper;
+import az.netx.heroes.component.paging.Paged;
+import az.netx.heroes.component.paging.Paging;
+import az.netx.heroes.component.query.SearchQueries;
 import az.netx.heroes.entity.Post;
 import az.netx.heroes.model.request.PostRequest;
 import az.netx.heroes.model.response.PostResponse;
 import az.netx.heroes.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,5 +44,16 @@ public class PostService {
         Post entity = postRepository.getById(postId);
         entity.setStatus("DELETED");
         postRepository.save(entity);
+    }
+
+    public Paged<PostResponse> searchPost(int page, int size, PostSearchCriteria searchRequest) {
+        Pageable pageRequest = PageRequest.of(page - 1, size);
+        Page<PostResponse> postPage = new PageImpl<>(
+                postRepository.findAll(SearchQueries.createPostSpecification(searchRequest), pageRequest)
+                        .stream()
+                        .map(objectMapper::E2R)
+                        .collect(Collectors.toList())
+        );
+        return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
     }
 }
