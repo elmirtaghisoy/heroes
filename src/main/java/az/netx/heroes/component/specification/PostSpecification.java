@@ -18,7 +18,7 @@ import java.util.Objects;
 @Component
 public class PostSpecification implements Specification<Post> {
 
-    private PostSearchCriteria request;
+    private final PostSearchCriteria request;
 
     public PostSpecification(PostSearchCriteria request) {
         this.request = request;

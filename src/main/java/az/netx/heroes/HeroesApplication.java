@@ -13,18 +13,16 @@ public class HeroesApplication {
 }
 
 /*{
-    Optimization
-    post search +
-    post create +
-    post update +
-    post delete +
-    post paging -
     ---------------------------------
-    1 - ci gun fayllar
-    // postcategory changes (post kateqoriyasi menuda gorunsun ya yox)
-
-    // hansi kateqoriyada esger varsa o gorunsun menuda
-    1 - ci gun axsham esger meseleleri
+    1 - kenanin kodlarin birleshdir
+    2 - post kateqoriyasinin gorunub gorunmemesine bax
+    3 - post ve kateqoriyalarini birleshdir.
+    4 - fayllari elave et.
+    5 - paging'i duzelt.
+------------------------------------------------
+    1 - Hansi kateqoriyada esger varsa o gorunsun menuda
+    2 - esger crud + search
+    3 - post ve esgerlerde paging
     ---------------------------------
     2 - ci gun security
     ---------------------------------
