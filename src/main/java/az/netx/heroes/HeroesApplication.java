@@ -19,11 +19,9 @@ public class HeroesApplication {
     post update +
     post delete +
     post paging -
-    // postcategory changes
-    // post kateqoriyasi menuda gorunsun ya yox
-    7 - ci gun post meseleleri
     ---------------------------------
     1 - ci gun fayllar
+    // postcategory changes (post kateqoriyasi menuda gorunsun ya yox)
 
     // hansi kateqoriyada esger varsa o gorunsun menuda
     1 - ci gun axsham esger meseleleri

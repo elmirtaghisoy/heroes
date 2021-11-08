@@ -123,10 +123,11 @@ public class PostController {
 
     @PostMapping("/delete")
     public String deletePost(
-            @RequestParam("id") Long id
+            @RequestParam("id") Long id,
+            final RedirectAttributes redirectAttributes
     ) {
-        System.out.println("in serv");
         postService.deletePost(id);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/post";
     }
 

@@ -28,6 +28,8 @@ public class PostSpecification implements Specification<Post> {
     public Predicate toPredicate(Root<Post> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
         List<Predicate> predicates = new ArrayList<>();
 
+        predicates.add(cb.equal(root.get(Post_.status), "ACTIVE"));
+
         if (Objects.nonNull(request)) {
             if (Objects.nonNull(request.getHeader())) {
                 predicates.add(cb.like(root.get(Post_.header), "%" + request.getHeader() + "%"));

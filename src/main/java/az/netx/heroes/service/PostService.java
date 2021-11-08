@@ -16,7 +16,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,12 +24,12 @@ public class PostService {
     private final PostRepository postRepository;
     private final ObjectMapper objectMapper;
 
-    public List<PostResponse> getAllPost() {
-        return postRepository.findAllByStatusTrue()
-                .stream()
-                .map(objectMapper::E2R)
-                .collect(Collectors.toList());
-    }
+//    public List<PostResponse> getAllPost() {
+//        return postRepository.findAllByStatusTrue()
+//                .stream()
+//                .map(objectMapper::E2R)
+//                .collect(Collectors.toList());
+//    }
 
     public void createPost(PostRequest request) {
         postRepository.save(objectMapper.R2E(request));
