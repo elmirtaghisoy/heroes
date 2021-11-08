@@ -28,11 +28,3 @@ public class HeroesApplication {
     ---------------------------------
     3 - ci gun front
 }*/
-
-// standard model, dto, mapping, services
-// search
-//---------------------------
-// exception handling
-// logging
-
-// ui

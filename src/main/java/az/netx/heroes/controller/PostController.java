@@ -115,7 +115,6 @@ public class PostController {
             System.err.println(request);
             return "redirect:/post/" + request.getId();
         }
-        System.out.println(request);
         postService.updatePost(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/post";
