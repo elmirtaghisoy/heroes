@@ -35,8 +35,8 @@ public class PostService {
         postRepository.save(objectMapper.R2E(request));
     }
 
-    public PostResponse getPostById(Long id) {
-        return objectMapper.E2R(postRepository.getById(id));
+    public PostResponse getPostById(Long postId) {
+        return objectMapper.E2R(postRepository.getById(postId));
     }
 
     public void updatePost(PostRequest request) {
