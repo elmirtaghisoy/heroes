@@ -16,4 +16,6 @@ public class WarRequest {
     @NotBlank(message = "Döyüşün adını daxil edin")
     private String warName;
 
+    private String status = "ACTIVE";
+
 }

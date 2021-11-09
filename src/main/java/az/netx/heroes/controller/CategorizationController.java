@@ -4,7 +4,6 @@ import az.netx.heroes.model.request.PostCategoryRequest;
 import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.request.RewardRequest;
 import az.netx.heroes.model.request.WarRequest;
-import az.netx.heroes.model.response.WarResponse;
 import az.netx.heroes.service.PostCategoryService;
 import az.netx.heroes.service.RankService;
 import az.netx.heroes.service.RewardService;
@@ -14,11 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.UUID;
@@ -46,8 +41,8 @@ public class CategorizationController implements ControllerConstraints {
             model.addAttribute("rankRequest", new RankRequest());
         }
 
-        if (!model.containsAttribute("postCategories")) {
-            model.addAttribute("postCategories", new PostCategoryRequest());
+        if (!model.containsAttribute("postCategoryRequest")) {
+            model.addAttribute("postCategoryRequest", new PostCategoryRequest());
         }
 
         if (!model.containsAttribute("rewardRequest")) {
@@ -159,7 +154,7 @@ public class CategorizationController implements ControllerConstraints {
         return "admin/rankRequestForm";
     }
 
-    @GetMapping(value = "/postCategory")
+    @GetMapping(value = "/post-category")
     public String getPostCategory(
             @RequestParam("id") Long id,
             Model model

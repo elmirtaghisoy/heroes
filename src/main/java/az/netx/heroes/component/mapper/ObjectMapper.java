@@ -1,26 +1,8 @@
 package az.netx.heroes.component.mapper;
 
-import az.netx.heroes.entity.Contact;
-import az.netx.heroes.entity.Message;
-import az.netx.heroes.entity.Post;
-import az.netx.heroes.entity.PostCategory;
-import az.netx.heroes.entity.Rank;
-import az.netx.heroes.entity.Reward;
-import az.netx.heroes.entity.War;
-import az.netx.heroes.model.request.ContactRequest;
-import az.netx.heroes.model.request.MessageRequest;
-import az.netx.heroes.model.request.PostCategoryRequest;
-import az.netx.heroes.model.request.PostRequest;
-import az.netx.heroes.model.request.RankRequest;
-import az.netx.heroes.model.request.RewardRequest;
-import az.netx.heroes.model.request.WarRequest;
-import az.netx.heroes.model.response.ContactResponse;
-import az.netx.heroes.model.response.MessageResponse;
-import az.netx.heroes.model.response.PostCategoryResponse;
-import az.netx.heroes.model.response.PostResponse;
-import az.netx.heroes.model.response.RankResponse;
-import az.netx.heroes.model.response.RewardResponse;
-import az.netx.heroes.model.response.WarResponse;
+import az.netx.heroes.entity.*;
+import az.netx.heroes.model.request.*;
+import az.netx.heroes.model.response.*;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

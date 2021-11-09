@@ -62,7 +62,7 @@
                 <div th:object="${warRequest}">
                     <div aria-hidden="true"
                          aria-labelledby="exampleModalLabel"
-                         class="modal fade" id="field-error-modal"
+                         class="modal fade" id="field-error-modal-war"
                          role="dialog" tabindex="-1">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -76,7 +76,7 @@
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-danger" data-dismiss="modal" id="close-field-error-modal"
+                                    <button class="btn btn-danger" data-dismiss="modal" id="close-field-error-modal-war"
                                             type="button">
                                         BAĞLA
                                     </button>
@@ -85,6 +85,85 @@
                         </div>
                     </div>
                 </div>
+                <div th:object="${rankRequest}">
+                    <div aria-hidden="true"
+                         aria-labelledby="exampleModalLabel"
+                         class="modal fade" id="field-error-modal-rank"
+                         role="dialog" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">İSTİFADƏÇİ XƏTASI</h5>
+                                </div>
+                                <div class="modal-content">
+                                    <p class="text-danger fw-bolder" id="rank-error"
+                                       style="display:inline;margin: 5%;font-size: 25px"
+                                       th:errors="*{rankName}">
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal" id="close-field-error-modal-rank"
+                                            type="button">
+                                        BAĞLA
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:object="${rewardRequest}">
+                    <div aria-hidden="true"
+                         aria-labelledby="exampleModalLabel"
+                         class="modal fade" id="field-error-modal-reward"
+                         role="dialog" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">İSTİFADƏÇİ XƏTASI</h5>
+                                </div>
+                                <div class="modal-content">
+                                    <p class="text-danger fw-bolder" id="reward-error"
+                                       style="display:inline;margin: 5%;font-size: 25px"
+                                       th:errors="*{rewardName}">
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal" id="close-field-error-modal-reward"
+                                            type="button">
+                                        BAĞLA
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:object="${postCategoryRequest}">
+                    <div aria-hidden="true"
+                         aria-labelledby="exampleModalLabel"
+                         class="modal fade" id="field-error-modal-postCategory"
+                         role="dialog" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">İSTİFADƏÇİ XƏTASI</h5>
+                                </div>
+                                <div class="modal-content">
+                                    <p class="text-danger fw-bolder" id="postCategory-error"
+                                       style="display:inline;margin: 5%;font-size: 25px"
+                                       th:errors="*{categoryName}">
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal" id="close-field-error-modal-postCategory"
+                                            type="button">
+                                        BAĞLA
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -151,28 +230,42 @@
                 </tr>
                 </thead>
                 <tbody>
-                <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
-                    <a class="btn btn-success text-uppercase" th:href="@{/rank/create}">ƏLAVƏ ET</a>
-                </div>
+                <form method="post" th:action="@{'/categorization/rank/create'}" th:object="${rankRequest}">
+                    <input class="form-control" id="contactNameLabel1" name="rankName"
+                           placeholder="Rütbəni daxil edin"
+                           th:field="*{rankName}" type="text">
+                    <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
+                        <button class="btn btn-success text-uppercase mt-3" type="submit">ƏLAVƏ ET</button>
+                    </div>
+                </form>
                 <tr th:each="rank : ${ranks}">
-                    <th scope="row" th:text="${rank.id}"></th>
-                    <td th:text="${rank.rankName}"></td>
+                    <form method="post" th:action="@{'/categorization/rank/update'}" th:object="${rankRequest}">
+                        <input name="id" th:value="${rank.id}" type="hidden">
+                        <th scope="row" th:text="${rank.id}"></th>
+                        <td>
+                            <input class="mt-3" disabled="disabled" name="rankName"
+                                   th:id="'rank-update-input-' + ${rank.id}" th:value="${rank.rankName}"
+                                   type="text">
+                        </td>
+                        <td>
+                            <button class="btn btn-warning c mt-2" style="color: white"
+                                    th:id="'rank-update-button-' + ${rank.id}"
+                                    th:onclick="|activateUpdateButtonRank(${rank.id})|"
+                                    type="button">
+                                DƏYİŞİKLİK ET
+                            </button>
+                            <button class="btn btn-success text-uppercase mt-2" style="display:none;"
+                                    th:id="'rank-update-form-' + ${rank.id}"
+                                    type="submit">YADDA SAXLA
+                            </button>
+                        </td>
+                    </form>
                     <td>
-                        <a class="card-link btn btn-success" href="/category/id" th:href="@{{id} (id=${rank.id})}">
-                            DƏYİŞİKLİK ET
+                        <a class="delete-button btn btn-danger mt-2 text-uppercase"
+                           data-toggle="modal" th:onclick="|init(${rank.id},'delete','rank')|">
+                            SIL
                         </a>
                     </td>
-                    <td>
-                        <!--                                                <a th:onclick="'init(\'' + ${businessType.id} +'\',\'delete\',\'business\')'"-->
-                        <!--                                                   class="delete-button btn dark-button " data-toggle="modal">-->
-                        <!--                                                    <i class="fas fa-trash-alt"></i>-->
-                        <!--                                                </a>-->
-                        <!--                        <form method="post" th:action="@{'/rank/delete'}" th:object="${rank}">-->
-                        <!--                            <input name="id" th:value="${rank.id}" type="hidden">-->
-                        <!--                            <div class="text-left">-->
-                        <!--                                <input class="btn btn-danger" type="submit" value="SİL">-->
-                        <!--                            </div>-->
-                        <!--                        </form>-->
                     </td>
                 </tr>
                 </tbody>
@@ -189,24 +282,42 @@
                 </tr>
                 </thead>
                 <tbody>
-                <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
-                    <a class="btn btn-success text-uppercase" th:href="@{/reward/create}">ƏLAVƏ ET</a>
-                </div>
+                <form method="post" th:action="@{'/categorization/reward/create'}" th:object="${rewardRequest}">
+                    <input class="form-control" id="contactNameLabel2" name="rewardName"
+                           placeholder="Medalı daxil edin"
+                           th:field="*{rewardName}" type="text">
+                    <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
+                        <button class="btn btn-success text-uppercase mt-3" type="submit">ƏLAVƏ ET</button>
+                    </div>
+                </form>
                 <tr th:each="reward : ${rewards}">
-                    <th scope="row" th:text="${reward.id}"></th>
-                    <td th:text="${reward.rankName}"></td>
+                    <form method="post" th:action="@{'/categorization/reward/update'}" th:object="${rewardRequest}">
+                        <input name="id" th:value="${reward.id}" type="hidden">
+                        <th scope="row" th:text="${reward.id}"></th>
+                        <td>
+                            <input class="mt-3" disabled="disabled" name="rewardName"
+                                   th:id="'reward-update-input-' + ${reward.id}" th:value="${reward.rewardName}"
+                                   type="text">
+                        </td>
+                        <td>
+                            <button class="btn btn-warning c mt-2" style="color: white"
+                                    th:id="'reward-update-button-' + ${reward.id}"
+                                    th:onclick="|activateUpdateButtonReward(${reward.id})|"
+                                    type="button">
+                                DƏYİŞİKLİK ET
+                            </button>
+                            <button class="btn btn-success text-uppercase mt-2" style="display:none;"
+                                    th:id="'reward-update-form-' + ${reward.id}"
+                                    type="submit">YADDA SAXLA
+                            </button>
+                        </td>
+                    </form>
                     <td>
-                        <a class="card-link btn btn-success" href="/category/id" th:href="@{{id} (id=${reward.id})}">
-                            DƏYİŞİKLİK ET
+                        <a class="delete-button btn btn-danger mt-2 text-uppercase"
+                           data-toggle="modal" th:onclick="|init(${reward.id},'delete','reward')|">
+                            SIL
                         </a>
                     </td>
-                    <td>
-                        <form method="post" th:action="@{'/reward/delete'}" th:object="${reward}">
-                            <input name="id" th:value="${reward.id}" type="hidden">
-                            <div class="text-left">
-                                <input class="btn btn-danger" type="submit" value="SİL">
-                            </div>
-                        </form>
                     </td>
                 </tr>
                 </tbody>
@@ -223,26 +334,42 @@
                 </tr>
                 </thead>
                 <tbody>
-                <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
-                    <a class="btn btn-success text-uppercase" th:href="@{/post-category/create}">ƏLAVƏ ET</a>
-                </div>
-                <tr th:each="pc : ${postCategories}">
-                    <th scope="row" th:text="${pc.id}"></th>
-                    <td th:text="${pc.rankName}"></td>
+                <form method="post" th:action="@{'/categorization/post-category/create'}" th:object="${postCategoryRequest}">
+                    <input class="form-control" id="contactNameLabel3" name="categoryName"
+                           placeholder="Paylaşım kateqoriyasını daxil edin"
+                           th:field="*{categoryName}" type="text">
+                    <div aria-label="Basic mixed styles example" class="btn-group categoryAdd" role="group">
+                        <button class="btn btn-success text-uppercase mt-3" type="submit">ƏLAVƏ ET</button>
+                    </div>
+                </form>
+                <tr th:each="postCategory : ${postCategories}">
+                    <form method="post" th:action="@{'/categorization/post-category/update'}" th:object="${postCategoryRequest}">
+                        <input name="id" th:value="${postCategory.id}" type="hidden">
+                        <th scope="row" th:text="${postCategory.id}"></th>
+                        <td>
+                            <input class="mt-3" disabled="disabled" name="categoryName"
+                                   th:id="'postCategory-update-input-' + ${postCategory.id}" th:value="${postCategory.categoryName}"
+                                   type="text">
+                        </td>
+                        <td>
+                            <button class="btn btn-warning c mt-2" style="color: white"
+                                    th:id="'postCategory-update-button-' + ${postCategory.id}"
+                                    th:onclick="|activateUpdateButtonPostCategory(${postCategory.id})|"
+                                    type="button">
+                                DƏYİŞİKLİK ET
+                            </button>
+                            <button class="btn btn-success text-uppercase mt-2" style="display:none;"
+                                    th:id="'postCategory-update-form-' + ${postCategory.id}"
+                                    type="submit">YADDA SAXLA
+                            </button>
+                        </td>
+                    </form>
                     <td>
-                        <a class="card-link btn btn-success" href="/category/id" th:href="@{{id} (id=${pc.id})}">
-                            DƏYİŞİKLİK ET
+                        <a class="delete-button btn btn-danger mt-2 text-uppercase"
+                           data-toggle="modal" th:onclick="|init(${postCategory.id},'delete','post-category')|">
+                            SIL
                         </a>
                     </td>
-                    <td>
-                        <form method="post" th:action="@{'/reward/delete'}" th:object="${postCategory}">
-                            <input name="id" th:value="${pc.id}" type="hidden">
-                            <div class="text-left">
-                                <input class="btn btn-danger" type="submit" value="SİL">
-                            </div>
-                        </form>
-                    </td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -258,7 +385,17 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
+
+
+<!--                                                <a th:onclick="'init(\'' + ${businessType.id} +'\',\'delete\',\'business\')'"-->
+<!--                                                   class="delete-button btn dark-button " data-toggle="modal">-->
+<!--                                                    <i class="fas fa-trash-alt"></i>-->
+<!--                                                </a>-->
+<!--                        <form method="post" th:action="@{'/rank/delete'}" th:object="${rank}">-->
+<!--                            <input name="id" th:value="${rank.id}" type="hidden">-->
+<!--                            <div class="text-left">-->
+<!--                                <input class="btn btn-danger" type="submit" value="SİL">-->
+<!--                            </div>-->
+<!--                        </form>-->

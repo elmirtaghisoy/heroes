@@ -4,7 +4,6 @@ import az.netx.heroes.component.mapper.ObjectMapper;
 import az.netx.heroes.entity.PostCategory;
 import az.netx.heroes.model.request.PostCategoryRequest;
 import az.netx.heroes.model.response.PostCategoryResponse;
-import az.netx.heroes.model.response.RankResponse;
 import az.netx.heroes.repository.PostCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +14,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PostCategoryService {
+
     private final PostCategoryRepository postCategoryRepository;
     private final ObjectMapper objectMapper;
 
@@ -33,8 +33,8 @@ public class PostCategoryService {
         postCategoryRepository.save(objectMapper.R2E(request));
     }
 
-    public void deletePostCategory(Long rankId) {
-        PostCategory entity = postCategoryRepository.getById(rankId);
+    public void deletePostCategory(Long postCategoryId) {
+        PostCategory entity = postCategoryRepository.getById(postCategoryId);
         entity.setStatus("DELETED");
         postCategoryRepository.save(entity);
     }
