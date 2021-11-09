@@ -88,7 +88,8 @@ function activateUpdateButtonWar(id) {
         $('#war-update-button-' + warPrev).fadeIn(1);
         $('#war-update-form-' + warPrev).fadeOut(1);
         $('#war-update-input-' + warPrev).prop('disabled', true);
-        $('#war-update-input-' + warPrev).val(data);
+        $('#war-update-input-' + warPrev).val(warData);
+
         $('#war-update-button-' + id).fadeOut(1);
         $('#war-update-form-' + id).fadeIn(1);
         $('#war-update-input-' + id).prop('disabled', false);

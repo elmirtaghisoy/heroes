@@ -81,9 +81,9 @@ public class MartyredController {
             @PathVariable(value = "id") Long martyredId,
             Model model
     ) {
-        if (!model.containsAttribute("heroResponse")) {
+        if (!model.containsAttribute("martyredResponse")) {
             MartyredResponse response = martyredService.getMartyredById(martyredId);
-            model.addAttribute("heroResponse", response);
+            model.addAttribute("martyredResponse", response);
         }
         return "admin/updateMartyredPage";
     }

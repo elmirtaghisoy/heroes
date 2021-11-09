@@ -14,6 +14,7 @@ public class MartyredRequest {
     private LocalDate birthDate;
     private String about;
     private String filePath;
+    private LocalDate wasMartyred;
     private RankRequest rank;
     private List<RewardRequest> rewards;
     private List<WarRequest> wars;

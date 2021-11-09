@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class MartyredSpecification implements Specification<Martyred> {
 
-    private MartyredSearchCriteria request;
+    private final MartyredSearchCriteria request;
 
     public MartyredSpecification(MartyredSearchCriteria request) {
         this.request = request;
