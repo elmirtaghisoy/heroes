@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="rankResponse" type="az.netx.heroes.model.response.RankResponse"*/-->
+<form method="post" th:action="@{'/categorization/rank/delete'}" th:object="${rankResponse}">
+    <div class="modal-body">
+        <input id="id" th:field="*{id}" type="hidden"/>
+        <div class="col-12">
+            <div class="form-group">
+                <p>
+                    Döyüş ilə bağlı olan digər məlumatlarda problem yaranma ehtimalını
+                    nəzərə alaraq silinmə prosesini təsdiq etmək üçün aşağıda göstərilən şifrəni heç bir dəyişiklik
+                    etmədən daxil edin.
+                </p>
+                <p><b style="text-decoration: #ff0000" th:text="${uuid}"></b></p>
+                <input class="form-control" id="title" name="uuid" placeholder="Şifrəni daxil edin" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="white-button btn btn-secondary btn-sm ml-auto" data-dismiss="modal"
+                type="button">
+            Ləğv et
+        </button>
+        <button class="save-new-button dark-button btn btn-primary btn-sm ml-1" type="submit">
+            Təsdiqlə
+        </button>
+    </div>
+</form>
+</html>
