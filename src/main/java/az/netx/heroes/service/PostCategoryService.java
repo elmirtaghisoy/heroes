@@ -38,4 +38,8 @@ public class PostCategoryService {
         entity.setStatus("DELETED");
         postCategoryRepository.save(entity);
     }
+
+    public PostCategoryResponse getPostCategory(Long id) {
+        return objectMapper.E2R(postCategoryRepository.getById(id));
+    }
 }
