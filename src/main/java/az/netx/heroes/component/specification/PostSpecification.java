@@ -18,7 +18,7 @@ import java.util.Objects;
 @Component
 public class PostSpecification implements Specification<Post> {
 
-    private PostSearchCriteria request;
+    private final PostSearchCriteria request;
 
     public PostSpecification(PostSearchCriteria request) {
         this.request = request;
@@ -27,6 +27,8 @@ public class PostSpecification implements Specification<Post> {
     @Override
     public Predicate toPredicate(Root<Post> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
         List<Predicate> predicates = new ArrayList<>();
+
+        predicates.add(cb.equal(root.get(Post_.status), "ACTIVE"));
 
         if (Objects.nonNull(request)) {
             if (Objects.nonNull(request.getHeader())) {

@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -25,7 +24,6 @@ public class Rank extends Auditable<String> {
     @Column(name = "id")
     private Long id;
 
-    @NotNull(message = "Vəzifə adını daxil edin")
     @NotBlank(message = "Vəzifə adını daxil edin")
     @Column(name = "rank_name")
     private String rankName;

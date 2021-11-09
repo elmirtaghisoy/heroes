@@ -16,7 +16,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,15 +24,19 @@ public class PostService {
     private final PostRepository postRepository;
     private final ObjectMapper objectMapper;
 
-    public List<PostResponse> getAllPost() {
-        return postRepository.findAllByStatusTrue()
-                .stream()
-                .map(objectMapper::E2R)
-                .collect(Collectors.toList());
-    }
+//    public List<PostResponse> getAllPost() {
+//        return postRepository.findAllByStatusTrue()
+//                .stream()
+//                .map(objectMapper::E2R)
+//                .collect(Collectors.toList());
+//    }
 
     public void createPost(PostRequest request) {
         postRepository.save(objectMapper.R2E(request));
+    }
+
+    public PostResponse getPostById(Long postId) {
+        return objectMapper.E2R(postRepository.getById(postId));
     }
 
     public void updatePost(PostRequest request) {
@@ -48,12 +51,14 @@ public class PostService {
 
     public Paged<PostResponse> searchPost(int page, int size, PostSearchCriteria searchRequest) {
         Pageable pageRequest = PageRequest.of(page - 1, size);
+
         Page<PostResponse> postPage = new PageImpl<>(
                 postRepository.findAll(SearchQueries.createPostSpecification(searchRequest), pageRequest)
                         .stream()
                         .map(objectMapper::E2R)
                         .collect(Collectors.toList())
         );
+
         return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
     }
 }

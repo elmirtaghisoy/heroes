@@ -38,8 +38,4 @@ public class RewardService {
         entity.setStatus("DELETED");
         rewardRepository.save(entity);
     }
-
-    public RewardResponse getReward(Long id) {
-        return objectMapper.E2R(rewardRepository.getById(id));
-    }
 }

@@ -13,29 +13,22 @@ public class HeroesApplication {
 }
 
 /*{
-    Optimization
-    post search +
-    post create -
-    post update -
-    post delete -
-    // postcategory changes
-    ---------------------------------
-    //post kateqoriyasi menuda gorunsun ya yox
-    7 - ci gun post meseleleri
+    ---------------------------------------------
+    1 - esger crud + search
+    2 - Hansi kateqoriyada esger varsa o gorunsun menuda
+    ---------------------------------------------
+    3 - fayllari elave et.
+    4 - pagingler'i duzelt.
+    ---------------------------------------------
+    1 - kenanin kodlarin birleshdir
+    2 - post ve kateqoriyalarini birleshdir.
+    3 - post kateqoriyasinin gorunub gorunmemesine bax
+    4 - post ve esgerlerde paging
+    ---------------------------------------------
 
-    // hansi kateqoriyada esger varsa o gorunsun menuda
-    7 - ci gun esger meseleleri
-    ---------------------------------
-    1 - ci gun fayllar
+
+
     2 - ci gun security
     ---------------------------------
     3 - ci gun front
 }*/
-
-// standard model, dto, mapping, services
-// search
-//---------------------------
-// exception handling
-// logging
-
-// ui

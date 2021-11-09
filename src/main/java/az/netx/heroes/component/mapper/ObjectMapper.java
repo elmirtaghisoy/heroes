@@ -1,6 +1,8 @@
 package az.netx.heroes.component.mapper;
 
 import az.netx.heroes.entity.Contact;
+import az.netx.heroes.entity.Hero;
+import az.netx.heroes.entity.Martyred;
 import az.netx.heroes.entity.Message;
 import az.netx.heroes.entity.Post;
 import az.netx.heroes.entity.PostCategory;
@@ -8,6 +10,8 @@ import az.netx.heroes.entity.Rank;
 import az.netx.heroes.entity.Reward;
 import az.netx.heroes.entity.War;
 import az.netx.heroes.model.request.ContactRequest;
+import az.netx.heroes.model.request.HeroRequest;
+import az.netx.heroes.model.request.MartyredRequest;
 import az.netx.heroes.model.request.MessageRequest;
 import az.netx.heroes.model.request.PostCategoryRequest;
 import az.netx.heroes.model.request.PostRequest;
@@ -15,6 +19,8 @@ import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.request.RewardRequest;
 import az.netx.heroes.model.request.WarRequest;
 import az.netx.heroes.model.response.ContactResponse;
+import az.netx.heroes.model.response.HeroResponse;
+import az.netx.heroes.model.response.MartyredResponse;
 import az.netx.heroes.model.response.MessageResponse;
 import az.netx.heroes.model.response.PostCategoryResponse;
 import az.netx.heroes.model.response.PostResponse;
@@ -53,4 +59,13 @@ public interface ObjectMapper {
     Post R2E(PostRequest request);
 
     PostResponse E2R(Post entity);
+
+    Hero R2E(HeroRequest request);
+
+    HeroResponse E2R(Hero entity);
+
+    Martyred R2E(MartyredRequest request);
+
+    MartyredResponse E2R(Martyred entity);
+
 }

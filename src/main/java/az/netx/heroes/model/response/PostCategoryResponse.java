@@ -1,10 +1,8 @@
 package az.netx.heroes.model.response;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class PostCategoryResponse {
     private Long id;
     private String categoryName;

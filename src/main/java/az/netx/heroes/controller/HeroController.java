@@ -1,11 +1,11 @@
 package az.netx.heroes.controller;
 
-import az.netx.heroes.component.criteria.PostSearchCriteria;
+import az.netx.heroes.component.criteria.HeroSearchCriteria;
 import az.netx.heroes.component.paging.Paged;
-import az.netx.heroes.model.request.PostCategoryRequest;
-import az.netx.heroes.model.request.PostRequest;
-import az.netx.heroes.model.response.PostResponse;
-import az.netx.heroes.service.PostService;
+import az.netx.heroes.model.request.HeroRequest;
+import az.netx.heroes.model.request.RankRequest;
+import az.netx.heroes.model.response.HeroResponse;
+import az.netx.heroes.service.HeroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,31 +26,32 @@ import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
 import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 
 @Controller
-@RequestMapping(value = "/post")
+@RequestMapping(value = "/hero")
 @RequiredArgsConstructor
-public class PostController {
+public class HeroController {
 
-    private final PostService postService;
-    private String ACCEPT_UUID;
+    private final HeroService heroService;
 
     @GetMapping
-    public String getPostPage(
+    public String getHeroPage(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
-            @RequestParam(value = "from", required = false, defaultValue = "2000-01-01") String fromDate,
-            @RequestParam(value = "to", required = false, defaultValue = "2100-01-01") String toDate,
-            @RequestParam(value = "header", required = false) String header,
-            @RequestParam(value = "category", required = false) Long categoryId,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "surname", required = false) String surname,
+            @RequestParam(value = "birthDate", required = false) String birthDate,
+            @RequestParam(value = "fatherName", required = false) String fatherName,
+            @RequestParam(value = "rank", required = false) Long rankId,
             HttpServletRequest request,
             Model model
     ) {
-        var criteria = new PostSearchCriteria();
-        criteria.setFromDate(fromDate);
-        criteria.setToDate(toDate);
-        criteria.setHeader(header);
-        criteria.setCategoryId(categoryId);
+        var criteria = new HeroSearchCriteria();
+        criteria.setName(name);
+        criteria.setSurname(surname);
+        criteria.setFatherName(fatherName);
+        criteria.setBirthDate(birthDate);
+        criteria.setRankId(rankId);
 
-        Paged<PostResponse> list = postService.searchPost(
+        Paged<HeroResponse> list = heroService.searchHero(
                 page,
                 size,
                 criteria
@@ -63,71 +64,69 @@ public class PostController {
             model.addAttribute("success");
         }
 
-        return "admin/post";
+        return "admin/hero";
     }
 
     @GetMapping("/create-page")
     public String getCreatePage(Model model) {
-        if (!model.containsAttribute("postRequest")) {
-            model.addAttribute("postRequest", new PostRequest());
+        if (!model.containsAttribute("heroRequest")) {
+            model.addAttribute("heroRequest", new HeroRequest());
         }
-        model.addAttribute("postCategoryRequest", new PostCategoryRequest());
-        return "admin/createPostPage";
+        model.addAttribute("rankRequest", new RankRequest());
+        return "admin/createHeroPage";
     }
 
     @GetMapping("/{id}")
     public String getById(
-            @PathVariable(value = "id") Long id,
+            @PathVariable(value = "id") Long heroId,
             Model model
     ) {
-        if (!model.containsAttribute("postResponse")) {
-            PostResponse response = postService.getPostById(id);
-            model.addAttribute("postResponse", response);
+        if (!model.containsAttribute("heroResponse")) {
+            HeroResponse response = heroService.getHeroById(heroId);
+            model.addAttribute("heroResponse", response);
         }
         return "admin/updatePostPage";
     }
 
     @PostMapping("/create")
-    public String createPost(
-            @Validated @ModelAttribute("postRequest") final PostRequest request,
+    public String createHero(
+            @Validated @ModelAttribute("heroRequest") final HeroRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
     ) throws IOException {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postRequest", bindingResult);
-            redirectAttributes.addFlashAttribute("postRequest", request);
-            return "redirect:/post/create-page";
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.heroRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("heroRequest", request);
+            return "redirect:/hero/create-page";
         }
-        postService.createPost(request);
+        heroService.createHero(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/post";
+        return "redirect:/hero";
     }
 
     @PostMapping("/update")
-    public String updatePost(
-            @Validated @ModelAttribute("postRequest") final PostRequest request,
+    public String updateHero(
+            @Validated @ModelAttribute("heroRequest") final HeroRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
     ) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postResponse", bindingResult);
-            redirectAttributes.addFlashAttribute("postResponse", request);
-            System.err.println(request);
-            return "redirect:/post/" + request.getId();
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.heroRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("heroRequest", request);
+            return "redirect:/hero/" + request.getId();
         }
-        postService.updatePost(request);
+        heroService.updateHero(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/post";
     }
 
     @PostMapping("/delete")
-    public String deletePost(
-            @RequestParam("id") Long id,
+    public String deleteHero(
+            @RequestParam("id") Long heroId,
             final RedirectAttributes redirectAttributes
     ) {
-        postService.deletePost(id);
+        heroService.deleteHero(heroId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/post";
     }
-
 }

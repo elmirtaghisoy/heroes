@@ -55,8 +55,8 @@ public class CategorizationController implements ControllerConstraints {
 
         model.addAttribute("wars", warService.getAllWar());
         model.addAttribute("ranks", rankService.getAllRank());
-        model.addAttribute("postCategories", postCategoryService.getAllPostCategory());
         model.addAttribute("rewards", rewardService.getAllReward());
+        model.addAttribute("postCategories", postCategoryService.getAllPostCategory());
 
         if (model.containsAttribute("success")) {
             model.addAttribute("success");
@@ -307,4 +307,5 @@ public class CategorizationController implements ControllerConstraints {
         redirectAttributes.addFlashAttribute("error", ERROR);
         return "redirect:/categorization";
     }
+
 }
