@@ -1,0 +1,150 @@
+<html th:include="~{admin/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="custom-bread-crumb col-12 text-center">
+            <div class="main-container">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="main-container">
+            <div class="row">
+                <form action="#" enctype="multipart/form-data" method="post" th:action="@{'/martyred/create'}"
+                      th:object="${martyredRequest}">
+                    <div class="row">
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">AD</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{name}"
+                               th:if="${#fields.hasErrors('name')}"></p>
+                            <input class="form-control" id="headerLabel" name="name" th:field="*{name}" type="text">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">SOYAD</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{surname}"
+                               th:if="${#fields.hasErrors('surname')}"></p>
+                            <input class="form-control" id="headerLabel" name="surname" th:field="*{surname}"
+                                   type="text">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">ATA ADI</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{fatherName}"
+                               th:if="${#fields.hasErrors('fatherName')}"></p>
+                            <input class="form-control" id="headerLabel" name="fatherName" th:field="*{fatherName}"
+                                   type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="wasMartyred">Şəhidlik Tarixi
+                                Tarİxİ</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{wasMartyred}"
+                               th:if="${#fields.hasErrors('wasMartyred')}"></p>
+                            <input class="form-control" id="wasMartyred"
+                                   name="wasMartyred"
+                                   th:field="*{wasMartyred}"
+                                   type="date">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="wasMartyred">Doğum Tarixi
+                                Tarİxİ</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{birthDate}"
+                               th:if="${#fields.hasErrors('birthDate')}"></p>
+                            <input class="form-control" id="wasMartyred"
+                                   name="birthDate"
+                                   th:field="*{birthDate}"
+                                   type="date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Rütbə</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{rank}"
+                               th:if="${#fields.hasErrors('rank')}"></p>
+                            <select class="form-select" name="rank"
+                                    th:field="*{rank.id}">
+                                 <span th:each="rankVal :${rankList}">
+                                     <option th:text="${rankVal.rankName}" th:value="${rankVal.id}"></option>
+                                 </span>
+                            </select>
+                        </div>
+                        <!--                        <div class="mb-3 col-4">-->
+                        <!--                            <label class="form-label text-uppercase" for="headerLabel">Döyüşlər</label>-->
+                        <!--                            <p class="text-danger fw-bolder" style="display: inline"-->
+                        <!--                               th:errors="*{wars}"-->
+                        <!--                               th:if="${#fields.hasErrors('wars')}"></p>-->
+
+                        <!--                            <select multiple class="form-select" name="wars"-->
+                        <!--                                    th:field="*{wars}">-->
+                        <!--                                    <span th:each="warVal :${warList}">-->
+                        <!--                                        <option th:value="${warVal.id}" th:text="${warVal.warName}"></option>-->
+                        <!--                                    </span>-->
+                        <!--                            </select>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="mb-3 col-4">-->
+                        <!--                            <label class="form-label text-uppercase" for="headerLabel">Mükafatlar</label>-->
+                        <!--                            <p class="text-danger fw-bolder" style="display: inline"-->
+                        <!--                               th:errors="*{rewards}"-->
+                        <!--                               th:if="${#fields.hasErrors('rewards')}"></p>-->
+
+                        <!--                            <select multiple class="form-select" name="reward"-->
+                        <!--                                    th:field="*{rewards}">-->
+                        <!--                                    <option th:value="${-1}" th:text="Yoxdur"></option>-->
+                        <!--                                     <span th:each="rewardVal :${rewardList}">-->
+                        <!--                                          <option th:value="${rewardVal.id}" th:text="${rewardVal.rewardName}"></option>-->
+                        <!--                                     </span>-->
+                        <!--                            </select>-->
+                        <!--                        </div>-->
+                    </div>
+                    <div class="row main-card-row-container">
+                        <div class="col-12">
+                            <label class="form-label text-uppercase" for="editor">Məlumat</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{about}"
+                               th:if="${#fields.hasErrors('about')}"></p>
+                            <textarea class="form-control" id="editor" name="about" rows="3"
+                                      th:field="*{about}"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--                            <div class="accordion accordion-flush" id="accordionFlushExample">-->
+                        <!--                                <div class="accordion-item">-->
+                        <!--                                    <h2 class="accordion-header" id="flush-headingTwo">-->
+                        <!--                                        <button aria-controls="flush-collapseTwo" aria-expanded="false"-->
+                        <!--                                                class="accordion-button collapsed text-uppercase"-->
+                        <!--                                                data-bs-target="#flush-collapseTwo"-->
+                        <!--                                                data-bs-toggle="collapse"-->
+                        <!--                                                type="button">-->
+                        <!--                                            Əlavə fayllar-->
+                        <!--                                        </button>-->
+                        <!--                                    </h2>-->
+                        <!--                                    <div aria-labelledby="flush-headingTwo" class="accordion-collapse collapse"-->
+                        <!--                                         data-bs-parent="#accordionFlushExample"-->
+                        <!--                                         id="flush-collapseTwo">-->
+                        <!--                                        <div class="main-container">-->
+                        <!--                                            <label class="form-label text-uppercase" for="formFileLg">Blogun digər-->
+                        <!--                                                fayllarını-->
+                        <!--                                                seçin</label>-->
+                        <!--                                            <input class="form-control form-control-lg" id="formFileLg" multiple-->
+                        <!--                                                   name="files"-->
+                        <!--                                                   type="file">-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <input class="btn btn-success text-uppercase" type="submit" value="Yadda Saxla">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

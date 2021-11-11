@@ -68,8 +68,6 @@ public class CategorizationController implements ControllerConstraints {
         return "admin/category";
     }
 
-/////////////////////////////////////////////////////////////////////////////////
-
     @PostMapping(value = "/war/create")
     public String createWar(
             @Validated @ModelAttribute("warRequest") final WarRequest request,
@@ -134,8 +132,6 @@ public class CategorizationController implements ControllerConstraints {
         return "redirect:/categorization";
     }
 
-    /////////////////////////////////////////////////////////////////////////////////
-
     @GetMapping(value = "/war")
     public String getWar(
             @RequestParam("id") Long id,
@@ -179,8 +175,6 @@ public class CategorizationController implements ControllerConstraints {
         model.addAttribute("uuid", ACCEPT_UUID);
         return "admin/rewardRequestForm";
     }
-
-/////////////////////////////////////////////////////////////////////////////////
 
     @PostMapping(value = "/war/update")
     public String updateWar(
@@ -245,8 +239,6 @@ public class CategorizationController implements ControllerConstraints {
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/categorization";
     }
-
-/////////////////////////////////////////////////////////////////////////////////
 
     @PostMapping(value = "/war/delete")
     public String deleteWar(

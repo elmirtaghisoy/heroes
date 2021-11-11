@@ -14,21 +14,19 @@ public class HeroesApplication {
 
 /*{
     ---------------------------------------------
-    1 - esger crud + search
-    2 - Hansi kateqoriyada esger varsa o gorunsun menuda
+    1 - Soldier CSUD (front)
     ---------------------------------------------
-    3 - fayllari elave et.
-    4 - pagingler'i duzelt.
+    2 - Post ve kateqoriyalarini birleshdir.
+    3 - Soldier ve kateqoriyalrini birelshdir.
+    4 - Post ve Esger paging
+    5 - Hansi kateqoriyada esger varsa o gorunsun menuda
+    6 - Hansi type da post varsa o kateqoriya menuda gorunsun
+
+    7 - Fayllari elave et.
+    8 - Contact service
     ---------------------------------------------
-    1 - kenanin kodlarin birleshdir
-    2 - post ve kateqoriyalarini birleshdir.
-    3 - post kateqoriyasinin gorunub gorunmemesine bax
-    4 - post ve esgerlerde paging
-    ---------------------------------------------
-
-
-
-    2 - ci gun security
+    1 - ci gun security
+    2 - liquibase
     ---------------------------------
     3 - ci gun front
 }*/

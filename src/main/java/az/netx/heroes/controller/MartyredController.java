@@ -6,6 +6,9 @@ import az.netx.heroes.model.request.MartyredRequest;
 import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.response.MartyredResponse;
 import az.netx.heroes.service.MartyredService;
+import az.netx.heroes.service.RankService;
+import az.netx.heroes.service.RewardService;
+import az.netx.heroes.service.WarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +34,9 @@ import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 public class MartyredController {
 
     private final MartyredService martyredService;
+    private final RankService rankService;
+    private final RewardService rewardService;
+    private final WarService warService;
 
     @GetMapping
     public String getMartyredPage(
@@ -72,6 +78,9 @@ public class MartyredController {
         if (!model.containsAttribute("martyredRequest")) {
             model.addAttribute("martyredRequest", new MartyredRequest());
         }
+        model.addAttribute("rankList", rankService.getAllRank());
+        model.addAttribute("warList", warService.getAllWar());
+        model.addAttribute("rewardList", rewardService.getAllReward());
         model.addAttribute("rankRequest", new RankRequest());
         return "admin/createMartyredPage";
     }
@@ -83,6 +92,9 @@ public class MartyredController {
     ) {
         if (!model.containsAttribute("martyredResponse")) {
             MartyredResponse response = martyredService.getMartyredById(martyredId);
+            model.addAttribute("rankList", rankService.getAllRank());
+            model.addAttribute("warList", warService.getAllWar());
+            model.addAttribute("rewardList", rewardService.getAllReward());
             model.addAttribute("martyredResponse", response);
         }
         return "admin/updateMartyredPage";
@@ -97,7 +109,7 @@ public class MartyredController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.martyredRequest", bindingResult);
             redirectAttributes.addFlashAttribute("martyredRequest", request);
-            return "redirect:/hero/create-page";
+            return "redirect:/martyred/create-page";
         }
         martyredService.createMartyred(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
@@ -111,8 +123,8 @@ public class MartyredController {
             final RedirectAttributes redirectAttributes
     ) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.martyredRequest", bindingResult);
-            redirectAttributes.addFlashAttribute("martyredRequest", request);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.martyredResponse", bindingResult);
+            redirectAttributes.addFlashAttribute("martyredResponse", request);
             return "redirect:/martyred/" + request.getId();
         }
         martyredService.updateMartyred(request);

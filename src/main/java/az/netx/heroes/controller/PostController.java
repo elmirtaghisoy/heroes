@@ -112,7 +112,6 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postResponse", bindingResult);
             redirectAttributes.addFlashAttribute("postResponse", request);
-            System.err.println(request);
             return "redirect:/post/" + request.getId();
         }
         postService.updatePost(request);
