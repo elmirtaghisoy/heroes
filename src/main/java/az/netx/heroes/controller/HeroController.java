@@ -6,6 +6,9 @@ import az.netx.heroes.model.request.HeroRequest;
 import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.response.HeroResponse;
 import az.netx.heroes.service.HeroService;
+import az.netx.heroes.service.RankService;
+import az.netx.heroes.service.RewardService;
+import az.netx.heroes.service.WarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +34,9 @@ import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 public class HeroController {
 
     private final HeroService heroService;
+    private final RankService rankService;
+    private final RewardService rewardService;
+    private final WarService warService;
 
     @GetMapping
     public String getHeroPage(
@@ -72,6 +78,9 @@ public class HeroController {
         if (!model.containsAttribute("heroRequest")) {
             model.addAttribute("heroRequest", new HeroRequest());
         }
+        model.addAttribute("rankList", rankService.getAllRank());
+        model.addAttribute("warList", warService.getAllWar());
+        model.addAttribute("rewardList", rewardService.getAllReward());
         model.addAttribute("rankRequest", new RankRequest());
         return "admin/createHeroPage";
     }
@@ -83,9 +92,12 @@ public class HeroController {
     ) {
         if (!model.containsAttribute("heroResponse")) {
             HeroResponse response = heroService.getHeroById(heroId);
+            model.addAttribute("rankList", rankService.getAllRank());
+            model.addAttribute("warList", warService.getAllWar());
+            model.addAttribute("rewardList", rewardService.getAllReward());
             model.addAttribute("heroResponse", response);
         }
-        return "admin/updatePostPage";
+        return "admin/updateHeroPage";
     }
 
     @PostMapping("/create")
@@ -111,13 +123,13 @@ public class HeroController {
             final RedirectAttributes redirectAttributes
     ) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.heroRequest", bindingResult);
-            redirectAttributes.addFlashAttribute("heroRequest", request);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.heroResponse", bindingResult);
+            redirectAttributes.addFlashAttribute("heroResponse", request);
             return "redirect:/hero/" + request.getId();
         }
         heroService.updateHero(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/post";
+        return "redirect:/hero";
     }
 
     @PostMapping("/delete")
@@ -127,6 +139,6 @@ public class HeroController {
     ) {
         heroService.deleteHero(heroId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/post";
+        return "redirect:/hero";
     }
 }

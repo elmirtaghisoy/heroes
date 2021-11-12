@@ -11,15 +11,12 @@ import java.util.List;
 @Data
 public class MartyredRequest {
     private Long id;
-
     @NotNull(message = "Adı daxil edin.")
     @NotBlank(message = "Adı daxil edin.")
     private String name;
-
     @NotNull(message = "Soyadı daxil edin.")
     @NotBlank(message = "Soyadı daxil edin.")
     private String surname;
-
     @NotNull(message = "Ata adını daxil edin.")
     @NotBlank(message = "Ata adını daxil edin.")
     private String fatherName;

@@ -13,17 +13,15 @@ public class HeroesApplication {
 }
 
 /*{
-    ---------------------------------------------
-    1 - Soldier CSUD (front)
-    ---------------------------------------------
-    2 - Post ve kateqoriyalarini birleshdir.
-    3 - Soldier ve kateqoriyalrini birelshdir.
-    4 - Post ve Esger paging
-    5 - Hansi kateqoriyada esger varsa o gorunsun menuda
-    6 - Hansi type da post varsa o kateqoriya menuda gorunsun
+    1 - Post ve kateqoriyalarini birleshdir.
+    2 - Soldier ve kateqoriyalrini birelshdir.
+    3 - Post ve Esger paging
+    4 - wars and rewards
+    5 - Hansi kateqoriyada esger varsa o gorunsun menuda (buna parametr elave et)
+    6 - Hansi type da post varsa o kateqoriya menuda gorunsun (buna parametr elave et)
 
-    7 - Fayllari elave et.
-    8 - Contact service
+    6 - Fayllari elave et.
+    7 - Contact service
     ---------------------------------------------
     1 - ci gun security
     2 - liquibase
