@@ -5,6 +5,7 @@ import az.netx.heroes.component.paging.Paged;
 import az.netx.heroes.model.request.PostCategoryRequest;
 import az.netx.heroes.model.request.PostRequest;
 import az.netx.heroes.model.response.PostResponse;
+import az.netx.heroes.service.PostCategoryService;
 import az.netx.heroes.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,7 @@ import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 public class PostController {
 
     private final PostService postService;
+    private final PostCategoryService postCategoryService;
     private String ACCEPT_UUID;
 
     @GetMapping
@@ -71,6 +73,7 @@ public class PostController {
         if (!model.containsAttribute("postRequest")) {
             model.addAttribute("postRequest", new PostRequest());
         }
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
         model.addAttribute("postCategoryRequest", new PostCategoryRequest());
         return "admin/createPostPage";
     }
@@ -84,6 +87,7 @@ public class PostController {
             PostResponse response = postService.getPostById(id);
             model.addAttribute("postResponse", response);
         }
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
         return "admin/updatePostPage";
     }
 

@@ -28,11 +28,23 @@
                                th:if="${#fields.hasErrors('category')}"></p>
                             <select class="form-select" name="category"
                                     th:field="*{category.id}">
-                                <option th:value="${-1}"></option>
-                                <option th:value="${1}">ŞƏHİD AİLƏLƏRİNƏ QAYĞI</option>
-                                <option th:value="${2}">ERMƏNİ TERRORU</option>
+                                  <span th:each="categoryVal :${categoryList}">
+                                       <option th:text="${categoryVal.categoryName}"
+                                               th:value="${categoryVal.id}"></option>
+                                  </span>
                             </select>
                         </div>
+
+                        <!--                        <label class="form-label text-uppercase" for="headerLabel">Rütbə</label>-->
+                        <!--                        <p class="text-danger fw-bolder" style="display: inline"-->
+                        <!--                           th:errors="*{rank}"-->
+                        <!--                           th:if="${#fields.hasErrors('rank')}"></p>-->
+                        <!--                        <select class="form-select" name="rank"-->
+                        <!--                                th:field="*{rank.id}">-->
+                        <!--                                 <span th:each="rankVal :${rankList}">-->
+                        <!--                                     <option th:text="${rankVal.rankName}" th:value="${rankVal.id}"></option>-->
+                        <!--                                 </span>-->
+                        <!--                        </select>-->
                         <div class="row main-card-row-container">
                             <div class="col-12">
                                 <label class="form-label text-uppercase" for="editor">Məlumat</label>

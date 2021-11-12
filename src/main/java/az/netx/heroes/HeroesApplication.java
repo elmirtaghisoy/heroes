@@ -13,12 +13,10 @@ public class HeroesApplication {
 }
 
 /*{
-    1 - Post ve kateqoriyalarini birleshdir.
-    2 - Soldier ve kateqoriyalrini birelshdir.
-    3 - Post ve Esger paging
-    4 - wars and rewards
-    5 - Hansi kateqoriyada esger varsa o gorunsun menuda (buna parametr elave et)
-    6 - Hansi type da post varsa o kateqoriya menuda gorunsun (buna parametr elave et)
+    1 - Soldierda multiple kateqoriyalrini birelshdir. (wars and rewards)
+    2 - Post ve Esger paging
+    3 - Hansi kateqoriyada esger varsa o gorunsun menuda (buna parametr elave et)
+    4 - Hansi type da post varsa o kateqoriya menuda gorunsun (buna parametr elave et)
 
     6 - Fayllari elave et.
     7 - Contact service

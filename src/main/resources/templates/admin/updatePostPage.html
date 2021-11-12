@@ -29,9 +29,10 @@
                                th:if="${#fields.hasErrors('category')}"></p>
                             <select class="form-select" name="category"
                                     th:field="*{category.id}">
-                                <option th:value="${-1}"></option>
-                                <option th:value="${1}">ŞƏHİD AİLƏLƏRİNƏ QAYĞI</option>
-                                <option th:value="${2}">ERMƏNİ TERRORU</option>
+                                  <span th:each="categoryVal :${categoryList}">
+                                       <option th:text="${categoryVal.categoryName}"
+                                               th:value="${categoryVal.id}"></option>
+                                  </span>
                             </select>
                         </div>
                         <div class="row main-card-row-container">
