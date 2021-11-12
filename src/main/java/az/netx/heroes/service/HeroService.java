@@ -11,12 +11,9 @@ import az.netx.heroes.model.response.HeroResponse;
 import az.netx.heroes.repository.HeroRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -46,11 +43,9 @@ public class HeroService {
     public Paged<HeroResponse> searchHero(int page, int size, HeroSearchCriteria searchRequest) {
         Pageable pageRequest = PageRequest.of(page - 1, size);
 
-        Page<HeroResponse> postPage = new PageImpl<>(
-                heroRepository.findAll(SearchQueries.createHeroSpecification(searchRequest), pageRequest)
-                        .stream()
-                        .map(objectMapper::E2R)
-                        .collect(Collectors.toList())
+        Page<HeroResponse> postPage = heroRepository.findAll(
+                SearchQueries.createHeroSpecification(searchRequest),
+                pageRequest
         );
 
         return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));

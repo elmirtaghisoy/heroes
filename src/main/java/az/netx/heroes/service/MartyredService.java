@@ -11,12 +11,9 @@ import az.netx.heroes.model.response.MartyredResponse;
 import az.netx.heroes.repository.MartyredRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -46,11 +43,9 @@ public class MartyredService {
     public Paged<MartyredResponse> searchMartyred(int page, int size, MartyredSearchCriteria searchRequest) {
         Pageable pageRequest = PageRequest.of(page - 1, size);
 
-        Page<MartyredResponse> postPage = new PageImpl<>(
-                martyredRepository.findAll(SearchQueries.createMartyredSpecification(searchRequest), pageRequest)
-                        .stream()
-                        .map(objectMapper::E2R)
-                        .collect(Collectors.toList())
+        Page<MartyredResponse> postPage = martyredRepository.findAll(
+                SearchQueries.createMartyredSpecification(searchRequest),
+                pageRequest
         );
 
         return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
