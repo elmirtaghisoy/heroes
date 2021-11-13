@@ -68,4 +68,7 @@ public interface ObjectMapper {
 
     MartyredResponse E2R(Martyred entity);
 
+    RewardRequest R2R(RewardResponse reward);
+
+    WarRequest R2R(WarResponse war);
 }

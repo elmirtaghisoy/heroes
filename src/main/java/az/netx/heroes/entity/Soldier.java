@@ -3,6 +3,7 @@ package az.netx.heroes.entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,6 +27,7 @@ import java.util.List;
 @DiscriminatorColumn(name = "type", length = 4, discriminatorType = DiscriminatorType.STRING)
 @Getter
 @Setter
+@ToString
 public abstract class Soldier extends Auditable<String> {
 
     @Id
@@ -59,17 +61,17 @@ public abstract class Soldier extends Auditable<String> {
     @JoinColumn(name = "rank_id")
     private Rank rank;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
-            name = "soldier_info_map",
+            name = "soldier_reward",
             joinColumns = @JoinColumn(name = "soldier_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "reward_id", referencedColumnName = "id")
     )
     private List<Reward> rewards;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
-            name = "soldier_info_map",
+            name = "soldier_war",
             joinColumns = @JoinColumn(name = "soldier_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "war_id", referencedColumnName = "id")
     )

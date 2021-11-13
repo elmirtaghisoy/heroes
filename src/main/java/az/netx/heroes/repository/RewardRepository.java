@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface RewardRepository extends JpaRepository<Reward, Long> {
     List<Reward> findAllByStatus(String status);
+
+    List<Reward> findAllByIdNotIn(List<Long> ids);
+
 }

@@ -5,6 +5,8 @@ import az.netx.heroes.component.paging.Paged;
 import az.netx.heroes.model.request.MartyredRequest;
 import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.response.MartyredResponse;
+import az.netx.heroes.model.response.RewardResponse;
+import az.netx.heroes.model.response.WarResponse;
 import az.netx.heroes.service.MartyredService;
 import az.netx.heroes.service.RankService;
 import az.netx.heroes.service.RewardService;
@@ -23,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import java.util.stream.Collectors;
 
 import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
 import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
@@ -92,10 +94,18 @@ public class MartyredController {
     ) {
         if (!model.containsAttribute("martyredResponse")) {
             MartyredResponse response = martyredService.getMartyredById(martyredId);
-            model.addAttribute("rankList", rankService.getAllRank());
-            model.addAttribute("warList", warService.getAllWar());
-            model.addAttribute("rewardList", rewardService.getAllReward());
+
             model.addAttribute("martyredResponse", response);
+
+            model.addAttribute("rankList", rankService.getAllRank());
+
+            model.addAttribute("warList", warService.findWarByNotInIds(
+                    response.getWars().stream().map(WarResponse::getId).collect(Collectors.toList())
+            ));
+
+            model.addAttribute("rewardList", rewardService.findRewardByNotInIds(
+                    response.getRewards().stream().map(RewardResponse::getId).collect(Collectors.toList())
+            ));
         }
         return "admin/updateMartyredPage";
     }
@@ -105,7 +115,7 @@ public class MartyredController {
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
-    ) throws IOException {
+    ) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.martyredRequest", bindingResult);
             redirectAttributes.addFlashAttribute("martyredRequest", request);

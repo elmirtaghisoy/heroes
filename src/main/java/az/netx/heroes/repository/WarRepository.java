@@ -11,4 +11,5 @@ public interface WarRepository extends JpaRepository<War, Long> {
 
     List<War> findAllByStatus(String status);
 
+    List<War> findAllByIdNotIn(List<Long> ids);
 }

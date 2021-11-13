@@ -25,6 +25,13 @@ public class RewardService {
                 .collect(Collectors.toList());
     }
 
+    public List<RewardResponse> findRewardByNotInIds(List<Long> ids) {
+        return rewardRepository.findAllByIdNotIn(ids)
+                .stream()
+                .map(objectMapper::E2R)
+                .collect(Collectors.toList());
+    }
+
     public void createReward(RewardRequest request) {
         rewardRepository.save(objectMapper.R2E(request));
     }
@@ -39,7 +46,7 @@ public class RewardService {
         rewardRepository.save(entity);
     }
 
-    public RewardResponse getReward(Long id) {
+    public RewardResponse getRewardById(Long id) {
         return objectMapper.E2R(rewardRepository.getById(id));
     }
 }

@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ import java.util.List;
 @Setter
 @Table(name = "war")
 @Entity
-@ToString(callSuper = true)
+@ToString
 public class War extends Auditable<String> {
 
     @Id
@@ -32,8 +33,7 @@ public class War extends Auditable<String> {
     @Column(name = "war_name")
     private String warName;
 
-    @ManyToMany(mappedBy = "wars")
-    @ToString.Exclude
+    @ManyToMany(mappedBy = "wars", fetch = FetchType.EAGER)
     private List<Soldier> soldiers;
 
 }

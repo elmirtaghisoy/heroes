@@ -25,6 +25,13 @@ public class WarService {
                 .collect(Collectors.toList());
     }
 
+    public List<WarResponse> findWarByNotInIds(List<Long> ids) {
+        return warRepository.findAllByIdNotIn(ids)
+                .stream()
+                .map(objectMapper::E2R)
+                .collect(Collectors.toList());
+    }
+
     public void createWar(WarRequest request) {
         warRepository.save(objectMapper.R2E(request));
     }
@@ -39,7 +46,7 @@ public class WarService {
         warRepository.save(entity);
     }
 
-    public WarResponse getWar(Long id) {
+    public WarResponse getWarById(Long id) {
         return objectMapper.E2R(warRepository.getById(id));
     }
 

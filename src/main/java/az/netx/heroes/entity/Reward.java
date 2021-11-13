@@ -2,7 +2,9 @@ package az.netx.heroes.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +20,7 @@ import java.util.List;
 @Setter
 @Table(name = "reward")
 @Entity
+@ToString
 public class Reward extends Auditable<String> {
 
     @Id
@@ -33,6 +36,6 @@ public class Reward extends Auditable<String> {
     @Column(name = "file_path")
     private String filePath;
 
-    @ManyToMany(mappedBy = "rewards")
+    @ManyToMany(mappedBy = "rewards", cascade = CascadeType.MERGE)
     private List<Soldier> soldiers;
 }

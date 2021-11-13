@@ -65,33 +65,49 @@
                                  </span>
                             </select>
                         </div>
-                        <!--                        <div class="mb-3 col-4">-->
-                        <!--                            <label class="form-label text-uppercase" for="headerLabel">Döyüşlər</label>-->
-                        <!--                            <p class="text-danger fw-bolder" style="display: inline"-->
-                        <!--                               th:errors="*{wars}"-->
-                        <!--                               th:if="${#fields.hasErrors('wars')}"></p>-->
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Döyüşlər</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{wars}"
+                               th:if="${#fields.hasErrors('wars')}"></p>
 
-                        <!--                            <select multiple class="form-select" name="wars"-->
-                        <!--                                    th:field="*{wars}">-->
-                        <!--                                    <span th:each="warVal :${warList}">-->
-                        <!--                                        <option th:value="${warVal.id}" th:text="${warVal.warName}"></option>-->
-                        <!--                                    </span>-->
-                        <!--                            </select>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="mb-3 col-4">-->
-                        <!--                            <label class="form-label text-uppercase" for="headerLabel">Mükafatlar</label>-->
-                        <!--                            <p class="text-danger fw-bolder" style="display: inline"-->
-                        <!--                               th:errors="*{rewards}"-->
-                        <!--                               th:if="${#fields.hasErrors('rewards')}"></p>-->
+                            <select class="form-select" multiple name="wars" size="3"
+                                    th:field="*{wars}">
 
-                        <!--                            <select multiple class="form-select" name="reward"-->
-                        <!--                                    th:field="*{rewards}">-->
-                        <!--                                    <option th:value="${-1}" th:text="Yoxdur"></option>-->
-                        <!--                                     <span th:each="rewardVal :${rewardList}">-->
-                        <!--                                          <option th:value="${rewardVal.id}" th:text="${rewardVal.rewardName}"></option>-->
-                        <!--                                     </span>-->
-                        <!--                            </select>-->
-                        <!--                        </div>-->
+                                <span th:each="warValSelected :${heroResponse.wars}">
+                                       <option selected="selected" th:text="'* ' +${warValSelected.warName} +' *'"
+                                               th:value="${warValSelected.id}"></option>
+                                </span>
+
+                                <span th:each="warVal :${warList}">
+                                       <option th:text="${warVal.warName}" th:value="${warVal.id}"></option>
+                                </span>
+
+                            </select>
+
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Mükafatlar</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{rewards}"
+                               th:if="${#fields.hasErrors('rewards')}"></p>
+
+                            <select aria-label="size 3 select example" class="form-select" multiple name="rewards"
+                                    size="3"
+                                    th:field="*{rewards}">
+
+                                <span th:each="rewardValSelected :${heroResponse.rewards}">
+                                       <option selected th:text="'* '+${rewardValSelected.rewardName} +' *'"
+                                               th:value="${rewardValSelected.id}"></option>
+                                </span>
+
+                                <span th:each="rewardVal ,status :${rewardList}">
+                                     <option th:text="${rewardVal.rewardName}" th:value="${rewardVal.id}"></option>
+                                </span>
+
+                            </select>
+
+                        </div>
                     </div>
                     <div class="row main-card-row-container">
                         <div class="col-12">

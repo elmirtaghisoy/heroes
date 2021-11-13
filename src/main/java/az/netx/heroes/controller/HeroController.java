@@ -5,6 +5,8 @@ import az.netx.heroes.component.paging.Paged;
 import az.netx.heroes.model.request.HeroRequest;
 import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.response.HeroResponse;
+import az.netx.heroes.model.response.RewardResponse;
+import az.netx.heroes.model.response.WarResponse;
 import az.netx.heroes.service.HeroService;
 import az.netx.heroes.service.RankService;
 import az.netx.heroes.service.RewardService;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
 import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
@@ -93,9 +96,14 @@ public class HeroController {
         if (!model.containsAttribute("heroResponse")) {
             HeroResponse response = heroService.getHeroById(heroId);
             model.addAttribute("rankList", rankService.getAllRank());
-            model.addAttribute("warList", warService.getAllWar());
-            model.addAttribute("rewardList", rewardService.getAllReward());
             model.addAttribute("heroResponse", response);
+            model.addAttribute("warList", warService.findWarByNotInIds(
+                    response.getWars().stream().map(WarResponse::getId).collect(Collectors.toList())
+            ));
+
+            model.addAttribute("rewardList", rewardService.findRewardByNotInIds(
+                    response.getRewards().stream().map(RewardResponse::getId).collect(Collectors.toList())
+            ));
         }
         return "admin/updateHeroPage";
     }

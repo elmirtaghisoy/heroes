@@ -2,12 +2,14 @@ package az.netx.heroes.model.request;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Setter
 @Getter
+@ToString
 public class RewardRequest {
 
     private Long id;

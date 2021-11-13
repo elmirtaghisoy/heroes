@@ -138,7 +138,7 @@ public class CategorizationController implements ControllerConstraints {
             Model model
     ) {
         ACCEPT_UUID = UUID.randomUUID().toString();
-        model.addAttribute("warResponse", warService.getWar(id));
+        model.addAttribute("warResponse", warService.getWarById(id));
         model.addAttribute("uuid", ACCEPT_UUID);
         return "admin/warRequestForm";
     }
@@ -171,7 +171,7 @@ public class CategorizationController implements ControllerConstraints {
             Model model
     ) {
         ACCEPT_UUID = UUID.randomUUID().toString();
-        model.addAttribute("rewardResponse", rewardService.getReward(id));
+        model.addAttribute("rewardResponse", rewardService.getRewardById(id));
         model.addAttribute("uuid", ACCEPT_UUID);
         return "admin/rewardRequestForm";
     }
