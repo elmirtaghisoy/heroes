@@ -6,6 +6,7 @@ import az.netx.heroes.component.paging.Paged;
 import az.netx.heroes.component.paging.Paging;
 import az.netx.heroes.component.query.SearchQueries;
 import az.netx.heroes.entity.Post;
+import az.netx.heroes.model.CustomFile;
 import az.netx.heroes.model.request.PostRequest;
 import az.netx.heroes.model.response.PostResponse;
 import az.netx.heroes.repository.PostRepository;
@@ -15,28 +16,48 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
+import static az.netx.heroes.component.constraint.ApplicationConstraint.POST;
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
     private final ObjectMapper objectMapper;
 
-//    public List<PostResponse> getAllPost() {
-//        return postRepository.findAllByStatusTrue()
-//                .stream()
-//                .map(objectMapper::E2R)
-//                .collect(Collectors.toList());
-//    }
+    public void createPost(PostRequest request) throws IOException {
 
-    public void createPost(PostRequest request) {
-        postRepository.save(objectMapper.R2E(request));
+        CustomFile file = CustomFile.builder()
+                .category(POST)
+                .file(request.getImg())
+                .build();
+        request.setFilePath(FileService.saveSingle(file));
+
+        Post p = objectMapper.R2E(request);
+
+        System.err.println(p.toString());
+        System.err.println(p.getFilePath());
+
+        postRepository.save(p);
     }
 
     public PostResponse getPostById(Long postId) {
         return objectMapper.E2R(postRepository.getById(postId));
     }
 
-    public void updatePost(PostRequest request) {
+    public void updatePost(PostRequest request) throws IOException {
+
+        if (request.getImg().isEmpty()) {
+            request.setFilePath(request.getFilePath());
+        } else {
+            CustomFile file = CustomFile.builder()
+                    .category(POST)
+                    .file(request.getImg())
+                    .build();
+            request.setFilePath(FileService.saveSingle(file));
+        }
+
         postRepository.save(objectMapper.R2E(request));
     }
 

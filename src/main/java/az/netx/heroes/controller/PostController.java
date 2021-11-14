@@ -112,7 +112,7 @@ public class PostController {
             @Validated @ModelAttribute("postRequest") final PostRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
-    ) {
+    ) throws IOException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postResponse", bindingResult);
             redirectAttributes.addFlashAttribute("postResponse", request);
