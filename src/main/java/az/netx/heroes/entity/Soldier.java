@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -76,5 +77,9 @@ public abstract class Soldier extends Auditable<String> {
             inverseJoinColumns = @JoinColumn(name = "war_id", referencedColumnName = "id")
     )
     private List<War> wars;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ref_object_id")
+    private List<File> files;
 
 }

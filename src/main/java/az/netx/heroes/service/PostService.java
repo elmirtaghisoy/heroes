@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 import static az.netx.heroes.component.constraint.ApplicationConstraint.POST;
+import static az.netx.heroes.util.FileUtil.generateRandomFolderName;
 
 @Service
 @RequiredArgsConstructor
@@ -28,18 +29,17 @@ public class PostService {
 
     public void createPost(PostRequest request) throws IOException {
 
+        String uuidFolderName = generateRandomFolderName();
+        request.setFolderUuid(uuidFolderName);
+
         CustomFile file = CustomFile.builder()
                 .category(POST)
                 .file(request.getImg())
                 .build();
         request.setFilePath(FileService.saveSingle(file));
+        request.setFilePaths(FileService.saveMultiple(POST, uuidFolderName, request.getFiles()));
 
-        Post p = objectMapper.R2E(request);
-
-        System.err.println(p.toString());
-        System.err.println(p.getFilePath());
-
-        postRepository.save(p);
+        postRepository.save(objectMapper.R2E(request));
     }
 
     public PostResponse getPostById(Long postId) {

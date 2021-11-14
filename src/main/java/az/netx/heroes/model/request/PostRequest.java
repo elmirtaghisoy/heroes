@@ -1,12 +1,14 @@
 package az.netx.heroes.model.request;
 
 import az.netx.heroes.component.annotation.IsImage;
+import az.netx.heroes.entity.File;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 public class PostRequest {
@@ -22,4 +24,8 @@ public class PostRequest {
     @IsImage(message = "Əlavə etdiyiniz faylın formatı ancaq (JPG, JPEG, IMG, PNG) ola bilər.")
     private MultipartFile img;
     private String filePath;
+    private List<File> filePaths;
+    private String folderUuid;
+    @Transient
+    private List<MultipartFile> files;
 }

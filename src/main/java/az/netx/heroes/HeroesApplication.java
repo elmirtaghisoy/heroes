@@ -13,15 +13,15 @@ public class HeroesApplication {
 }
 
 /*{
-    1 - Fayllari elave et bloglara
     2 - Message servisi yarat.
     3 - Pageingde link meseleleri
+    6 - liquibase
     4 - List ile search
-    5 - Hansi kateqoriyada esger varsa o gorunsun menuda (buna parametr elave et)
-    6 - Hansi type da post varsa o kateqoriya menuda gorunsun (buna parametr elave et)
+    5 - optimization
+    7 - Hansi kateqoriyada esger varsa o gorunsun menuda (buna parametr elave et)
+    8 - Hansi type da post varsa o kateqoriya menuda gorunsun (buna parametr elave et)
     ---------------------------------------------
     1 - ci gun security
-    2 - liquibase
     ---------------------------------
     Front
 }*/
