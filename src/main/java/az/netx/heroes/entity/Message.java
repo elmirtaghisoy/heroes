@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,15 +21,28 @@ public class Message {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "email")
     private String email;
 
-    private Boolean unread;
-
+    @Column(name = "context")
     private String context;
 
+    @Column(name = "header")
     private String header;
 
+    @Column(name = "status")
     private String status;
 
+    @Column(name = "received_ts")
+    private LocalDateTime receivedTs;
+
+    @Column(name = "read_ts")
+    private LocalDateTime readTs;
+
     // file
+
+    @PrePersist
+    public void onCreate() {
+        this.receivedTs = LocalDateTime.now();
+    }
 }

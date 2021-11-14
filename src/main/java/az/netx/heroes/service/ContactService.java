@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ContactService {
+
     private final ContactRepository contactRepository;
     private final ObjectMapper objectMapper;
 

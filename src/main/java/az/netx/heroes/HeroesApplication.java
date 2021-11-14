@@ -14,15 +14,16 @@ public class HeroesApplication {
 
 /*
 {
-    1 - default bashliqli fayllar
     ---------------------------------------------
-    3 - Message servisi yarat.
+    1 - Message servisi yarat.
+    2 - Hansi kateqoriyada esger varsa o gorunsun menuda (buna parametr elave et)
+    3 - Hansi type da post varsa o kateqoriya menuda gorunsun (buna parametr elave et)
     4 - Pageingde link meseleleri
-    5 - liquibase
-    6 - List ile search
-    7 - optimization
-    8 - Hansi kateqoriyada esger varsa o gorunsun menuda (buna parametr elave et)
-    9 - Hansi type da post varsa o kateqoriya menuda gorunsun (buna parametr elave et)
+    ---------------------------------------------
+    5 - optimization
+    6 - liquibase
+    7 - List ile search
+    ---------------------------------------------
     10 - ci gun security
     ---------------------------------------------
     Front
