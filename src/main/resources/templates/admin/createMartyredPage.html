@@ -113,31 +113,31 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!--                            <div class="accordion accordion-flush" id="accordionFlushExample">-->
-                        <!--                                <div class="accordion-item">-->
-                        <!--                                    <h2 class="accordion-header" id="flush-headingTwo">-->
-                        <!--                                        <button aria-controls="flush-collapseTwo" aria-expanded="false"-->
-                        <!--                                                class="accordion-button collapsed text-uppercase"-->
-                        <!--                                                data-bs-target="#flush-collapseTwo"-->
-                        <!--                                                data-bs-toggle="collapse"-->
-                        <!--                                                type="button">-->
-                        <!--                                            Əlavə fayllar-->
-                        <!--                                        </button>-->
-                        <!--                                    </h2>-->
-                        <!--                                    <div aria-labelledby="flush-headingTwo" class="accordion-collapse collapse"-->
-                        <!--                                         data-bs-parent="#accordionFlushExample"-->
-                        <!--                                         id="flush-collapseTwo">-->
-                        <!--                                        <div class="main-container">-->
-                        <!--                                            <label class="form-label text-uppercase" for="formFileLg">Blogun digər-->
-                        <!--                                                fayllarını-->
-                        <!--                                                seçin</label>-->
-                        <!--                                            <input class="form-control form-control-lg" id="formFileLg" multiple-->
-                        <!--                                                   name="files"-->
-                        <!--                                                   type="file">-->
-                        <!--                                        </div>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button aria-controls="flush-collapseOne" aria-expanded="false"
+                                            class="accordion-button collapsed text-uppercase"
+                                            data-bs-target="#flush-collapseOne" data-bs-toggle="collapse"
+                                            type="button">
+                                        Başlıq Şəkİlİ
+                                        <p class="text-danger fw-bolder" style="display: inline"
+                                           th:errors="*{img}"
+                                           th:if="${#fields.hasErrors('img')}"></p>
+                                    </button>
+                                </h2>
+                                <div aria-labelledby="flush-headingOne" class="accordion-collapse collapse"
+                                     data-bs-parent="#accordionFlushExample"
+                                     id="flush-collapseOne">
+                                    <div class="container-fluid mb-3 mt-2">
+                                        <label class="form-label text-uppercase fw-bolder" for="formFileLg">Şəkİlİnİ
+                                            seçİn</label>
+                                        <input class="form-control form-control-lg" id="formFileLg" th:field="*{img}"
+                                               type="file">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <input class="btn btn-success text-uppercase" type="submit" value="Yadda Saxla">
                     </div>
                 </form>

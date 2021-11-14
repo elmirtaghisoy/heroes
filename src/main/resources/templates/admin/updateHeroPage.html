@@ -13,6 +13,35 @@
             <div class="row">
                 <form action="#" enctype="multipart/form-data" method="post" th:action="@{'/hero/update'}"
                       th:object="${heroResponse}">
+                    <div class="row mb-3">
+                        <div class="accordion " id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button aria-controls="collapseOne" aria-expanded="true"
+                                            class="accordion-button collapsed"
+                                            data-bs-target="#collapseOne" data-bs-toggle="collapse" type="button">
+                                        Başlıq Şəkili
+                                        <p class="text-danger fw-bolder" style="display: inline"
+                                           th:errors="*{img}"
+                                           th:if="${#fields.hasErrors('img')}"></p>
+                                    </button>
+                                </h2>
+                                <div aria-labelledby="headingOne" class="accordion-collapse collapse text-center"
+                                     data-bs-parent="#accordionExample"
+                                     id="collapseOne">
+                                    <img class="img-thumbnail" style="height:200; width:auto;"
+                                         th:src="${heroResponse.filePath}">
+                                    <div class="container-fluid mb-3 mt-2">
+                                        <label class="form-label text-uppercase" for="formFileLg">Mövcud başlıq şəkili
+                                            dəyİşmək</label>
+                                        <input th:field="*{filePath}" type="hidden">
+                                        <input class="form-control form-control-lg" id="formFileLg" name="img"
+                                               th:field="*{img}" type="file">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <input name="id" th:value="${heroResponse.id}" type="hidden">
                     <div class="row">
                         <div class="mb-3 col-4">

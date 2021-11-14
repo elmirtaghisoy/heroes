@@ -129,7 +129,7 @@ public class HeroController {
             @Validated @ModelAttribute("heroRequest") final HeroRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
-    ) {
+    ) throws IOException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.heroResponse", bindingResult);
             redirectAttributes.addFlashAttribute("heroResponse", request);

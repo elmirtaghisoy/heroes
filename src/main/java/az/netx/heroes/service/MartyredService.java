@@ -6,6 +6,7 @@ import az.netx.heroes.component.paging.Paged;
 import az.netx.heroes.component.paging.Paging;
 import az.netx.heroes.component.query.SearchQueries;
 import az.netx.heroes.entity.Martyred;
+import az.netx.heroes.model.CustomFile;
 import az.netx.heroes.model.request.MartyredRequest;
 import az.netx.heroes.model.response.MartyredResponse;
 import az.netx.heroes.repository.MartyredRepository;
@@ -15,6 +16,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
+import static az.netx.heroes.component.constraint.ApplicationConstraint.HERO;
+import static az.netx.heroes.component.constraint.ApplicationConstraint.MARTYRED;
+
 @Service
 @RequiredArgsConstructor
 public class MartyredService {
@@ -22,7 +28,14 @@ public class MartyredService {
     private final MartyredRepository martyredRepository;
     private final ObjectMapper objectMapper;
 
-    public void createMartyred(MartyredRequest request) {
+    public void createMartyred(MartyredRequest request) throws IOException {
+
+        CustomFile file = CustomFile.builder()
+                .category(MARTYRED)
+                .file(request.getImg())
+                .build();
+        request.setFilePath(FileService.saveSingle(file));
+
         martyredRepository.save(objectMapper.R2E(request));
     }
 
@@ -30,7 +43,18 @@ public class MartyredService {
         return objectMapper.E2R(martyredRepository.getById(martyredId));
     }
 
-    public void updateMartyred(MartyredRequest request) {
+    public void updateMartyred(MartyredRequest request) throws IOException {
+
+        if (request.getImg().isEmpty()) {
+            request.setFilePath(request.getFilePath());
+        } else {
+            CustomFile file = CustomFile.builder()
+                    .category(HERO)
+                    .file(request.getImg())
+                    .build();
+            request.setFilePath(FileService.saveSingle(file));
+        }
+
         martyredRepository.save(objectMapper.R2E(request));
     }
 

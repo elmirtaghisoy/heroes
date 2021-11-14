@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.stream.Collectors;
 
 import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
@@ -115,7 +116,7 @@ public class MartyredController {
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
-    ) {
+    ) throws IOException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.martyredRequest", bindingResult);
             redirectAttributes.addFlashAttribute("martyredRequest", request);
@@ -131,7 +132,7 @@ public class MartyredController {
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
-    ) {
+    ) throws IOException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.martyredResponse", bindingResult);
             redirectAttributes.addFlashAttribute("martyredResponse", request);

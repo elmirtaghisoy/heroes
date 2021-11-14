@@ -6,6 +6,7 @@ import az.netx.heroes.component.paging.Paged;
 import az.netx.heroes.component.paging.Paging;
 import az.netx.heroes.component.query.SearchQueries;
 import az.netx.heroes.entity.Hero;
+import az.netx.heroes.model.CustomFile;
 import az.netx.heroes.model.request.HeroRequest;
 import az.netx.heroes.model.response.HeroResponse;
 import az.netx.heroes.repository.HeroRepository;
@@ -15,6 +16,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
+import static az.netx.heroes.component.constraint.ApplicationConstraint.HERO;
+
 @Service
 @RequiredArgsConstructor
 public class HeroService {
@@ -22,7 +27,14 @@ public class HeroService {
     private final HeroRepository heroRepository;
     private final ObjectMapper objectMapper;
 
-    public void createHero(HeroRequest request) {
+    public void createHero(HeroRequest request) throws IOException {
+
+        CustomFile file = CustomFile.builder()
+                .category(HERO)
+                .file(request.getImg())
+                .build();
+        request.setFilePath(FileService.saveSingle(file));
+
         heroRepository.save(objectMapper.R2E(request));
     }
 
@@ -30,7 +42,18 @@ public class HeroService {
         return objectMapper.E2R(heroRepository.getById(heroId));
     }
 
-    public void updateHero(HeroRequest request) {
+    public void updateHero(HeroRequest request) throws IOException {
+
+        if (request.getImg().isEmpty()) {
+            request.setFilePath(request.getFilePath());
+        } else {
+            CustomFile file = CustomFile.builder()
+                    .category(HERO)
+                    .file(request.getImg())
+                    .build();
+            request.setFilePath(FileService.saveSingle(file));
+        }
+
         heroRepository.save(objectMapper.R2E(request));
     }
 

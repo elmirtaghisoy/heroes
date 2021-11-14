@@ -13,7 +13,7 @@ public class HeroesApplication {
 }
 
 /*{
-    1 - Fayllari elave et.
+    1 - Fayllari elave et bloglara
     2 - Message servisi yarat.
     3 - Pageingde link meseleleri
     4 - List ile search

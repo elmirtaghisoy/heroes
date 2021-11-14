@@ -1,8 +1,11 @@
 package az.netx.heroes.model.request;
 
+import az.netx.heroes.component.annotation.IsImage;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -23,6 +26,9 @@ public class HeroRequest {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
     private String about;
+    @Transient
+    @IsImage(message = "Əlavə etdiyiniz faylın formatı ancaq (JPG, JPEG, IMG, PNG) ola bilər.")
+    private MultipartFile img;
     private String filePath;
     private RankRequest rank;
     private List<RewardRequest> rewards;
