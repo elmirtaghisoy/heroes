@@ -5,26 +5,36 @@ import az.netx.heroes.component.mapper.ObjectMapper;
 import az.netx.heroes.component.paging.Paged;
 import az.netx.heroes.component.paging.Paging;
 import az.netx.heroes.component.query.SearchQueries;
+import az.netx.heroes.entity.File;
 import az.netx.heroes.entity.Post;
 import az.netx.heroes.model.CustomFile;
 import az.netx.heroes.model.request.PostRequest;
+import az.netx.heroes.model.response.FileResponse;
 import az.netx.heroes.model.response.PostResponse;
+import az.netx.heroes.repository.FileRepository;
 import az.netx.heroes.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static az.netx.heroes.component.constraint.ApplicationConstraint.POST;
+import static az.netx.heroes.component.constraint.ApplicationConstraint.POST_DEFAULT_IMG_PATH;
+import static az.netx.heroes.config.MvcConfig.UPLOAD_PATH;
 import static az.netx.heroes.util.FileUtil.generateRandomFolderName;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
+
     private final PostRepository postRepository;
+    private final FileRepository fileRepository;
     private final ObjectMapper objectMapper;
 
     public void createPost(PostRequest request) throws IOException {
@@ -32,12 +42,19 @@ public class PostService {
         String uuidFolderName = generateRandomFolderName();
         request.setFolderUuid(uuidFolderName);
 
-        CustomFile file = CustomFile.builder()
-                .category(POST)
-                .file(request.getImg())
-                .build();
-        request.setFilePath(FileService.saveSingle(file));
-        request.setFilePaths(FileService.saveMultiple(POST, uuidFolderName, request.getFiles()));
+        if (request.getImg().isEmpty()) {
+            request.setFilePath(POST_DEFAULT_IMG_PATH);
+        } else {
+            CustomFile file = CustomFile.builder()
+                    .category(POST)
+                    .file(request.getImg())
+                    .build();
+            request.setFilePath(FileService.saveSingle(file));
+        }
+
+        if (!request.getFiles().get(0).isEmpty()) {
+            request.setFilePaths(FileService.saveMultiple(POST, uuidFolderName, request.getFiles()));
+        }
 
         postRepository.save(objectMapper.R2E(request));
     }
@@ -76,5 +93,25 @@ public class PostService {
         );
 
         return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
+    }
+
+    public void deleteFileById(Long fileId) {
+        File file = fileRepository.getById(fileId);
+        FileService.deleteFile(file.getFolder().replace("/file", UPLOAD_PATH));
+        fileRepository.deleteById(fileId);
+    }
+
+    public List<FileResponse> getFilesByObjId(Long objId) {
+        return fileRepository.findAllByRefObjectId(objId).stream()
+                .map(objectMapper::E2R)
+                .collect(Collectors.toList());
+    }
+
+    public void saveAdditionalFiles(List<MultipartFile> files, Long id) throws IOException {
+        if (files.get(0).getSize() != 0) {
+            List<File> fileList = FileService.saveMultiple(POST, postRepository.getFolderUUID(id), files);
+            fileList.forEach(file -> file.setRefObjectId(id));
+            fileRepository.saveAll(fileList);
+        }
     }
 }

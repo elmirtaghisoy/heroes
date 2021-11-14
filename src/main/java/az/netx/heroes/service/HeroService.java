@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 import static az.netx.heroes.component.constraint.ApplicationConstraint.HERO;
+import static az.netx.heroes.component.constraint.ApplicationConstraint.SOLDIER_DEFAULT_IMG_PATH;
 
 @Service
 @RequiredArgsConstructor
@@ -29,11 +30,15 @@ public class HeroService {
 
     public void createHero(HeroRequest request) throws IOException {
 
-        CustomFile file = CustomFile.builder()
-                .category(HERO)
-                .file(request.getImg())
-                .build();
-        request.setFilePath(FileService.saveSingle(file));
+        if (request.getImg().isEmpty()) {
+            request.setFilePath(SOLDIER_DEFAULT_IMG_PATH);
+        } else {
+            CustomFile file = CustomFile.builder()
+                    .category(HERO)
+                    .file(request.getImg())
+                    .build();
+            request.setFilePath(FileService.saveSingle(file));
+        }
 
         heroRepository.save(objectMapper.R2E(request));
     }

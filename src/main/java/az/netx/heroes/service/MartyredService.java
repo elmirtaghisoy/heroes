@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import static az.netx.heroes.component.constraint.ApplicationConstraint.HERO;
 import static az.netx.heroes.component.constraint.ApplicationConstraint.MARTYRED;
+import static az.netx.heroes.component.constraint.ApplicationConstraint.SOLDIER_DEFAULT_IMG_PATH;
 
 @Service
 @RequiredArgsConstructor
@@ -30,11 +31,15 @@ public class MartyredService {
 
     public void createMartyred(MartyredRequest request) throws IOException {
 
-        CustomFile file = CustomFile.builder()
-                .category(MARTYRED)
-                .file(request.getImg())
-                .build();
-        request.setFilePath(FileService.saveSingle(file));
+        if (request.getImg().isEmpty()) {
+            request.setFilePath(SOLDIER_DEFAULT_IMG_PATH);
+        } else {
+            CustomFile file = CustomFile.builder()
+                    .category(MARTYRED)
+                    .file(request.getImg())
+                    .build();
+            request.setFilePath(FileService.saveSingle(file));
+        }
 
         martyredRepository.save(objectMapper.R2E(request));
     }

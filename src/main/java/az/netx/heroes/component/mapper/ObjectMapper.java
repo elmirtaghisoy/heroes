@@ -1,6 +1,7 @@
 package az.netx.heroes.component.mapper;
 
 import az.netx.heroes.entity.Contact;
+import az.netx.heroes.entity.File;
 import az.netx.heroes.entity.Hero;
 import az.netx.heroes.entity.Martyred;
 import az.netx.heroes.entity.Message;
@@ -19,6 +20,7 @@ import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.request.RewardRequest;
 import az.netx.heroes.model.request.WarRequest;
 import az.netx.heroes.model.response.ContactResponse;
+import az.netx.heroes.model.response.FileResponse;
 import az.netx.heroes.model.response.HeroResponse;
 import az.netx.heroes.model.response.MartyredResponse;
 import az.netx.heroes.model.response.MessageResponse;
@@ -71,4 +73,6 @@ public interface ObjectMapper {
     RewardRequest R2R(RewardResponse reward);
 
     WarRequest R2R(WarResponse war);
+
+    FileResponse E2R(File file);
 }

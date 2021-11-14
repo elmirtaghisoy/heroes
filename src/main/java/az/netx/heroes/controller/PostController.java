@@ -5,6 +5,7 @@ import az.netx.heroes.component.paging.Paged;
 import az.netx.heroes.model.request.PostCategoryRequest;
 import az.netx.heroes.model.request.PostRequest;
 import az.netx.heroes.model.response.PostResponse;
+import az.netx.heroes.service.FileService;
 import az.netx.heroes.service.PostCategoryService;
 import az.netx.heroes.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +19,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
 import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
@@ -32,6 +35,7 @@ import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 public class PostController {
 
     private final PostService postService;
+    private final FileService fileService;
     private final PostCategoryService postCategoryService;
     private String ACCEPT_UUID;
 
@@ -91,6 +95,15 @@ public class PostController {
         return "admin/updatePostPage";
     }
 
+    @GetMapping("/{id}/file")
+    public String getFilesByObjId(
+            @PathVariable(value = "id") Long objId,
+            Model model
+    ) {
+        model.addAttribute("files", postService.getFilesByObjId(objId));
+        return "admin/files";
+    }
+
     @PostMapping("/create")
     public String createPost(
             @Validated @ModelAttribute("postRequest") final PostRequest request,
@@ -131,6 +144,28 @@ public class PostController {
         postService.deletePost(id);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/post";
+    }
+
+    @PostMapping("/file/delete")
+    public String deleteFileById(
+            @RequestParam(value = "id") Long fileId,
+            @RequestParam(value = "objId") Long objId,
+            final RedirectAttributes redirectAttributes
+    ) {
+        postService.deleteFileById(fileId);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/post/" + objId + "/file";
+    }
+
+    @PostMapping("/{id}/file")
+    public String saveFilesByObjId(
+            @PathVariable("id") Long objId,
+            @RequestParam("static/files") List<MultipartFile> files,
+            final RedirectAttributes redirectAttributes
+    ) throws IOException {
+        postService.saveAdditionalFiles(files, objId);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/post/" + objId + "/file";
     }
 
 }

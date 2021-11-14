@@ -1,7 +1,10 @@
 package az.netx.heroes.service;
 
+import az.netx.heroes.component.mapper.ObjectMapper;
 import az.netx.heroes.model.CustomFile;
+import az.netx.heroes.repository.FileRepository;
 import com.google.common.io.Files;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,15 +15,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import static az.netx.heroes.config.MvcConfig.uploadPath;
+import static az.netx.heroes.config.MvcConfig.UPLOAD_PATH;
 
 @Service
+@RequiredArgsConstructor
 public class FileService {
+
+    private final FileRepository fileRepository;
+    private final ObjectMapper objectMapper;
 
     public static String saveSingle(CustomFile customFile) throws IOException {
         String resultFilename = "";
         String folder = Objects.nonNull(customFile.getFolder()) ? "/" + customFile.getFolder() : "";
-        String currentFilePath = uploadPath + "/" + customFile.getCategory() + folder;
+        String currentFilePath = UPLOAD_PATH + "/" + customFile.getCategory() + folder;
 
         if (customFile.getFile() != null && !customFile.getFile().getOriginalFilename().isEmpty()) {
             File uploadDir = new File(currentFilePath);

@@ -76,30 +76,6 @@
                         </div>
                         <div class="row">
                             <div class="accordion accordion-flush" id="accordionFlushExample">
-                                <!--                                <div class="accordion-item">-->
-                                <!--                                    <h2 class="accordion-header" id="flush-headingOne">-->
-                                <!--                                        <button class="accordion-button collapsed text-uppercase" type="button"-->
-                                <!--                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"-->
-                                <!--                                                aria-expanded="false"-->
-                                <!--                                                aria-controls="flush-collapseOne">-->
-                                <!--                                            Başlıq şəkili-->
-                                <!--                                            <p style="display: inline" th:errors="*{cover}"-->
-                                <!--                                               class="text-danger fw-bolder"-->
-                                <!--                                               th:if="${#fields.hasErrors('cover')}"></p>-->
-                                <!--                                        </button>-->
-                                <!--                                    </h2>-->
-                                <!--                                    <div id="flush-collapseOne" class="accordion-collapse collapse"-->
-                                <!--                                         aria-labelledby="flush-headingOne"-->
-                                <!--                                         data-bs-parent="#accordionFlushExample">-->
-                                <!--                                        <div class="main-container">-->
-                                <!--                                            <label for="formFileLg" class="form-label text-uppercase">Blogun başlıq-->
-                                <!--                                                şəkilini-->
-                                <!--                                                seçin</label>-->
-                                <!--                                            <input class="form-control form-control-lg" name="cover" th:field="*{cover}"-->
-                                <!--                                                   type="file">-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingTwo">
                                         <button aria-controls="flush-collapseTwo" aria-expanded="false"
@@ -128,6 +104,12 @@
                         </div>
                     </div>
                 </form>
+                <div class="row">
+                    <a class="btn btn-warning text-uppercase mb-3" style="color: white"
+                       th:href="@{/post/{id}/file(id=${postResponse.id})}">
+                        Fayllarda dəyİşİklİk et
+                    </a>
+                </div>
             </div>
         </div>
     </div>

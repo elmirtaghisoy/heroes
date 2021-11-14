@@ -1,0 +1,84 @@
+<html th:include="~{admin/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div class="container">
+    <div class="main-container">
+        <div class="row">
+            <div class="custom-bread-crumb col-4">
+                <!--                <a th:href="@{/previous-page}" class="btn btn-danger text-white text-uppercase mb-4">Gerİ</a>-->
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover text-center">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Fayl</th>
+                    <th scope="col">Fayl Tipi</th>
+                    <th scope="col">Sil</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="col-3" th:each="file : ${files}">
+                    <th class="align-middle" scope="row" th:text="${file.id}"></th>
+                    <td th:switch="${file.fileType}">
+                        <img class="img-thumbnail" style="height:200; width:auto;" th:case="1"
+                             th:src="@{${file.folder}}">
+                        <video controls height="200" th:case="2" width="auto">
+                            <source th:src="@{${file.folder}}" type="video/mp4">
+                        </video>
+                        <audio controls th:case="3">
+                            <source th:src="@{${file.folder}}" type="audio/mpeg">
+                        </audio>
+                        <iframe height="200" th:case="4" th:src="@{${file.folder}}" width="auto"></iframe>
+                    </td>
+                    <td class="align-middle" th:text="${file.fileType}"></td>
+                    <td class="align-middle">
+                        <div class="row d-flex justify-content-center">
+                            <form method="post" th:action="@{'/post/file/delete'}">
+                                <input name="id" th:value="${file.id}" type="hidden">
+                                <input name="objId" th:value="${file.refObjectId}" type="hidden">
+                                <input class="btn btn-danger text-uppercase" type="submit" value="Faylı sİl">
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button aria-controls="collapseOne" aria-expanded="true"
+                                class="accordion-button collapsed text-uppercase"
+                                data-bs-target="#collapseOne" data-bs-toggle="collapse" type="button">
+                            Yenİ fayl əlavə et
+                        </button>
+                    </h2>
+                    <div aria-labelledby="headingOne" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionExample"
+                         id="collapseOne">
+                        <div class="accordion-body">
+                            <form enctype="multipart/form-data" method="post" th:action="@{'file'}">
+                                <div class="container-fluid mb-3 mt-2">
+                                    <label class="form-label text-uppercase fw-bolder" for="formFileLg">Fayllarını
+                                        seçİn</label>
+                                    <input class="form-control form-control-lg" id="formFileLg" multiple
+                                           name="files"
+                                           type="file">
+                                    <div class="row d-flex justify-content-center mt-4">
+                                        <input class="btn btn-success text-uppercase" type="submit"
+                                               value="Faylları yadda saxla">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
