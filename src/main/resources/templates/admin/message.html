@@ -80,7 +80,12 @@
                         </div>
                         <div class="mb-3 col-6">
                             <label class="form-label text-uppercase" for="headerLabel">Status</label>
-                            <input class="form-control" id="headerLabel" name="status" type="search">
+                            <select class="form-select" name="status">
+                                <option value="-1"></option>
+                                <option value="ALL">HAMISI</option>
+                                <option value="READ">OXUNMUŞ</option>
+                                <option value="UNREAD">OXUNMAMIŞ</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center">

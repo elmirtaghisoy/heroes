@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="form-group">
                 <p>
-                    Döyüş ilə bağlı olan digər məlumatlarda problem yaranma ehtimalını
+                    <b>Rütbə</b> ilə bağlı olan digər məlumatlarda problem yaranma ehtimalını
                     nəzərə alaraq silinmə prosesini təsdiq etmək üçün aşağıda göstərilən şifrəni heç bir dəyişiklik
                     etmədən daxil edin.
                 </p>
@@ -16,13 +16,19 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="white-button btn btn-secondary btn-sm ml-auto" data-dismiss="modal"
+        <button class="text-uppercase white-button btn btn-secondary btn-sm ml-auto" data-dismiss="modal"
+                id="delete-modal-close"
                 type="button">
             Ləğv et
         </button>
-        <button class="save-new-button dark-button btn btn-primary btn-sm ml-1" type="submit">
-            Təsdiqlə
+        <button class="text-uppercase save-new-button dark-button btn btn-primary btn-sm ml-1" type="submit">
+            Təsdİqlə
         </button>
     </div>
+    <script>
+        $("#delete-modal-close").click(function () {
+            $('#delete-modal').modal('hide');
+        });
+    </script>
 </form>
 </html>

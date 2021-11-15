@@ -118,25 +118,16 @@
                 <div class="row mt-4">
                     <div class="col-3" th:each="hero : ${objectList.page}">
                         <div class="card">
-                            <!--                                                        <img alt="Cover Image" class="card-img-top" th:src="${post.coverPath}">-->
+                            <img alt="Cover Image" class="card-img-top" th:src="${hero.filePath}">
                             <div class="card-body">
                                 <h5 class="card-title"
-                                    th:text="${hero.surname}+' '+${hero.name} +' '+${hero.fatherName}"></h5>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title"
-                                    th:text="${hero.rank.rankName}"></h5>
+                                    th:text="${hero.rank.rankName} +' '+ ${hero.surname}+' '+${hero.name} +' '+${hero.fatherName}"></h5>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title"
                                     th:text="${hero.birthDate}"></h5>
                             </div>
-                            <!--                            <div class="card-body">-->
-                            <!--                                <h5 class="card-title" th:text="${post.category}"></h5>-->
-                            <!--                            </div>-->
                             <div class="card-body text-center">
-                                <!--                                + ${war.id}-->
-                                <!--                                <a class="card-link text-uppercase" th:href="@{{id}(id=${post.id})}">Ətraflı Məlumat</a>-->
                                 <a class="btn btn-primary text-uppercase" style="display: block"
                                    th:href="@{/hero/{id}(id=${hero.id})}">Ətraflı
                                     Məlumat</a>
