@@ -167,7 +167,7 @@ public class PostController {
     @PostMapping("/{id}/file")
     public String saveFilesByObjId(
             @PathVariable("id") Long objId,
-            @RequestParam("static/files") List<MultipartFile> files,
+            @RequestParam("files") List<MultipartFile> files,
             final RedirectAttributes redirectAttributes
     ) throws IOException {
         postService.saveAdditionalFiles(files, objId);

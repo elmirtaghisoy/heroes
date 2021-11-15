@@ -15,22 +15,25 @@
                     <div class="row main-card-row-container">
                         <div class="col-12">
                             <label class="form-label text-uppercase">Məlumat</label>
-                            <textarea class="form-control" name="context" rows="3"
+                            <textarea class="form-control" disabled name="context" rows="3"
                                       th:field="*{context}"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-4">
                             <label class="form-label text-uppercase" for="headerLabel">Başlıq</label>
-                            <input class="form-control" id="headerLabel" name="header" th:field="*{header}" type="text">
+                            <input class="form-control" disabled id="headerLabel" name="header" th:field="*{header}"
+                                   type="text">
                         </div>
                         <div class="mb-3 col-4">
                             <label class="form-label text-uppercase" for="headerLabel">Email</label>
-                            <input class="form-control" id="headerLabel1" name="email" th:field="*{email}" type="text">
+                            <input class="form-control" disabled id="headerLabel1" name="email" th:field="*{email}"
+                                   type="text">
                         </div>
                         <div class="mb-3 col-4">
                             <label class="form-label text-uppercase" for="headerLabel">Göndərilmə Tarixi</label>
-                            <input class="form-control" id="headerLabel1" name="receivedTs" th:field="*{receivedTs}"
+                            <input class="form-control" disabled id="headerLabel1" name="receivedTs"
+                                   th:field="*{receivedTs}"
                                    type="text">
                         </div>
                     </div>
