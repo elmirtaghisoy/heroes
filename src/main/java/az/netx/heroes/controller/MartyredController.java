@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
-import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
+import static az.netx.heroes.util.SearchUtil.martyredSearchPathBuilder;
 
 @Controller
 @RequestMapping(value = "/martyred")
@@ -67,7 +67,7 @@ public class MartyredController {
         );
 
         model.addAttribute("objectList", list);
-        model.addAttribute("srcUrl", postSearchPathBuilder(request));
+        model.addAttribute("srcUrl", martyredSearchPathBuilder(request));
 
         if (model.containsAttribute("success")) {
             model.addAttribute("success");

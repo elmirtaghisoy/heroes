@@ -187,12 +187,12 @@
                         <button class="btn btn-success text-uppercase mt-3" type="submit">ƏLAVƏ ET</button>
                     </div>
                 </form>
-                <tr th:each="war : ${wars}">
+                <tr class="align-middle" th:each="war : ${wars}">
                     <form method="post" th:action="@{'/categorization/war/update'}" th:object="${warRequest}">
                         <input name="id" th:value="${war.id}" type="hidden">
                         <th scope="row" th:text="${war.id}"></th>
                         <td>
-                            <input class="mt-3" disabled="disabled" name="warName"
+                            <input class="" disabled="disabled" name="warName"
                                    th:id="'war-update-input-' + ${war.id}" th:value="${war.warName}"
                                    type="text">
                         </td>
@@ -212,7 +212,7 @@
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
                            data-toggle="modal" th:onclick="|init(${war.id},'delete','war')|">
-                            SIL
+                            SİL
                         </a>
                     </td>
                 </tr>
@@ -238,12 +238,12 @@
                         <button class="btn btn-success text-uppercase mt-3" type="submit">ƏLAVƏ ET</button>
                     </div>
                 </form>
-                <tr th:each="rank : ${ranks}">
+                <tr class="align-middle" th:each="rank : ${ranks}">
                     <form method="post" th:action="@{'/categorization/rank/update'}" th:object="${rankRequest}">
                         <input name="id" th:value="${rank.id}" type="hidden">
                         <th scope="row" th:text="${rank.id}"></th>
                         <td>
-                            <input class="mt-3" disabled="disabled" name="rankName"
+                            <input class="" disabled="disabled" name="rankName"
                                    th:id="'rank-update-input-' + ${rank.id}" th:value="${rank.rankName}"
                                    type="text">
                         </td>
@@ -263,7 +263,7 @@
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
                            data-toggle="modal" th:onclick="|init(${rank.id},'delete','rank')|">
-                            SIL
+                            SİL
                         </a>
                     </td>
                     </td>
@@ -290,12 +290,12 @@
                         <button class="btn btn-success text-uppercase mt-3" type="submit">ƏLAVƏ ET</button>
                     </div>
                 </form>
-                <tr th:each="reward : ${rewards}">
+                <tr class="align-middle" th:each="reward : ${rewards}">
                     <form method="post" th:action="@{'/categorization/reward/update'}" th:object="${rewardRequest}">
                         <input name="id" th:value="${reward.id}" type="hidden">
                         <th scope="row" th:text="${reward.id}"></th>
                         <td>
-                            <input class="mt-3" disabled="disabled" name="rewardName"
+                            <input class="" disabled="disabled" name="rewardName"
                                    th:id="'reward-update-input-' + ${reward.id}" th:value="${reward.rewardName}"
                                    type="text">
                         </td>
@@ -315,7 +315,7 @@
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
                            data-toggle="modal" th:onclick="|init(${reward.id},'delete','reward')|">
-                            SIL
+                            SİL
                         </a>
                     </td>
                     </td>
@@ -342,13 +342,15 @@
                         <button class="btn btn-success text-uppercase mt-3" type="submit">ƏLAVƏ ET</button>
                     </div>
                 </form>
-                <tr th:each="postCategory : ${postCategories}">
-                    <form method="post" th:action="@{'/categorization/post-category/update'}" th:object="${postCategoryRequest}">
+                <tr class="align-middle" th:each="postCategory : ${postCategories}">
+                    <form method="post" th:action="@{'/categorization/post-category/update'}"
+                          th:object="${postCategoryRequest}">
                         <input name="id" th:value="${postCategory.id}" type="hidden">
                         <th scope="row" th:text="${postCategory.id}"></th>
                         <td>
-                            <input class="mt-3" disabled="disabled" name="categoryName"
-                                   th:id="'postCategory-update-input-' + ${postCategory.id}" th:value="${postCategory.categoryName}"
+                            <input class="" disabled="disabled" name="categoryName"
+                                   th:id="'postCategory-update-input-' + ${postCategory.id}"
+                                   th:value="${postCategory.categoryName}"
                                    type="text">
                         </td>
                         <td>
@@ -367,7 +369,7 @@
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
                            data-toggle="modal" th:onclick="|init(${postCategory.id},'delete','post-category')|">
-                            SIL
+                            SİL
                         </a>
                     </td>
                 </tbody>
@@ -387,15 +389,3 @@
 </div>
 </body>
 </html>
-
-
-<!--                                                <a th:onclick="'init(\'' + ${businessType.id} +'\',\'delete\',\'business\')'"-->
-<!--                                                   class="delete-button btn dark-button " data-toggle="modal">-->
-<!--                                                    <i class="fas fa-trash-alt"></i>-->
-<!--                                                </a>-->
-<!--                        <form method="post" th:action="@{'/rank/delete'}" th:object="${rank}">-->
-<!--                            <input name="id" th:value="${rank.id}" type="hidden">-->
-<!--                            <div class="text-left">-->
-<!--                                <input class="btn btn-danger" type="submit" value="SİL">-->
-<!--                            </div>-->
-<!--                        </form>-->

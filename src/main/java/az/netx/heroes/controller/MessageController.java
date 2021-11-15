@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
-import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
+import static az.netx.heroes.util.SearchUtil.messageSearchPathBuilder;
 
 @Controller
 @RequestMapping(value = "/message")
@@ -53,7 +53,7 @@ public class MessageController {
         );
 
         model.addAttribute("objectList", list);
-        model.addAttribute("srcUrl", postSearchPathBuilder(request));
+        model.addAttribute("srcUrl", messageSearchPathBuilder(request));
 
         if (model.containsAttribute("success")) {
             model.addAttribute("success");

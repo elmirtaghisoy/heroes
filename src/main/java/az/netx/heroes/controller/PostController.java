@@ -5,7 +5,6 @@ import az.netx.heroes.component.paging.Paged;
 import az.netx.heroes.model.request.PostCategoryRequest;
 import az.netx.heroes.model.request.PostRequest;
 import az.netx.heroes.model.response.PostResponse;
-import az.netx.heroes.service.FileService;
 import az.netx.heroes.service.PostCategoryService;
 import az.netx.heroes.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +34,6 @@ import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 public class PostController {
 
     private final PostService postService;
-    private final FileService fileService;
     private final PostCategoryService postCategoryService;
     private String ACCEPT_UUID;
 
