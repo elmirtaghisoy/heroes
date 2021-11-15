@@ -118,7 +118,7 @@
                 <div class="row mt-4">
                     <div class="col-3" th:each="martyred : ${objectList.page}">
                         <div class="card">
-                            <!--                                                        <img alt="Cover Image" class="card-img-top" th:src="${post.coverPath}">-->
+                            <img alt="Cover Image" class="card-img-top" th:src="${martyred.filePath}">
                             <div class="card-body">
                                 <h5 class="card-title"
                                     th:text="${martyred.surname}+' '+${martyred.name} +' '+${martyred.fatherName}"></h5>
@@ -131,21 +131,15 @@
                                 <h5 class="card-title"
                                     th:text="${martyred.wasMartyred}"></h5>
                             </div>
-                            <!--                            <div class="card-body">-->
-                            <!--                                <h5 class="card-title" th:text="${post.category}"></h5>-->
-                            <!--                            </div>-->
                             <div class="card-body text-center">
-                                <!--                                + ${war.id}-->
-                                <!--                                <a class="card-link text-uppercase" th:href="@{{id}(id=${post.id})}">Ətraflı Məlumat</a>-->
                                 <a class="btn btn-primary text-uppercase" style="display: block"
                                    th:href="@{/martyred/{id}(id=${martyred.id})}">Ətraflı
                                     Məlumat</a>
-                                <form method="post" th:action="@{'martyred/delete'}">
-                                    <input name="id" th:value="${martyred.id}" type="hidden">
-                                    <input class="btn mt-1 btn-warning text-uppercase"
-                                           style="display: block;width: 100%" type="submit"
-                                           value="sİl">
-                                </form>
+                                <a class="delete-button btn btn-danger mt-2 text-uppercase" data-toggle="modal"
+                                   style="display: block"
+                                   th:onclick="|init(${martyred.id},'delete','martyred/get/delete')|">
+                                    SİL
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -181,6 +175,16 @@
                 </div>
                 <!--paging-->
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="delete-modal"
+     role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="delSocModalBody"></div>
         </div>
     </div>
 </div>

@@ -1,0 +1,31 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="martyredResponse" type="az.netx.heroes.model.response.MartyredResponse"*/-->
+<form method="post" th:action="@{'/martyred/delete'}" th:object="${martyredResponse}">
+    <div class="modal-body">
+        <input id="id" th:field="${martyredResponse.id}" type="hidden"/>
+        <div class="col-12">
+            <div class="form-group">
+                <p>
+                    Şəhid <b th:text="${martyredResponse.name} + ' ' + ${martyredResponse.surname}"></b>-in silinməsini
+                    təsdiq edin.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="text-uppercase white-button btn btn-secondary btn-sm ml-auto" data-dismiss="modal"
+                id="delete-modal-close"
+                type="button">
+            Ləğv et
+        </button>
+        <button class="text-uppercase save-new-button dark-button btn btn-primary btn-sm ml-1" type="submit">
+            Təsdİqlə
+        </button>
+    </div>
+    <script>
+        $("#delete-modal-close").click(function () {
+            $('#delete-modal').modal('hide');
+        });
+    </script>
+</form>
+</html>

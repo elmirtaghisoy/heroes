@@ -111,6 +111,15 @@ public class MartyredController {
         return "admin/updateMartyredPage";
     }
 
+    @GetMapping(value = "/get/delete")
+    public String getById4Delete(
+            @RequestParam("id") Long id,
+            Model model
+    ) {
+        model.addAttribute("martyredResponse", martyredService.getMartyredById(id));
+        return "admin/martyredRequestForm";
+    }
+
     @PostMapping("/create")
     public String createMartyred(
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,

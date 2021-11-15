@@ -93,6 +93,15 @@ public class PostController {
         return "admin/updatePostPage";
     }
 
+    @GetMapping(value = "/get/delete")
+    public String getById4Delete(
+            @RequestParam("id") Long id,
+            Model model
+    ) {
+        model.addAttribute("postResponse", postService.getPostById(id));
+        return "admin/postRequestForm";
+    }
+
     @GetMapping("/{id}/file")
     public String getFilesByObjId(
             @PathVariable(value = "id") Long objId,

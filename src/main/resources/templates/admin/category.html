@@ -211,7 +211,7 @@
                     </form>
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
-                           data-toggle="modal" th:onclick="|init(${war.id},'delete','war')|">
+                           data-toggle="modal" th:onclick="|init(${war.id},'delete','categorization/war')|">
                             SİL
                         </a>
                     </td>
@@ -262,7 +262,7 @@
                     </form>
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
-                           data-toggle="modal" th:onclick="|init(${rank.id},'delete','rank')|">
+                           data-toggle="modal" th:onclick="|init(${rank.id},'delete','categorization/rank')|">
                             SİL
                         </a>
                     </td>
@@ -314,7 +314,7 @@
                     </form>
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
-                           data-toggle="modal" th:onclick="|init(${reward.id},'delete','reward')|">
+                           data-toggle="modal" th:onclick="|init(${reward.id},'delete','categorization/reward')|">
                             SİL
                         </a>
                     </td>
@@ -368,7 +368,8 @@
                     </form>
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
-                           data-toggle="modal" th:onclick="|init(${postCategory.id},'delete','post-category')|">
+                           data-toggle="modal"
+                           th:onclick="|init(${postCategory.id},'delete','categorization/post-category')|">
                             SİL
                         </a>
                     </td>

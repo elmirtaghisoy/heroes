@@ -1,0 +1,30 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="postResponse" type="az.netx.heroes.model.response.PostResponse"*/-->
+<form method="post" th:action="@{'/post/delete'}" th:object="${postResponse}">
+    <div class="modal-body">
+        <input id="id" th:field="${postResponse.id}" type="hidden"/>
+        <div class="col-12">
+            <div class="form-group">
+                <p>
+                    <b th:text="${postResponse.header}"></b> paylaşımının silinməsini təsdiq edin.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="text-uppercase white-button btn btn-secondary btn-sm ml-auto" data-dismiss="modal"
+                id="delete-modal-close"
+                type="button">
+            Ləğv et
+        </button>
+        <button class="text-uppercase save-new-button dark-button btn btn-primary btn-sm ml-1" type="submit">
+            Təsdİqlə
+        </button>
+    </div>
+    <script>
+        $("#delete-modal-close").click(function () {
+            $('#delete-modal').modal('hide');
+        });
+    </script>
+</form>
+</html>

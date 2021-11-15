@@ -108,6 +108,15 @@ public class HeroController {
         return "admin/updateHeroPage";
     }
 
+    @GetMapping(value = "/get/delete")
+    public String getById4Delete(
+            @RequestParam("id") Long id,
+            Model model
+    ) {
+        model.addAttribute("heroResponse", heroService.getHeroById(id));
+        return "admin/heroRequestForm";
+    }
+
     @PostMapping("/create")
     public String createHero(
             @Validated @ModelAttribute("heroRequest") final HeroRequest request,

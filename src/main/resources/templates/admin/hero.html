@@ -131,12 +131,10 @@
                                 <a class="btn btn-primary text-uppercase" style="display: block"
                                    th:href="@{/hero/{id}(id=${hero.id})}">Ətraflı
                                     Məlumat</a>
-                                <form method="post" th:action="@{'hero/delete'}">
-                                    <input name="id" th:value="${hero.id}" type="hidden">
-                                    <input class="btn mt-1 btn-warning text-uppercase"
-                                           style="display: block;width: 100%" type="submit"
-                                           value="sİl">
-                                </form>
+                                <a class="delete-button btn btn-danger mt-2 text-uppercase" data-toggle="modal"
+                                   style="display: block" th:onclick="|init(${hero.id},'delete','hero/get/delete')|">
+                                    SİL
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -172,6 +170,16 @@
                 </div>
                 <!--paging-->
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="delete-modal"
+     role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="delSocModalBody"></div>
         </div>
     </div>
 </div>

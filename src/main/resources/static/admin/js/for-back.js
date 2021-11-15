@@ -10,12 +10,12 @@ function selectOperation(opp, response) {
     window.reload();
 }
 
-function init(id, opp, obj) {
+function init(id, opp, url) {
     const data = {
         id: id
     };
     $.ajax({
-        url: "categorization/" + obj,
+        url: url,
         type: "GET",
         dataType: "html",
         data: data,
