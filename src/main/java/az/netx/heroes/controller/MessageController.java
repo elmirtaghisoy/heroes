@@ -8,13 +8,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
 import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 
 @Controller
@@ -27,7 +28,7 @@ public class MessageController {
     @GetMapping
     public String getMessagePage(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-            @RequestParam(value = "size", required = false, defaultValue = "8") int size,
+            @RequestParam(value = "size", required = false, defaultValue = "15") int size,
             @RequestParam(value = "email", required = false) String email,
             @RequestParam(value = "status", required = false, defaultValue = "ALL") String status,
             @RequestParam(value = "readDateFrom", required = false, defaultValue = "2000-01-01") String readDateFrom,
@@ -61,21 +62,22 @@ public class MessageController {
         return "admin/message";
     }
 
-    @GetMapping("/{id}")
+    @PostMapping("/read")
     public String getById(
-            @PathVariable(value = "id") Long id,
+            @RequestParam(value = "id") Long id,
             Model model
     ) {
         model.addAttribute("messageResponse", messageService.getMessageById(id));
         return "admin/viewMessagePage";
     }
 
-    @PostMapping("/delete/{id}")
+    @PostMapping("/delete")
     public String deleteById(
-            @PathVariable(value = "id") Long id,
-            Model model
+            @RequestParam(value = "id") Long id,
+            final RedirectAttributes redirectAttributes
     ) {
         messageService.deleteMessage(id);
-        return "admin/viewMessagePage";
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/message";
     }
 }

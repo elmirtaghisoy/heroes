@@ -43,6 +43,7 @@ public class Message {
 
     @PrePersist
     public void onCreate() {
+        this.readTs = LocalDateTime.MIN;
         this.receivedTs = LocalDateTime.now();
     }
 }

@@ -13,7 +13,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +28,7 @@ public class MessageService {
     public MessageResponse getMessageById(Long messageId) {
         Message entity = messageRepository.getById(messageId);
         entity.setStatus("READ");
+        entity.setReadTs(LocalDateTime.now());
         messageRepository.save(entity);
         return objectMapper.E2R(messageRepository.getById(messageId));
     }
@@ -40,7 +44,7 @@ public class MessageService {
     }
 
     public Paged<MessageResponse> searchMessage(int page, int size, MessageSearchCriteria searchRequest) {
-        Pageable pageRequest = PageRequest.of(page - 1, size);
+        Pageable pageRequest = PageRequest.of(page - 1, size, Sort.by("readTs").ascending());
 
         Page<MessageResponse> postPage = messageRepository.findAll(
                 SearchQueries.createMessageSpecification(searchRequest),
