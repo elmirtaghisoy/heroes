@@ -39,7 +39,7 @@ public class PostCategoryService {
         postCategoryRepository.save(entity);
     }
 
-    public PostCategoryResponse getPostCategory(Long id) {
+    public PostCategoryResponse getPostCategoryById(Long id) {
         return objectMapper.E2R(postCategoryRepository.getById(id));
     }
 }

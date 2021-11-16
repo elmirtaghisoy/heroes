@@ -9,12 +9,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Getter
 public class RankRequest {
-
     private Long id;
-
     @NotNull(message = "Rütbəni daxil edin")
     @NotBlank(message = "Rütbəni daxil edin")
     private String rankName;
-
-    private String status = "ACTIVE";
 }

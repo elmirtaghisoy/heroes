@@ -14,18 +14,18 @@ public class HeroesApplication {
 
 /*
 {
-    1 - Fayl upload error (global errors)
-    3 - Hansi kateqoriyada esger varsa o gorunsun menuda (buna parametr elave et)
-    4 - Hansi type da post varsa o kateqoriya menuda gorunsun (buna parametr elave et)
-    5 - CodeRefactoring
-    6 - Liquibase
-    ---------------------------------------------
-    1 - Admin panel kontekstinin duzeldilmesi
-    2 - Admin panel dizayninda deyishiklikler
-    4 - Message servisi (mesajlarin oxunmasi prosesi dizanyi ajax)
-    5 - 1st level security
-    6 - List ile search
+    1 - 1st level security
+    2 - 2nd level security
+    2 - Liquibase
     ---------------------------------------------
     Front
+    ---------------------------------------------
+    1 - Post Ve Solider'in menuda gorunub gorunmemesi
+    2 - Admin panel kontekstinin duzeldilmesi
+    3 - Message servisi (mesajlarin oxunmasi prosesi dizanyi ajax)
+    4 - Deleteden sonra son linke redirect olsun
+    5 - List ile search
+    6 - Admin panel dizayninda deyishiklikler
 }
+$2a$08$uOfK96xEX/uymDyOsKFP6O37c7J8ocq2r.rCyFcvTILGZc4ik57DS = 123
 */

@@ -39,7 +39,7 @@ public class RankService {
         rankRepository.save(entity);
     }
 
-    public RankResponse getRank(Long id) {
+    public RankResponse getRankById(Long id) {
         return objectMapper.E2R(rankRepository.getById(id));
     }
 

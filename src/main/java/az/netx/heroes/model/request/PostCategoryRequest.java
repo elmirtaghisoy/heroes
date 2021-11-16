@@ -15,6 +15,4 @@ public class PostCategoryRequest {
     @NotNull(message = "Paylaşım kateqoriyasını daxil edin")
     @NotBlank(message = "Paylaşım kateqoriyasını daxil edin")
     private String categoryName;
-
-    private String status = "ACTIVE";
 }

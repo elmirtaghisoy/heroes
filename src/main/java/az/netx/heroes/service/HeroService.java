@@ -28,6 +28,21 @@ public class HeroService {
     private final HeroRepository heroRepository;
     private final ObjectMapper objectMapper;
 
+    public Paged<HeroResponse> searchHero(int page, int size, HeroSearchCriteria searchRequest) {
+        Pageable pageRequest = PageRequest.of(page - 1, size);
+
+        Page<HeroResponse> postPage = heroRepository.findAll(
+                SearchQueries.createHeroSpecification(searchRequest),
+                pageRequest
+        );
+
+        return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
+    }
+
+    public HeroResponse getHeroById(Long heroId) {
+        return objectMapper.E2R(heroRepository.getById(heroId));
+    }
+
     public void createHero(HeroRequest request) throws IOException {
 
         if (request.getImg().isEmpty()) {
@@ -41,10 +56,6 @@ public class HeroService {
         }
 
         heroRepository.save(objectMapper.R2E(request));
-    }
-
-    public HeroResponse getHeroById(Long heroId) {
-        return objectMapper.E2R(heroRepository.getById(heroId));
     }
 
     public void updateHero(HeroRequest request) throws IOException {
@@ -66,17 +77,6 @@ public class HeroService {
         Hero entity = heroRepository.getById(heroId);
         entity.setStatus("DELETED");
         heroRepository.save(entity);
-    }
-
-    public Paged<HeroResponse> searchHero(int page, int size, HeroSearchCriteria searchRequest) {
-        Pageable pageRequest = PageRequest.of(page - 1, size);
-
-        Page<HeroResponse> postPage = heroRepository.findAll(
-                SearchQueries.createHeroSpecification(searchRequest),
-                pageRequest
-        );
-
-        return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
     }
 
 }

@@ -13,11 +13,7 @@ import javax.validation.constraints.NotNull;
 public class RewardRequest {
 
     private Long id;
-
     @NotNull(message = "Mükafatı daxil edin")
     @NotBlank(message = "Mükafatı daxil edin")
     private String rewardName;
-
-    private String status = "ACTIVE";
-
 }

@@ -13,11 +13,7 @@ import javax.validation.constraints.NotNull;
 public class WarRequest {
 
     private Long id;
-
     @NotNull(message = "Döyüşün adını daxil edin")
     @NotBlank(message = "Döyüşün adını daxil edin")
     private String warName;
-
-    private String status = "ACTIVE";
-
 }

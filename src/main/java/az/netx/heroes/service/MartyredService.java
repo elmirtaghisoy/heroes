@@ -29,6 +29,21 @@ public class MartyredService {
     private final MartyredRepository martyredRepository;
     private final ObjectMapper objectMapper;
 
+    public Paged<MartyredResponse> searchMartyred(int page, int size, MartyredSearchCriteria searchRequest) {
+        Pageable pageRequest = PageRequest.of(page - 1, size);
+
+        Page<MartyredResponse> postPage = martyredRepository.findAll(
+                SearchQueries.createMartyredSpecification(searchRequest),
+                pageRequest
+        );
+
+        return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
+    }
+
+    public MartyredResponse getMartyredById(Long martyredId) {
+        return objectMapper.E2R(martyredRepository.getById(martyredId));
+    }
+
     public void createMartyred(MartyredRequest request) throws IOException {
 
         if (request.getImg().isEmpty()) {
@@ -42,10 +57,6 @@ public class MartyredService {
         }
 
         martyredRepository.save(objectMapper.R2E(request));
-    }
-
-    public MartyredResponse getMartyredById(Long martyredId) {
-        return objectMapper.E2R(martyredRepository.getById(martyredId));
     }
 
     public void updateMartyred(MartyredRequest request) throws IOException {
@@ -69,14 +80,4 @@ public class MartyredService {
         martyredRepository.save(entity);
     }
 
-    public Paged<MartyredResponse> searchMartyred(int page, int size, MartyredSearchCriteria searchRequest) {
-        Pageable pageRequest = PageRequest.of(page - 1, size);
-
-        Page<MartyredResponse> postPage = martyredRepository.findAll(
-                SearchQueries.createMartyredSpecification(searchRequest),
-                pageRequest
-        );
-
-        return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
-    }
 }

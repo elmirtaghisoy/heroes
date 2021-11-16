@@ -92,10 +92,11 @@
                         </div>
                         <div class="mb-4 col-2">
                             <label class="form-label text-uppercase" for="headerLabel">Kateqoriya</label>
-                            <select class="form-select" name="category">
-                                <option value="-1"></option>
-                                <option value="1">ŞƏHİD AİLƏLƏRİNƏ QAYĞI</option>
-                                <option value="2">ERMƏNİ TERRORU</option>
+                            <select class="form-select" name="category" th:object="${categoryList}">
+                                  <span th:each="categoryVal :${categoryList}">
+                                       <option th:text="${categoryVal.categoryName}"
+                                               th:value="${categoryVal.id}"></option>
+                                  </span>
                             </select>
                         </div>
                     </div>

@@ -37,6 +37,17 @@ public class PostService {
     private final FileRepository fileRepository;
     private final ObjectMapper objectMapper;
 
+    public Paged<PostResponse> searchPost(int page, int size, PostSearchCriteria searchRequest) {
+        Pageable pageRequest = PageRequest.of(page - 1, size);
+
+        Page<PostResponse> postPage = postRepository.findAll(
+                SearchQueries.createPostSpecification(searchRequest),
+                pageRequest
+        );
+
+        return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
+    }
+
     public void createPost(PostRequest request) throws IOException {
 
         String uuidFolderName = generateRandomFolderName();
@@ -82,17 +93,6 @@ public class PostService {
         Post entity = postRepository.getById(postId);
         entity.setStatus("DELETED");
         postRepository.save(entity);
-    }
-
-    public Paged<PostResponse> searchPost(int page, int size, PostSearchCriteria searchRequest) {
-        Pageable pageRequest = PageRequest.of(page - 1, size);
-
-        Page<PostResponse> postPage = postRepository.findAll(
-                SearchQueries.createPostSpecification(searchRequest),
-                pageRequest
-        );
-
-        return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), page, size));
     }
 
     public void deleteFileById(Long fileId) {

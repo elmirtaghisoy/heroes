@@ -62,6 +62,7 @@ public class PostController {
 
         model.addAttribute("objectList", list);
         model.addAttribute("srcUrl", postSearchPathBuilder(request));
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
 
         if (model.containsAttribute("success")) {
             model.addAttribute("success");
