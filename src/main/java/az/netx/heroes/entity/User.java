@@ -2,6 +2,7 @@ package az.netx.heroes.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
+@ToString
 public class User {
 
     @Id
@@ -36,5 +38,8 @@ public class User {
 
     @Column(name = "about")
     private String about;
+
+    @Column(name = "status")
+    private String status;
 
 }

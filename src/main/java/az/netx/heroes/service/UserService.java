@@ -1,8 +1,11 @@
 package az.netx.heroes.service;
 
+import az.netx.heroes.component.mapper.ObjectMapper;
 import az.netx.heroes.entity.User;
+import az.netx.heroes.model.request.UserRequest;
+import az.netx.heroes.model.response.UserResponse;
 import az.netx.heroes.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,11 +13,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 @Service
+@RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final ObjectMapper objectMapper;
+
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(8);
 
     @Override
@@ -32,6 +41,10 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found !!!");
         }
         return userBuilder.build();
+    }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     public void updatePassword(String oldPass, String newPass) {
@@ -58,5 +71,25 @@ public class UserService implements UserDetailsService {
         } else {
             System.out.println("err");
         }
+    }
+
+    public String activateUser(UserRequest request) {
+        if (request.getPassword1().equals(request.getPassword2())) {
+            if (Objects.nonNull(userRepository.findByUsername(request.getUsername())))
+                return "USERNAME_ALREADY_EXIST";
+            User entity = objectMapper.R2E(request);
+            entity.setStatus("ACTIVATED");
+            entity.setPassword(passwordEncoder.encode(request.getPassword1()));
+            userRepository.save(entity);
+            return "SUCCESS";
+        } else
+            return "INVALID_PASS";
+    }
+
+    public List<UserResponse> findAllUser() {
+        return userRepository.findAll()
+                .stream()
+                .map(objectMapper::E2R)
+                .collect(Collectors.toList());
     }
 }

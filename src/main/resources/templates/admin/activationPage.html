@@ -1,0 +1,106 @@
+<html th:include="~{admin/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div class="container">
+    <div class="main-container">
+        <div class="row">
+            <div class="custom-bread-crumb col-4">
+                Activation page
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div aria-hidden="true"
+             aria-labelledby="exampleModalLabel"
+             class="modal fade" id="error-modal"
+             role="dialog" tabindex="-1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">XƏTA</h5>
+                    </div>
+                    <div class="modal-content">
+                        <p class="text-danger fw-bolder"
+                           id="error"
+                           style="display:inline;margin: 5%;font-size: 25px"
+                           th:if="error != null"
+                           th:text="${error}">
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal" id="close-error-modal"
+                                type="button">
+                            BAĞLA
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <form action="#" method="post" th:action="@{'/user/activate'}"
+                      th:object="${userResponse}">
+                    <input name="id" th:value="${userResponse.id}" type="hidden">
+                    <div class="row">
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">AD</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{name}"
+                               th:if="${#fields.hasErrors('name')}"></p>
+                            <input class="form-control" id="headerLabel" name="name" th:field="*{name}" type="text">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">EMAİL</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{email}"
+                               th:if="${#fields.hasErrors('email')}"></p>
+                            <input class="form-control" id="headerLabel" name="email" th:field="*{email}"
+                                   type="text">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">SOYAD</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{surname}"
+                               th:if="${#fields.hasErrors('surname')}"></p>
+                            <input class="form-control" id="headerLabel" name="surname" th:field="*{surname}"
+                                   type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">İstifadəçi adı</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{username}"
+                               th:if="${#fields.hasErrors('username')}"></p>
+                            <input class="form-control" id="headerLabel" name="username" th:field="*{username}"
+                                   type="text">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Yenİ Şifrə</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{password1}"
+                               th:if="${#fields.hasErrors('password1')}"></p>
+                            <input class="form-control" id="headerLabel" name="password1" th:field="*{password1}"
+                                   type="text">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Yenİ Şifrəni təsdiq edin</label>
+                            <p class="text-danger fw-bolder" style="display: inline"
+                               th:errors="*{password2}"
+                               th:if="${#fields.hasErrors('password2')}"></p>
+                            <input class="form-control" id="headerLabel" name="password2" th:field="*{password2}"
+                                   type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input class="btn btn-success text-uppercase" type="submit" value="Yadda Saxla">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

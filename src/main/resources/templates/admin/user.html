@@ -1,0 +1,122 @@
+<html th:include="~{admin/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="custom-bread-crumb col-12 text-center">
+            <div class="main-container">
+                <!--Standard-->
+                <div aria-hidden="true"
+                     aria-labelledby="exampleModalLabel"
+                     class="modal fade" id="success-modal"
+                     role="dialog" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">UĞURLU ƏMƏLİYYAT</h5>
+                            </div>
+                            <div class="modal-content">
+                                <p class="text-success fw-bolder"
+                                   id="success"
+                                   style="display:inline;margin: 5%;font-size: 25px"
+                                   th:if="success != null"
+                                   th:text="${success}">
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" data-dismiss="modal" id="close-success-modal"
+                                        type="button">
+                                    BAĞLA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div aria-hidden="true"
+                     aria-labelledby="exampleModalLabel"
+                     class="modal fade" id="error-modal"
+                     role="dialog" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">XƏTA</h5>
+                            </div>
+                            <div class="modal-content">
+                                <p class="text-danger fw-bolder"
+                                   id="error"
+                                   style="display:inline;margin: 5%;font-size: 25px"
+                                   th:if="error != null"
+                                   th:text="${error}">
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger" data-dismiss="modal" id="close-error-modal"
+                                        type="button">
+                                    BAĞLA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Standard-->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row categoryRow">
+            <table class="table table-striped table-hover text-center" style="margin-top: 1%">
+                <thead>
+                <tr>
+                    <th scope="col">N</th>
+                    <th scope="col">İSTİFADƏÇİ ADI</th>
+                    <th scope="col">AD</th>
+                    <th scope="col">SOYAD</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="align-middle" th:each="user : ${users}">
+                    <input name="id" th:value="${user.id}" type="hidden">
+                    <th scope="row" th:text="${user.id}"></th>
+                    <th scope="row" th:text="${user.username}"></th>
+                    <th scope="row" th:text="${user.name}"></th>
+                    <th scope="row" th:text="${user.surname}"></th>
+                    <td>
+                        <a class="delete-button btn btn-warning mt-2 text-uppercase" data-toggle="modal">
+                            DƏYİŞİKLİK ET
+                        </a>
+                    </td>
+                    <td>
+                        <a class="delete-button btn btn-primary mt-2 text-uppercase" data-toggle="modal">
+                            ŞİFRƏNİ YENİLƏ
+                        </a>
+                    </td>
+                    <td>
+                        <a class="delete-button btn btn-success mt-2 text-uppercase" data-toggle="modal">
+                            AKTIV ET
+                        </a>
+                        <a class="delete-button btn btn-danger mt-2 text-uppercase" data-toggle="modal">
+                            DEAKTIV ET
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="delete-modal"
+     role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="delSocModalBody"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -14,8 +14,10 @@ public class HeroesApplication {
 
 /*
 {
-    1 - 1st level security
-    2 - 2nd level security
+
+    ---------------------------------------------
+    1 + 1st level security
+    2 + 2nd level security
     2 - Liquibase
     ---------------------------------------------
     Front
@@ -24,8 +26,7 @@ public class HeroesApplication {
     2 - Admin panel kontekstinin duzeldilmesi
     3 - Message servisi (mesajlarin oxunmasi prosesi dizanyi ajax)
     4 - Deleteden sonra son linke redirect olsun
-    5 - List ile search
+    5 - List ile search ?
     6 - Admin panel dizayninda deyishiklikler
 }
-$2a$08$uOfK96xEX/uymDyOsKFP6O37c7J8ocq2r.rCyFcvTILGZc4ik57DS = 123
 */

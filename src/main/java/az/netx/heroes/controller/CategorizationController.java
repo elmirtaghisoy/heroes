@@ -251,7 +251,7 @@ public class CategorizationController implements ControllerConstraints {
             redirectAttributes.addFlashAttribute("success", SUCCESS);
             return "redirect:/categorization";
         }
-        redirectAttributes.addFlashAttribute("error", ERROR);
+        redirectAttributes.addFlashAttribute("error", UUID_ERROR);
         return "redirect:/categorization";
     }
 
@@ -266,7 +266,7 @@ public class CategorizationController implements ControllerConstraints {
             redirectAttributes.addFlashAttribute("success", SUCCESS);
             return "redirect:/categorization";
         }
-        redirectAttributes.addFlashAttribute("error", ERROR);
+        redirectAttributes.addFlashAttribute("error", UUID_ERROR);
         return "redirect:/categorization";
     }
 
@@ -281,7 +281,7 @@ public class CategorizationController implements ControllerConstraints {
             redirectAttributes.addFlashAttribute("success", SUCCESS);
             return "redirect:/categorization";
         }
-        redirectAttributes.addFlashAttribute("error", ERROR);
+        redirectAttributes.addFlashAttribute("error", UUID_ERROR);
         return "redirect:/categorization";
     }
 
@@ -296,7 +296,7 @@ public class CategorizationController implements ControllerConstraints {
             redirectAttributes.addFlashAttribute("success", SUCCESS);
             return "redirect:/categorization";
         }
-        redirectAttributes.addFlashAttribute("error", ERROR);
+        redirectAttributes.addFlashAttribute("error", UUID_ERROR);
         return "redirect:/categorization";
     }
 
