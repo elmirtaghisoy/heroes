@@ -1,6 +1,7 @@
 package az.netx.heroes.controller;
 
 import az.netx.heroes.component.mapper.ObjectMapper;
+import az.netx.heroes.model.request.UserAddRequest;
 import az.netx.heroes.model.request.UserRequest;
 import az.netx.heroes.model.response.UserResponse;
 import az.netx.heroes.service.UserService;
@@ -11,12 +12,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
-import java.util.Objects;
 
 import static az.netx.heroes.controller.ControllerConstraints.INVALID_PASS;
 import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
@@ -64,19 +65,71 @@ public class UserController {
         return "redirect:/post";
     }
 
+    @GetMapping("/user/create-page")
+    public String getCreatePage(Model model) {
+        if (!model.containsAttribute("userAddRequest")) {
+            model.addAttribute("userAddRequest", new UserAddRequest());
+        }
+        if (model.containsAttribute("error")) {
+            model.addAttribute("error");
+        }
+        return "admin/createUserPage";
+    }
+
+    @GetMapping("/user/{id}")
+    public String getById(
+            @PathVariable(value = "id") Long id,
+            Model model
+    ) {
+        if (!model.containsAttribute("userAddRequest")) {
+            model.addAttribute("userAddRequest", userService.getUserById(id));
+        }
+        if (model.containsAttribute("error")) {
+            model.addAttribute("userAddRequest", userService.getUserById(id));
+            model.addAttribute("error");
+        }
+        return "admin/updateUserPage";
+    }
+
+
     @PostMapping("/create/user")
     public String createUser(
-            @RequestParam("pass") String pass,
-            @RequestParam("username") String username
+            @Validated @ModelAttribute("userAddRequest") final UserAddRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
     ) {
-        if (Objects.nonNull(pass) && Objects.nonNull(username)) {
-            if (pass.isEmpty() || username.isEmpty()) {
-                //error
-            } else {
-                //success
-            }
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userAddRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("userAddRequest", request);
+            return "redirect:/user/create-page";
         }
-        return "admin/parameters";
+        String result = userService.saveUser(request);
+        if ("USERNAME_ALREADY_EXIST".equals(result)) {
+            redirectAttributes.addFlashAttribute("error", USERNAME_ALREADY_EXIST);
+            return "redirect:/user/create-page";
+        }
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/user";
+    }
+
+    @PostMapping("/update/user")
+    public String updateUser(
+            @Validated @ModelAttribute("userAddRequest") final UserAddRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userAddRequest", bindingResult);
+            redirectAttributes.addFlashAttribute("userAddRequest", request);
+            return "redirect:/user/" + request.getId();
+        }
+        String result = userService.saveUser(request);
+        if ("USERNAME_ALREADY_EXIST".equals(result)) {
+            redirectAttributes.addFlashAttribute("error", USERNAME_ALREADY_EXIST);
+            return "redirect:/user/" + request.getId();
+        }
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/user";
     }
 
     @PostMapping("/user/activate")
@@ -105,50 +158,25 @@ public class UserController {
     }
 
 
-    @PostMapping("/deactivate/user")
-    public String deactivateUser(
-            @RequestParam("pass") String pass,
-            @RequestParam("username") String username
+    @PostMapping("/user/{action}")
+    public String userActivity(
+            @RequestParam("id") Long id,
+            @PathVariable("action") String action,
+            final RedirectAttributes redirectAttributes
     ) {
-        if (Objects.nonNull(pass) && Objects.nonNull(username)) {
-            if (pass.isEmpty() || username.isEmpty()) {
-                //error
-            } else {
-                //success
-            }
-        }
-        return "admin/parameters";
+        userService.userActivity(id, action);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/user";
     }
 
-    @PostMapping("/activate/user")
-    public String activateUser(
-            @RequestParam("pass") String pass,
-            @RequestParam("username") String username
+    @PostMapping("/reset/user")
+    public String resetUser(
+            @RequestParam("id") Long id,
+            final RedirectAttributes redirectAttributes
     ) {
-        if (Objects.nonNull(pass) && Objects.nonNull(username)) {
-            if (pass.isEmpty() || username.isEmpty()) {
-                //error
-            } else {
-                //success
-            }
-        }
-        return "admin/parameters";
+        userService.resetUser(id);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/user";
     }
-
-    @PostMapping("/refresh/user")
-    public String refreshPassword(
-            @RequestParam("pass") String pass,
-            @RequestParam("username") String username
-    ) {
-        if (Objects.nonNull(pass) && Objects.nonNull(username)) {
-            if (pass.isEmpty() || username.isEmpty()) {
-                //error
-            } else {
-                //success
-            }
-        }
-        return "admin/parameters";
-    }
-
 
 }

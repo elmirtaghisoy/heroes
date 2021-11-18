@@ -2,6 +2,7 @@ package az.netx.heroes.service;
 
 import az.netx.heroes.component.mapper.ObjectMapper;
 import az.netx.heroes.entity.User;
+import az.netx.heroes.model.request.UserAddRequest;
 import az.netx.heroes.model.request.UserRequest;
 import az.netx.heroes.model.response.UserResponse;
 import az.netx.heroes.repository.UserRepository;
@@ -32,7 +33,7 @@ public class UserService implements UserDetailsService {
         org.springframework.security.core.userdetails.User.UserBuilder userBuilder;
         if (user != null) {
             userBuilder = org.springframework.security.core.userdetails.User.withUsername(username);
-//            userBuilder.disabled(!user.isActive());
+            userBuilder.disabled(user.getIsEnable());
             userBuilder.password(user.getPassword());
 
             String[] authoritiesArr = {"ADMIN"};
@@ -45,32 +46,6 @@ public class UserService implements UserDetailsService {
 
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username);
-    }
-
-    public void updatePassword(String oldPass, String newPass) {
-        User user = userRepository.getOne(1L);
-        if (passwordEncoder.matches(oldPass, user.getPassword())) {
-            User newUser = new User();
-            newUser.setId(1L);
-            newUser.setPassword(passwordEncoder.encode(newPass));
-            newUser.setUsername(user.getUsername());
-            userRepository.save(newUser);
-        } else {
-            System.out.println("err");
-        }
-    }
-
-    public void updateUsername(String oldUsername, String newUsername) {
-        User user = userRepository.getOne(1L);
-        if (oldUsername.equals(user.getUsername())) {
-            User newUser = new User();
-            newUser.setId(1L);
-            newUser.setPassword(user.getPassword());
-            newUser.setUsername(newUsername);
-            userRepository.save(newUser);
-        } else {
-            System.out.println("err");
-        }
     }
 
     public String activateUser(UserRequest request) {
@@ -91,5 +66,33 @@ public class UserService implements UserDetailsService {
                 .stream()
                 .map(objectMapper::E2R)
                 .collect(Collectors.toList());
+    }
+
+    public String saveUser(UserAddRequest request) {
+        if (Objects.nonNull(userRepository.findByUsername(request.getUsername())))
+            return "USERNAME_ALREADY_EXIST";
+        userRepository.save(objectMapper.AR2E(request));
+        return "SUCCESS";
+    }
+
+    public UserResponse getUserById(Long id) {
+        return objectMapper.E2R(userRepository.getById(id));
+    }
+
+    public void userActivity(Long id, String action) {
+        User user = userRepository.getById(id);
+        if (action.equalsIgnoreCase("unblock")) {
+            user.setIsEnable(true);
+        } else if (action.equalsIgnoreCase("block")) {
+            user.setIsEnable(false);
+        }
+        userRepository.save(user);
+    }
+
+    public void resetUser(Long id) {
+        User user = userRepository.getById(id);
+        user.setPassword(passwordEncoder.encode("123"));
+        user.setStatus("DEACTIVE");
+        userRepository.save(user);
     }
 }

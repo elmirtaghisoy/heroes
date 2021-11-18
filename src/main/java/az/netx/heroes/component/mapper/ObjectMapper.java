@@ -19,6 +19,7 @@ import az.netx.heroes.model.request.PostCategoryRequest;
 import az.netx.heroes.model.request.PostRequest;
 import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.request.RewardRequest;
+import az.netx.heroes.model.request.UserAddRequest;
 import az.netx.heroes.model.request.UserRequest;
 import az.netx.heroes.model.request.WarRequest;
 import az.netx.heroes.model.response.ContactResponse;
@@ -82,4 +83,6 @@ public interface ObjectMapper {
     UserResponse E2R(User entity);
 
     User R2E(UserRequest request);
+
+    User AR2E(UserAddRequest request);
 }

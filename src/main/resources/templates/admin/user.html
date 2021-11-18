@@ -59,6 +59,7 @@
                     </div>
                 </div>
                 <!--Standard-->
+                <a class="btn btn-primary text-uppercase" href="/user/create-page">İstifadəçİ əlavə et</a>
             </div>
         </div>
     </div>
@@ -85,22 +86,32 @@
                     <th scope="row" th:text="${user.name}"></th>
                     <th scope="row" th:text="${user.surname}"></th>
                     <td>
-                        <a class="delete-button btn btn-warning mt-2 text-uppercase" data-toggle="modal">
+                        <a class="btn btn-warning mt-2 text-uppercase"
+                           th:href="@{/user/{id}(id=${user.id})}">
                             DƏYİŞİKLİK ET
                         </a>
                     </td>
                     <td>
-                        <a class="delete-button btn btn-primary mt-2 text-uppercase" data-toggle="modal">
-                            ŞİFRƏNİ YENİLƏ
-                        </a>
+                        <form method="post" th:action="@{'/reset/user'}">
+                            <input name="id" th:value="${user.id}" type="hidden">
+                            <button class="btn btn-primary mt-2 text-uppercase" type="submit">
+                                ŞİFRƏNİ YENİLƏ
+                            </button>
+                        </form>
                     </td>
                     <td>
-                        <a class="delete-button btn btn-success mt-2 text-uppercase" data-toggle="modal">
-                            AKTIV ET
-                        </a>
-                        <a class="delete-button btn btn-danger mt-2 text-uppercase" data-toggle="modal">
-                            DEAKTIV ET
-                        </a>
+                        <form method="post" th:action="@{'/user/unblock'}">
+                            <input name="id" th:value="${user.id}" type="hidden">
+                            <button class="btn btn-success mt-2 text-uppercase" th:if="${!user.isEnable}" type="submit">
+                                AKTIV ET
+                            </button>
+                        </form>
+                        <form method="post" th:action="@{'/user/block'}">
+                            <input name="id" th:value="${user.id}" type="hidden">
+                            <button class=" btn btn-danger mt-2 text-uppercase" th:if="${user.isEnable}" type="submit">
+                                DEAKTIV ET
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>

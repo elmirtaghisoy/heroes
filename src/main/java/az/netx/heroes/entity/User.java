@@ -42,4 +42,6 @@ public class User {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "is_enable")
+    private Boolean isEnable;
 }
