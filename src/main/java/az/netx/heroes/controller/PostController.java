@@ -29,7 +29,7 @@ import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
 import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 
 @Controller
-@RequestMapping(value = "/post")
+@RequestMapping(value = "")
 @RequiredArgsConstructor
 public class PostController {
 
@@ -37,7 +37,7 @@ public class PostController {
     private final PostCategoryService postCategoryService;
     private String ACCEPT_UUID;
 
-    @GetMapping
+    @GetMapping("/post")
     public String getPostPage(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
@@ -71,7 +71,7 @@ public class PostController {
         return "admin/post";
     }
 
-    @GetMapping("/create-page")
+    @GetMapping("/post/create-page")
     public String getCreatePage(Model model) {
         if (!model.containsAttribute("postRequest")) {
             model.addAttribute("postRequest", new PostRequest());
@@ -81,7 +81,7 @@ public class PostController {
         return "admin/createPostPage";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/post/{id}")
     public String getById(
             @PathVariable(value = "id") Long id,
             Model model
@@ -94,7 +94,7 @@ public class PostController {
         return "admin/updatePostPage";
     }
 
-    @GetMapping(value = "/get/delete")
+    @GetMapping(value = "/post/get/delete")
     public String getById4Delete(
             @RequestParam("id") Long id,
             Model model
@@ -103,7 +103,7 @@ public class PostController {
         return "admin/postRequestForm";
     }
 
-    @GetMapping("/{id}/file")
+    @GetMapping("/post/{id}/file")
     public String getFilesByObjId(
             @PathVariable(value = "id") Long objId,
             Model model
@@ -112,7 +112,7 @@ public class PostController {
         return "admin/files";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/post/create")
     public String createPost(
             @Validated @ModelAttribute("postRequest") final PostRequest request,
             final BindingResult bindingResult,
@@ -128,7 +128,7 @@ public class PostController {
         return "redirect:/post";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/post/update")
     public String updatePost(
             @Validated @ModelAttribute("postRequest") final PostRequest request,
             final BindingResult bindingResult,
@@ -144,7 +144,7 @@ public class PostController {
         return "redirect:/post";
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/post/delete")
     public String deletePost(
             @RequestParam("id") Long id,
             final RedirectAttributes redirectAttributes
@@ -154,7 +154,7 @@ public class PostController {
         return "redirect:/post";
     }
 
-    @PostMapping("/file/delete")
+    @PostMapping("/post/file/delete")
     public String deleteFileById(
             @RequestParam(value = "id") Long fileId,
             @RequestParam(value = "objId") Long objId,
@@ -165,7 +165,7 @@ public class PostController {
         return "redirect:/post/" + objId + "/file";
     }
 
-    @PostMapping("/{id}/file")
+    @PostMapping("/post/{id}/file")
     public String saveFilesByObjId(
             @PathVariable("id") Long objId,
             @RequestParam("files") List<MultipartFile> files,
@@ -174,6 +174,49 @@ public class PostController {
         postService.saveAdditionalFiles(files, objId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/post/" + objId + "/file";
+    }
+
+    //CLIENT
+
+    @GetMapping("/cl/post/{category}")
+    public String clientGetPost(
+            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "8") int size,
+            @RequestParam(value = "from", required = false, defaultValue = "2000-01-01") String fromDate,
+            @RequestParam(value = "to", required = false, defaultValue = "2100-01-01") String toDate,
+            @RequestParam(value = "header", required = false) String header,
+            @RequestParam(value = "category", required = false) Long categoryParam,
+            @PathVariable(value = "category", required = false) Long categoryVariable,
+            HttpServletRequest request,
+            Model model
+    ) {
+        Long categoryId;
+
+        if (categoryVariable.equals(-1L)) {
+            categoryId = categoryParam;
+        } else {
+            categoryId = categoryVariable;
+        }
+
+        var criteria = new PostSearchCriteria();
+        criteria.setFromDate(fromDate);
+        criteria.setToDate(toDate);
+        criteria.setHeader(header);
+        criteria.setCategoryId(categoryId);
+
+        Paged<PostResponse> list = postService.searchPost(
+                page,
+                size,
+                criteria
+        );
+
+
+        model.addAttribute("objectList", list);
+        model.addAttribute("srcUrl", postSearchPathBuilder(request));
+        model.addAttribute("currentCategory", postCategoryService.getPostCategoryById(categoryId));
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
+
+        return "client/post";
     }
 
 }

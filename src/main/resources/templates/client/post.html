@@ -1,0 +1,152 @@
+<html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Mirrored from html.modernwebtemplates.com/fortex/post.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Nov 2021 22:06:08 GMT -->
+<head>
+    <title>Fortex - Bootstrap 4 premium MultePage HTML template</title>
+    <meta charset="utf-8">
+
+</head>
+
+<body>
+
+<div class="header_absolute ds cover-background">
+
+    <section class="page_title padding-mobile cs s-py-60 s-py-md-80 s-py-xl-150">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <h1 class="bold" th:text="${currentCategory.categoryName}"></h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Ana Səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Məqalələr</a>
+                        </li>
+                        <li class="breadcrumb-item active" th:text="${currentCategory.categoryName}">
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<section class="ls s-py-30 s-py-md-80 s-py-xl-40">
+    <div class="container">
+
+
+        <div class="row c-gutter-60">
+
+
+            <main class="col-lg-12">
+                <div class="card card-body">
+                    <form method="get" th:action="@{'/cl/post/-1'}">
+                        <div class="row d-flex justify-content-center">
+                            <div class="mb-4 col-sm-4 col-12">
+                                <label class="form-label text-uppercase" for="headerLabel">Başlıq</label>
+                                <input class="custom-input form-control" id="headerLabel" name="header" type="search">
+                            </div>
+                            <div class="mb-4 col-sm-4 col-12">
+                                <label class="form-label text-uppercase" for="lastRegDayLabel">Başlanğıc
+                                    Tarİx</label>
+                                <input class="custom-input form-control" id="lastRegDayLabel" name="from"
+                                       type="date">
+                            </div>
+                            <div class="mb-4 col-sm-4 col-12">
+                                <label class="form-label text-uppercase" for="startDayLabel">Son Tarix</label>
+                                <input class="custom-input form-control" id="startDayLabel" name="to" type="date">
+                            </div>
+                            <div class="mb-4 col-sm-4 col-12">
+                                <label class="form-label text-uppercase" for="headerLabel">Kateqoriya</label>
+                                <select class="form-select" name="category" th:object="${categoryList}">
+                                    <option selected th:text="${currentCategory.categoryName}"
+                                            th:value="'** '+${currentCategory.id}+' **'"></option>
+                                    <span th:each="categoryVal :${categoryList}">
+                                             <option th:text="${categoryVal.categoryName}" th:value="${categoryVal.id}">
+                                             </option>
+                                        </span>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="mb-4 text-center col-2">
+                                <input class="btn btn-success text-uppercase" type="submit" value="AXTAR">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--                </div>-->
+
+                <article class="post fw-event type-fw-event side-item" th:each="post : ${objectList.page}">
+                    <div class="item-media-wrap">
+                        <div class="item-media cover-image">
+                            <img alt="" th:src="${post.filePath}">
+                            <div class="media-links">
+                                <a class="abs-link" href="event-single-full.html" title=""></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-content entry-content">
+                        <div class="item-content">
+                            <p class="entry-meta">
+                                <span class="data-events" th:text="${post.createdDate}"></span>
+                                <span class="location-events" th:text="${post.category.categoryName}"></span>
+                            </p>
+                            <h3 class="entry-title">
+                                <a href="#" th:text="${post.header}"></a>
+                            </h3>
+                            <a class="read_more_events btn btn-outline-maincolor" href="event-single-full.html">
+                                Ətraflı
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="row mt-4">
+                    <nav aria-label="Page navigation" class="paging">
+                        <ul class="pagination justify-content-center" th:if="${objectList.page.totalPages > 1}">
+                            <li class="page-item"
+                                th:classappend="${!objectList.paging.isPrevEnabled()? 'disabled' : ''}">
+                                <a class="page-link"
+                                   tabindex="-1"
+                                   th:href="@{'/cl/post/'+${currentCategory.id}+'?page=' + ${objectList.paging.pageNumber - 1}+ ${srcUrl}}">Previous</a>
+                            </li>
+                            <th:block th:each="item : ${objectList.paging.getItems()}">
+                                <li class="page-item"
+                                    th:classappend="${item.index == objectList.paging.pageNumber? 'active' : ''}"
+                                    th:if="${item.pageItemType.name() == 'PAGE'}">
+                                    <a class="page-link"
+                                       th:href="@{'/cl/post/'+${currentCategory.id}+'?page=' + ${item.index}+ ${srcUrl}}"
+                                       th:text="${item.index}"></a>
+                                </li>
+                                <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                                    <a class="page-link" href="#">...</a>
+                                </li>
+                            </th:block>
+                            <li class="page-item"
+                                th:classappend="${!objectList.paging.isNextEnabled()? 'disabled' : ''}">
+                                <a class="page-link"
+                                   th:href="@{'/cl/post/'+${currentCategory.id}+'?page=' + ${objectList.paging.pageNumber + 1}+ ${srcUrl}}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+</section>
+
+</body>
+
+
+<!-- Mirrored from html.modernwebtemplates.com/fortex/post.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Nov 2021 22:06:08 GMT -->
+</html>

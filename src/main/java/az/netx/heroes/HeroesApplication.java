@@ -16,11 +16,9 @@ public class HeroesApplication {
 {
 
     ---------------------------------------------
-    1 + 1st level security
-    2 + 2nd level security
+    1 - Security Bugfix
     2 - Liquibase
-    ---------------------------------------------
-    Front
+    3 - Front
     ---------------------------------------------
     1 - Post Ve Solider'in menuda gorunub gorunmemesi
     2 - Admin panel kontekstinin duzeldilmesi

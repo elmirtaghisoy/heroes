@@ -1,0 +1,124 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+    <div class="header_absolute header_under_slider ds">
+        <section class="page_topline ds s-overlay">
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-12 col-sm-12 text-center">
+								<span class="social-icons">
+
+									<a class="fa fa-facebook " href="#" title="facebook"></a>
+									<a class="fa fa-instagram " href="#" title="instagram"></a>
+									<a class="fa fa-whatsapp " href="#" title="whatsapp"></a>
+									<a class="fab fa-youtube " href="#" title="youtube"></a>
+									<a class="fab fa-linkedin-in " href="#" title="linkedin"></a>
+									<a class="fa fa-twitter " href="#" title="twitter"></a>
+
+								</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--eof topline-->
+
+        <!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->
+        <header class="page_header ds justify-nav-end">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-11">
+                        <a class="logo" href="index.html">
+                            <h3>Heroes.az</h3>
+                        </a>
+                    </div>
+                    <div class="col-xl-10 col-lg-9 col-md-8 col-1">
+                        <div class="nav-wrap">
+
+                            <!-- main nav start -->
+                            <nav class="top-nav">
+                                <ul class="nav sf-menu">
+
+
+                                    <li class="active">
+                                        <a href="index-2.html">Ana Səhifə</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="blog-right.html">Qələbə Tariximiz</a>
+                                    </li>
+
+                                    <!-- blog -->
+                                    <li>
+                                        <a>Məqalələr</a>
+                                        <ul>
+                                            <li th:each="cat :${categoryList}">
+                                                <a th:href="@{/cl/post/{id}(id=${cat.id})}"
+                                                   th:text="${cat.categoryName}"></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- eof blog -->
+
+
+                                    <!-- shop -->
+                                    <li>
+                                        <a href="shop-right.html">Qəhrəmanlarımız</a>
+                                        <ul>
+                                            <li>
+                                                <a href="shop-right.html">Şəhidlərimiz</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop-left.html">Qazilərimiz</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- eof shop -->
+
+
+                                    <!-- contacts -->
+                                    <li>
+                                        <a href="contact2.html">Əlaqə</a>
+                                    </li>
+                                    <!-- eof contacts -->
+                                </ul>
+
+
+                            </nav>
+                            <!-- eof main nav -->
+
+                            <!--hidding includes on small devices. They are duplicated in topline-->
+                            <ul class="top-includes d-none d-xl-block">
+
+                                <li>
+                                    <div class="dropdown">
+                                        <a aria-expanded="false" aria-haspopup="true"
+                                           class="dropdown-toggle dropdown-shopping-cart"
+                                           data-toggle="dropdown" href="#" id="dropdown-shopping-cart"
+                                           role="button">
+                                            Dil Seçimi
+                                        </a>
+                                        <div aria-labelledby="dropdown-shopping-cart"
+                                             class="dropdown-menu dropdown-menu-right ls">
+                                            <div class="widget woocommerce widget_shopping_cart">
+                                                <div class="widget_shopping_cart_content">
+                                                    <div id="google_translate_element"></div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- header toggler -->
+            <span class="toggle_menu"><span></span></span>
+        </header>
+    </div>
+</div>
+</html>
