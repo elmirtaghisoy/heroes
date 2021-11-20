@@ -114,4 +114,11 @@ public class PostService {
             fileRepository.saveAll(fileList);
         }
     }
+
+    public List<PostResponse> get4PostByNotId(Long id) {
+        return postRepository.findTop4ByIdNotAndStatus(id, "ACTIVE")
+                .stream()
+                .map(objectMapper::E2R)
+                .collect(Collectors.toList());
+    }
 }

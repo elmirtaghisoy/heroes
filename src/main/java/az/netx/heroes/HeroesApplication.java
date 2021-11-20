@@ -15,6 +15,10 @@ public class HeroesApplication {
 /*
 {
 
+    1. Postlari ishle
+    2. frontu seliqeye sal
+    3. qelebe tariximizi ishle
+    4. liquibase qosh
     ---------------------------------------------
     1 - Security Bugfix
     2 - Liquibase

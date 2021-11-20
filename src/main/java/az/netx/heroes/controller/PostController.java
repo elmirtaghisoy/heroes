@@ -219,4 +219,14 @@ public class PostController {
         return "client/post";
     }
 
+    @GetMapping("/cl/post/id/{id}")
+    public String clientGetPostById(
+            @PathVariable(value = "id") Long id,
+            Model model
+    ) {
+        model.addAttribute("otherPosts", postService.get4PostByNotId(id));
+        model.addAttribute("post", postService.getPostById(id));
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
+        return "client/onePost";
+    }
 }

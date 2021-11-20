@@ -30,7 +30,7 @@ public class Post extends Auditable<String> {
     @Column(name = "header")
     private String header;
 
-    @Column(name = "context")
+    @Column(name = "context", columnDefinition = "TEXT")
     private String context;
 
     @ManyToOne
@@ -40,7 +40,7 @@ public class Post extends Auditable<String> {
     @Column(name = "file_path")
     private String filePath;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ref_object_id")
     private List<File> filePaths;
 

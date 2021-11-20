@@ -81,7 +81,6 @@
                         </div>
                     </form>
                 </div>
-                <!--                </div>-->
 
                 <article class="post fw-event type-fw-event side-item" th:each="post : ${objectList.page}">
                     <div class="item-media-wrap">
@@ -102,7 +101,8 @@
                             <h3 class="entry-title">
                                 <a href="#" th:text="${post.header}"></a>
                             </h3>
-                            <a class="read_more_events btn btn-outline-maincolor" href="event-single-full.html">
+                            <a class="read_more_events btn btn-outline-maincolor"
+                               th:href="@{/cl/post/id/{id}(id=${post.id})}">
                                 Ətraflı
                             </a>
                         </div>

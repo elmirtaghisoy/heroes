@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Transient;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class PostResponse {
@@ -18,4 +19,5 @@ public class PostResponse {
     @Transient
     @IsImage(message = "Əlavə etdiyiniz faylın formatı ancaq (JPG, JPEG, IMG, PNG) ola bilər.")
     private MultipartFile img;
+    private List<FileResponse> filePaths;
 }

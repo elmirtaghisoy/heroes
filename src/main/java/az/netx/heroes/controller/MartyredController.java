@@ -8,6 +8,7 @@ import az.netx.heroes.model.response.MartyredResponse;
 import az.netx.heroes.model.response.RewardResponse;
 import az.netx.heroes.model.response.WarResponse;
 import az.netx.heroes.service.MartyredService;
+import az.netx.heroes.service.PostCategoryService;
 import az.netx.heroes.service.RankService;
 import az.netx.heroes.service.RewardService;
 import az.netx.heroes.service.WarService;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,7 +32,6 @@ import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
 import static az.netx.heroes.util.SearchUtil.martyredSearchPathBuilder;
 
 @Controller
-@RequestMapping(value = "/martyred")
 @RequiredArgsConstructor
 public class MartyredController {
 
@@ -40,8 +39,9 @@ public class MartyredController {
     private final RankService rankService;
     private final RewardService rewardService;
     private final WarService warService;
+    private final PostCategoryService postCategoryService;
 
-    @GetMapping
+    @GetMapping("/martyred")
     public String getMartyredPage(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
@@ -76,7 +76,7 @@ public class MartyredController {
         return "admin/martyred";
     }
 
-    @GetMapping("/create-page")
+    @GetMapping("/martyred/create-page")
     public String getCreatePage(Model model) {
         if (!model.containsAttribute("martyredRequest")) {
             model.addAttribute("martyredRequest", new MartyredRequest());
@@ -88,7 +88,7 @@ public class MartyredController {
         return "admin/createMartyredPage";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/martyred/{id}")
     public String getById(
             @PathVariable(value = "id") Long martyredId,
             Model model
@@ -111,7 +111,7 @@ public class MartyredController {
         return "admin/updateMartyredPage";
     }
 
-    @GetMapping(value = "/get/delete")
+    @GetMapping(value = "/martyred/get/delete")
     public String getById4Delete(
             @RequestParam("id") Long id,
             Model model
@@ -120,7 +120,7 @@ public class MartyredController {
         return "admin/martyredRequestForm";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/martyred/create")
     public String createMartyred(
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,
             final BindingResult bindingResult,
@@ -136,7 +136,7 @@ public class MartyredController {
         return "redirect:/martyred";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/martyred/update")
     public String updateMartyred(
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,
             final BindingResult bindingResult,
@@ -152,7 +152,7 @@ public class MartyredController {
         return "redirect:/martyred";
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/martyred/delete")
     public String deleteMartyred(
             @RequestParam("id") Long martyredId,
             final RedirectAttributes redirectAttributes
@@ -160,5 +160,51 @@ public class MartyredController {
         martyredService.deleteMartyred(martyredId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/martyred";
+    }
+
+    //CLIENT
+
+    @GetMapping("/cl/martyred")
+    public String clientGetMartyred(
+            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "9") int size,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "surname", required = false) String surname,
+            @RequestParam(value = "birthDate", required = false) String birthDate,
+            @RequestParam(value = "fatherName", required = false) String fatherName,
+            @RequestParam(value = "rank", required = false) Long rankId,
+            HttpServletRequest request,
+            Model model
+    ) {
+        var criteria = new MartyredSearchCriteria();
+        criteria.setName(name);
+        criteria.setSurname(surname);
+        criteria.setFatherName(fatherName);
+        criteria.setBirthDate(birthDate);
+        criteria.setRankId(rankId);
+
+        Paged<MartyredResponse> list = martyredService.searchMartyred(
+                page,
+                size,
+                criteria
+        );
+
+
+        model.addAttribute("objectList", list);
+        model.addAttribute("srcUrl", martyredSearchPathBuilder(request));
+        model.addAttribute("ranks", rankService.getAllRank());
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
+
+        return "client/martyred";
+    }
+
+    @GetMapping("/cl/martyred/{id}")
+    public String clientGetMartyredById(
+            @PathVariable(value = "id") Long id,
+            Model model
+    ) {
+        model.addAttribute("martyred", martyredService.getMartyredById(id));
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
+        return "client/onePost";
     }
 }

@@ -39,12 +39,12 @@ public class MartyredSpecification implements Specification<Martyred> {
             if (Objects.nonNull(request.getFatherName())) {
                 predicates.add(cb.like(root.get(Martyred_.fatherName), "%" + request.getFatherName() + "%"));
             }
-            if (Objects.nonNull(request.getBirthDate())) {
+            if (Objects.nonNull(request.getBirthDate()) && !request.getBirthDate().isEmpty()) {
                 predicates.add(
                         cb.greaterThanOrEqualTo(root.get(Martyred_.birthDate), LocalDate.parse(request.getBirthDate()))
                 );
             }
-            if (Objects.nonNull(request.getBirthDate())) {
+            if (Objects.nonNull(request.getBirthDate()) && !request.getBirthDate().isEmpty()) {
                 predicates.add(
                         cb.lessThanOrEqualTo(root.get(Martyred_.birthDate), LocalDate.parse(request.getBirthDate()))
                 );

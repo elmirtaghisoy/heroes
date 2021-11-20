@@ -8,6 +8,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     Page<PostResponse> findAll(Specification<Post> postSpecification, Pageable pageRequest);
@@ -17,4 +19,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             value = "SELECT p.folder_uuid FROM post p WHERE p.id=:id LIMIT 1"
     )
     String getFolderUUID(Long id);
+
+
+    List<Post> findTop4ByIdNotAndStatus(Long id, String status);
 }

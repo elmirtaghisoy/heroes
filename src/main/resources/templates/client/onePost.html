@@ -1,0 +1,129 @@
+<html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fortex - Bootstrap 4 premium MultePage HTML template</title>
+    <meta charset="utf-8">
+
+</head>
+
+<body>
+
+
+<div class="header_absolute ds cover-background">
+
+    <section class="page_title padding-mobile cs s-py-60 s-py-md-80 s-py-xl-150">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <h1 class="bold" th:text="${post.header}"></h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Ana Səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#" th:text="${post.category.categoryName}">Pages</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+<section class="ls s-py-60 s-py-md-80 s-py-xl-150 c-gutter-60">
+    <div class="container">
+        <div class="row">
+
+            <main class="col-lg-8 col-xl-9">
+                <article
+                        class="vertical-item post type-post status-publish format-standard has-post-thumbnail single single-post">
+
+                    <div class="item-content">
+
+                        <div class="item-media post-thumbnail">
+                            <span class="cat-links"><a href="http://drivelywp/category/news/"
+                                                       th:text="${post.category.categoryName}"></a></span>
+                            <img alt="" th:src="${post.filePath}">
+                        </div>
+
+                        <div class="entry-content">
+                            <header class="entry-header single-post">
+                                <div class="entry-meta color-darkgrey">
+                                    <span class="posted-on">
+                                        <a href="blog-single-right.html" rel="bookmark">
+                                            <time class="entry-date published updated"
+                                                  datetime="2018-01-03T10:11:37+00:00"
+                                                  th:text="${post.createdDate}"></time>
+                                        </a>
+									</span>
+                                </div>
+                                <h1 class="entry-title" th:text="${post.header}"></h1>
+                            </header>
+                            <span th:text="${post.context}"></span>
+                        </div>
+
+                        <div class="col-12 text-center" th:each="file : ${post.filePaths}">
+                            <div th:switch="${file.fileType}">
+                                <img class="img-thumbnail" style="height:200; width:auto;" th:case="1"
+                                     th:src="@{${file.folder}}">
+                                <video controls height="200" th:case="2" width="auto">
+                                    <source th:src="@{${file.folder}}" type="video/mp4">
+                                </video>
+                                <audio controls th:case="3">
+                                    <source th:src="@{${file.folder}}" type="audio/mpeg">
+                                </audio>
+                                <iframe height="200" th:case="4" th:src="@{${file.folder}}" width="auto"></iframe>
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+
+            </main>
+            <aside class="col-lg-4 col-xl-3">
+
+                <div class="widget widget_categories">
+
+                    <h3 class="widget-title">Categories</h3>
+
+                    <ul>
+                        <li class="cat-item" th:each="cat :${categoryList}">
+                            <a href="blog-right.html" th:text="${cat.categoryName}"></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="widget widget_recent_posts">
+
+                        <h3 class="widget-title">Digər Məqalələr</h3>
+                        <ul class="list-unstyled">
+                            <li class="media" th:each="post :${otherPosts}">
+                                <a class="media-image" href="blog-single-right.html">
+                                    <img alt="" th:src="${post.filePath}">
+                                </a>
+                                <div class="media-body">
+                                    <h4>
+                                        <a href="blog-single-right.html" th:text="${post.header}"></a>
+                                    </h4>
+                                    <p class="item-meta" th:text="${post.createdDate}">
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
