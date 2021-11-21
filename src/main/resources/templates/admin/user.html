@@ -102,13 +102,15 @@
                     <td>
                         <form method="post" th:action="@{'/user/unblock'}">
                             <input name="id" th:value="${user.id}" type="hidden">
-                            <button class="btn btn-success mt-2 text-uppercase" th:if="${!user.isEnable}" type="submit">
+                            <button class="btn btn-success mt-2 text-uppercase" th:if="${user.isEnable == 1}"
+                                    type="submit">
                                 AKTIV ET
                             </button>
                         </form>
                         <form method="post" th:action="@{'/user/block'}">
                             <input name="id" th:value="${user.id}" type="hidden">
-                            <button class=" btn btn-danger mt-2 text-uppercase" th:if="${user.isEnable}" type="submit">
+                            <button class=" btn btn-danger mt-2 text-uppercase" th:if="${user.isEnable == 0}"
+                                    type="submit">
                                 DEAKTIV ET
                             </button>
                         </form>

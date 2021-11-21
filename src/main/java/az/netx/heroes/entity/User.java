@@ -36,12 +36,12 @@ public class User {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "about")
+    @Column(name = "about", columnDefinition = "TEXT")
     private String about;
 
-    @Column(name = "status")
+    @Column(name = "status", columnDefinition = "varchar(255) default 'DEACTIVE'")
     private String status;
 
-    @Column(name = "is_enable")
-    private Boolean isEnable;
+    @Column(name = "is_enable", columnDefinition = "boolean default 1")
+    private Integer isEnable;
 }

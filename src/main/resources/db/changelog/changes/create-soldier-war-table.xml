@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="elmirt (generated)" id="10">
+        <createTable tableName="soldier_war">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="soldier_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="war_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="war">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="datetime(6)"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="datetime(6)"/>
+            <column name="status" type="VARCHAR(255)" defaultValue="ACTIVE"/>
+            <column name="war_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="soldier_id" baseTableName="soldier_war"
+                                 constraintName="FKmkci236bt5vsgabohy391nfoa" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="soldier"/>
+        <addForeignKeyConstraint baseColumnNames="war_id" baseTableName="soldier_war"
+                                 constraintName="FKofvbu3s3a8karax457ajae1t3" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="war"/>
+    </changeSet>
+</databaseChangeLog>

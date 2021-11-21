@@ -33,7 +33,7 @@ public class UserService implements UserDetailsService {
         org.springframework.security.core.userdetails.User.UserBuilder userBuilder;
         if (user != null) {
             userBuilder = org.springframework.security.core.userdetails.User.withUsername(username);
-            userBuilder.disabled(user.getIsEnable());
+            userBuilder.disabled(user.getIsEnable().equals(0));
             userBuilder.password(user.getPassword());
 
             String[] authoritiesArr = {"ADMIN"};
@@ -71,7 +71,9 @@ public class UserService implements UserDetailsService {
     public String saveUser(UserAddRequest request) {
         if (Objects.nonNull(userRepository.findByUsername(request.getUsername())))
             return "USERNAME_ALREADY_EXIST";
-        userRepository.save(objectMapper.AR2E(request));
+        User user = objectMapper.AR2E(request);
+        user.setPassword(passwordEncoder.encode("ADMIN"));
+        userRepository.save(user);
         return "SUCCESS";
     }
 
@@ -82,16 +84,16 @@ public class UserService implements UserDetailsService {
     public void userActivity(Long id, String action) {
         User user = userRepository.getById(id);
         if (action.equalsIgnoreCase("unblock")) {
-            user.setIsEnable(true);
+            user.setIsEnable(0);
         } else if (action.equalsIgnoreCase("block")) {
-            user.setIsEnable(false);
+            user.setIsEnable(1);
         }
         userRepository.save(user);
     }
 
     public void resetUser(Long id) {
         User user = userRepository.getById(id);
-        user.setPassword(passwordEncoder.encode("123"));
+        user.setPassword(passwordEncoder.encode("ADMIN"));
         user.setStatus("DEACTIVE");
         userRepository.save(user);
     }

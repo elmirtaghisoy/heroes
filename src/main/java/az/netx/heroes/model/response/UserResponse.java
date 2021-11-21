@@ -16,5 +16,5 @@ public class UserResponse {
     private String name;
     private String surname;
     private String status;
-    private Boolean isEnable;
+    private Integer isEnable;
 }

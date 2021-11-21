@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <include file="/db/changelog/changes/create-file-table.xml"/>
+    <include file="/db/changelog/changes/create-contact-table.xml"/>
+    <include file="/db/changelog/changes/create-message-table.xml"/>
+    <include file="/db/changelog/changes/create-post-table.xml"/>
+    <include file="/db/changelog/changes/create-rank-table.xml"/>
+    <include file="db/changelog/changes/create-post-category-table.xml"/>
+    <include file="/db/changelog/changes/create-reward-table.xml"/>
+    <include file="/db/changelog/changes/create-soldier-table.xml"/>
+    <include file="/db/changelog/changes/create-user-table.xml"/>
+    <include file="db/changelog/changes/create-soldier-war-table.xml"/>
+    <include file="db/changelog/changes/create-soldier-reward-table.xml"/>
+    <include file="/db/changelog/changes/add-constraints.xml"/>
+    <include file="/db/changelog/changes/insert-static-values.xml"/>
+</databaseChangeLog>

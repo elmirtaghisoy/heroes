@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="elmirt ()" id="12">
+        <createIndex indexName="FK403nsajjjfmfvn81lqcwbkb" tableName="soldier_reward">
+            <column name="soldier_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="elmirt ()" id="13">
+        <createIndex indexName="FKi4fb9yu9ap3j0g42j0qja9b4a" tableName="post">
+            <column name="category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="elmirt ()" id="14">
+        <createIndex indexName="FKihbiwltw6t69aev9i57sfi3qx" tableName="soldier_reward">
+            <column name="reward_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="elmirt ()" id="15">
+        <createIndex indexName="FKj49iny2qhspdx08ueiiyq8jd5" tableName="soldier">
+            <column name="rank_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="elmirt ()" id="16">
+        <createIndex indexName="FKmkci236bt5vsgabohy391nfoa" tableName="soldier_war">
+            <column name="soldier_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="elmirt ()" id="17">
+        <createIndex indexName="FKofvbu3s3a8karax457ajae1t3" tableName="soldier_war">
+            <column name="war_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="elmirt ()" id="18">
+        <createIndex indexName="FKou51vvrys74k3asvgpyqmg2be" tableName="file">
+            <column name="ref_object_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet author="elmirt ()" id="19">
+        <addForeignKeyConstraint baseColumnNames="soldier_id" baseTableName="soldier_reward"
+                                 constraintName="FK403nsajjjfmfvn81lqcwbkb" deferrable="false" initiallyDeferred="false"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="soldier"/>
+        <addForeignKeyConstraint baseColumnNames="reward_id" baseTableName="soldier_reward"
+                                 constraintName="FKihbiwltw6t69aev9i57sfi3qx" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="reward"/>
+    </changeSet>
+
+    <changeSet author="elmirt ()" id="20">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="post"
+                                 constraintName="FKi4fb9yu9ap3j0g42j0qja9b4a" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="post_category"/>
+    </changeSet>
+    <changeSet author="elmirt ()" id="22">
+        <addForeignKeyConstraint baseColumnNames="rank_id" baseTableName="soldier"
+                                 constraintName="FKj49iny2qhspdx08ueiiyq8jd5" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="ranks"/>
+    </changeSet>
+    <changeSet author="elmirt ()" id="25">
+        <addForeignKeyConstraint baseColumnNames="ref_object_id" baseTableName="file"
+                                 constraintName="FKou51vvrys74k3asvgpyqmg2be" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="post"/>
+    </changeSet>
+</databaseChangeLog>

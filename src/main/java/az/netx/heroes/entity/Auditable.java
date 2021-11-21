@@ -36,6 +36,7 @@ public abstract class Auditable<U extends Serializable> implements Serializable 
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate;
 
-    @Column(name = "status")
+    @Column(name = "status", columnDefinition = "varchar default 'ACTIVE'")
     private String status;
+
 }

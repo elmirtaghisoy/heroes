@@ -24,13 +24,13 @@ public class Message {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "context")
+    @Column(name = "context", columnDefinition = "TEXT")
     private String context;
 
     @Column(name = "header")
     private String header;
 
-    @Column(name = "status")
+    @Column(name = "status", columnDefinition = "varchar(255) default 'UNREAD'")
     private String status;
 
     @Column(name = "received_ts")

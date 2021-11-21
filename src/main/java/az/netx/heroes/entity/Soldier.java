@@ -48,7 +48,7 @@ public abstract class Soldier extends Auditable<String> {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(name = "about")
+    @Column(name = "about", columnDefinition = "TEXT")
     private String about;
 
     @Column(name = "file_path")
