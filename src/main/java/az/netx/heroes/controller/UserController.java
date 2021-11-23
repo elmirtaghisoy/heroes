@@ -50,6 +50,7 @@ public class UserController {
     ) {
         if (!model.containsAttribute("userResponse")) {
             UserResponse user = objectMapper.E2R(userService.getUserByUsername(principal.getName()));
+            System.out.println(user.toString());
             if (user.getStatus().equals("DEACTIVE")) {
                 model.addAttribute("userResponse", user);
                 return "admin/activationPage";
@@ -123,7 +124,7 @@ public class UserController {
             redirectAttributes.addFlashAttribute("userAddRequest", request);
             return "redirect:/user/" + request.getId();
         }
-        String result = userService.saveUser(request);
+        String result = userService.updateUser(request);
         if ("USERNAME_ALREADY_EXIST".equals(result)) {
             redirectAttributes.addFlashAttribute("error", USERNAME_ALREADY_EXIST);
             return "redirect:/user/" + request.getId();

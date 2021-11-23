@@ -10,6 +10,7 @@ import az.netx.heroes.entity.PostCategory;
 import az.netx.heroes.entity.Rank;
 import az.netx.heroes.entity.Reward;
 import az.netx.heroes.entity.User;
+import az.netx.heroes.entity.VictoryHistory;
 import az.netx.heroes.entity.War;
 import az.netx.heroes.model.request.ContactRequest;
 import az.netx.heroes.model.request.HeroRequest;
@@ -21,6 +22,7 @@ import az.netx.heroes.model.request.RankRequest;
 import az.netx.heroes.model.request.RewardRequest;
 import az.netx.heroes.model.request.UserAddRequest;
 import az.netx.heroes.model.request.UserRequest;
+import az.netx.heroes.model.request.VictoryHistoryRequest;
 import az.netx.heroes.model.request.WarRequest;
 import az.netx.heroes.model.response.ContactResponse;
 import az.netx.heroes.model.response.FileResponse;
@@ -32,10 +34,12 @@ import az.netx.heroes.model.response.PostResponse;
 import az.netx.heroes.model.response.RankResponse;
 import az.netx.heroes.model.response.RewardResponse;
 import az.netx.heroes.model.response.UserResponse;
+import az.netx.heroes.model.response.VictoryHistoryResponse;
 import az.netx.heroes.model.response.WarResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
 public interface ObjectMapper {
 
     War R2E(WarRequest request);
@@ -85,4 +89,8 @@ public interface ObjectMapper {
     User R2E(UserRequest request);
 
     User AR2E(UserAddRequest request);
+
+    VictoryHistoryResponse E2R(VictoryHistory entity);
+
+    VictoryHistory R2E(VictoryHistoryRequest request);
 }

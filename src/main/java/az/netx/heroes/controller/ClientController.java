@@ -1,30 +1,29 @@
 package az.netx.heroes.controller;
 
-import az.netx.heroes.service.WarService;
+import az.netx.heroes.service.VictoryHistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
 @Controller
 @RequiredArgsConstructor
 public class ClientController {
 
-    private final WarService warService;
+    private final VictoryHistoryService victoryHistoryService;
 
     @GetMapping("/home")
     public String index() {
         return "client/index";
     }
 
-    @GetMapping("/get/war/{warId}")
+    @GetMapping("/get/hist/{histId}")
     public String section(
-            @PathVariable("warId") Long warId,
+            @PathVariable("histId") Long warId,
             Model model
     ) {
-        model.addAttribute("war", warService.getWarById(warId));
+        model.addAttribute("hist", victoryHistoryService.getHistById(warId));
         return "client/layout/warHistorySection";
     }
 

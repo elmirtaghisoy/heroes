@@ -39,9 +39,9 @@ public class User {
     @Column(name = "about", columnDefinition = "TEXT")
     private String about;
 
-    @Column(name = "status", columnDefinition = "varchar(255) default 'DEACTIVE'")
+    @Column(name = "status", insertable = false)
     private String status;
 
-    @Column(name = "is_enable", columnDefinition = "boolean default 1")
+    @Column(name = "is_enable", insertable = false, columnDefinition = "boolean default 1")
     private Integer isEnable;
 }

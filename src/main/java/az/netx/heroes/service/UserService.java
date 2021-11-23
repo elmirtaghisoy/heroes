@@ -50,12 +50,18 @@ public class UserService implements UserDetailsService {
 
     public String activateUser(UserRequest request) {
         if (request.getPassword1().equals(request.getPassword2())) {
-            if (Objects.nonNull(userRepository.findByUsername(request.getUsername())))
-                return "USERNAME_ALREADY_EXIST";
             User entity = objectMapper.R2E(request);
             entity.setStatus("ACTIVATED");
+            entity.setIsEnable(1);
             entity.setPassword(passwordEncoder.encode(request.getPassword1()));
-            userRepository.save(entity);
+            if (userRepository.getById(request.getId()).getUsername().equals(request.getUsername())) {
+                userRepository.save(entity);
+            } else {
+                if (Objects.nonNull(userRepository.findByUsername(request.getUsername())))
+                    return "USERNAME_ALREADY_EXIST";
+                else
+                    userRepository.save(entity);
+            }
             return "SUCCESS";
         } else
             return "INVALID_PASS";
@@ -69,11 +75,28 @@ public class UserService implements UserDetailsService {
     }
 
     public String saveUser(UserAddRequest request) {
-        if (Objects.nonNull(userRepository.findByUsername(request.getUsername())))
-            return "USERNAME_ALREADY_EXIST";
         User user = objectMapper.AR2E(request);
         user.setPassword(passwordEncoder.encode("ADMIN"));
+        user.setIsEnable(1);
+        user.setStatus("DEACTIVE");
+        if (Objects.nonNull(userRepository.findByUsername(request.getUsername())))
+            return "USERNAME_ALREADY_EXIST";
         userRepository.save(user);
+        return "SUCCESS";
+    }
+
+    public String updateUser(UserAddRequest request) {
+        User user = objectMapper.AR2E(request);
+        user.setPassword(passwordEncoder.encode("ADMIN"));
+        user.setIsEnable(1);
+        user.setStatus("ACTIVE");
+        if (userRepository.getById(request.getId()).getUsername().equals(request.getUsername())) {
+            userRepository.save(user);
+        } else {
+            if (Objects.nonNull(userRepository.findByUsername(request.getUsername())))
+                return "USERNAME_ALREADY_EXIST";
+            userRepository.save(user);
+        }
         return "SUCCESS";
     }
 
@@ -83,10 +106,11 @@ public class UserService implements UserDetailsService {
 
     public void userActivity(Long id, String action) {
         User user = userRepository.getById(id);
+        System.out.println(action);
         if (action.equalsIgnoreCase("unblock")) {
-            user.setIsEnable(0);
-        } else if (action.equalsIgnoreCase("block")) {
             user.setIsEnable(1);
+        } else if (action.equalsIgnoreCase("block")) {
+            user.setIsEnable(0);
         }
         userRepository.save(user);
     }
@@ -95,6 +119,7 @@ public class UserService implements UserDetailsService {
         User user = userRepository.getById(id);
         user.setPassword(passwordEncoder.encode("ADMIN"));
         user.setStatus("DEACTIVE");
+        user.setIsEnable(1);
         userRepository.save(user);
     }
 }

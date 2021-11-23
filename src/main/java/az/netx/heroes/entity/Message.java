@@ -30,7 +30,7 @@ public class Message {
     @Column(name = "header")
     private String header;
 
-    @Column(name = "status", columnDefinition = "varchar(255) default 'UNREAD'")
+    @Column(name = "status", insertable = false, columnDefinition = "varchar(255) default 'UNREAD'")
     private String status;
 
     @Column(name = "received_ts")

@@ -1,0 +1,104 @@
+<html th:include="~{admin/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div class="container">
+    <div class="main-container">
+        <!--Standard-->
+        <div aria-hidden="true"
+             aria-labelledby="exampleModalLabel"
+             class="modal fade" id="success-modal"
+             role="dialog" tabindex="-1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">UĞURLU ƏMƏLİYYAT</h5>
+                    </div>
+                    <div class="modal-content">
+                        <p class="text-success fw-bolder"
+                           id="success"
+                           style="display:inline;margin: 5%;font-size: 25px"
+                           th:if="success != null"
+                           th:text="${success}">
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" data-dismiss="modal" id="close-success-modal"
+                                type="button">
+                            BAĞLA
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div aria-hidden="true"
+             aria-labelledby="exampleModalLabel"
+             class="modal fade" id="error-modal"
+             role="dialog" tabindex="-1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">XƏTA</h5>
+                    </div>
+                    <div class="modal-content">
+                        <p class="text-danger fw-bolder"
+                           id="error"
+                           style="display:inline;margin: 5%;font-size: 25px"
+                           th:if="error != null"
+                           th:text="${error}">
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal" id="close-error-modal"
+                                type="button">
+                            BAĞLA
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Standard-->
+    </div>
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+            <div class=" accordion-item" th:each="hist : ${histList}">
+                <form enctype="multipart/form-data" method="post" th:action="@{/hist/update}" th:object="${hist}">
+                    <input name="id" th:value="${hist.id}" type="hidden">
+                    <input name="header" th:value="${hist.header}" type="hidden">
+                    <h2 class="accordion-header" th:id="'heading'+${hist.id}">
+                        <button aria-expanded="false"
+                                class="accordion-button collapsed"
+                                data-bs-toggle="collapse"
+                                th:aria-controls="'collapse'+${hist.id}"
+                                th:data-bs-target="'#collapse'+${hist.id}"
+                                th:text="${hist.header}"
+                                type="button">
+                        </button>
+                    </h2>
+                    <div class="accordion-collapse collapse text-center"
+                         data-bs-parent="#accordionExample"
+                         th:aria-labelledby="'heading'+${hist.id}"
+                         th:id="'collapse'+${hist.id}">
+                        <img class="img-thumbnail" style="height:200; width:auto;"
+                             th:src="${hist.filePath}">
+                        <div class="container-fluid mb-3 mt-2">
+                            <label class="form-label text-uppercase" for="formFileLg">Mövcud başlıq şəkili
+                                dəyİşmək</label>
+                            <input type="hidden">
+                            <input class="form-control form-control-lg" id="formFileLg" name="img"
+                                   type="file">
+                        </div>
+                        <div class="accordion-body">
+                        <textarea rows="4" style="width: 100%; margin-top: 1%; margin-bottom: 2%;"
+                                  th:text="${hist.context}">
+                        </textarea>
+                        </div>
+                        <input class="mb-5 btn btn-success text-uppercase" type="submit" value="Yadda Saxla">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

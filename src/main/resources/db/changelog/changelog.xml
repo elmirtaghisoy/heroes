@@ -15,5 +15,6 @@
     <include file="db/changelog/changes/create-soldier-war-table.xml"/>
     <include file="db/changelog/changes/create-soldier-reward-table.xml"/>
     <include file="/db/changelog/changes/add-constraints.xml"/>
+    <include file="/db/changelog/changes/create-victoryHistory-table.xml"/>
     <include file="/db/changelog/changes/insert-static-values.xml"/>
 </databaseChangeLog>

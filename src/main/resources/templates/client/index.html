@@ -418,7 +418,7 @@
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(1)",
+                    url: "javascript:getHistById(1)",
                     zoomLevel: 2
                 },
                 {
@@ -426,7 +426,7 @@
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(2)",
+                    url: "javascript:getHistById(2)",
                     zoomLevel: 3,
                 },
                 {
@@ -434,15 +434,16 @@
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(3)",
+                    url: "javascript:getHistById(3)",
                     zoomLevel: 2,
                 },
                 {
+                    //
                     id: "AZ-QBI",
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(4)",
+                    url: "javascript:getHistById(4)",
                     zoomLevel: 3,
                 },
                 {
@@ -450,7 +451,7 @@
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(5)",
+                    url: "javascript:getHistById(5)",
                     zoomLevel: 2,
                 },
                 {
@@ -458,7 +459,7 @@
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(6)",
+                    url: "javascript:getHistById(6)",
                     zoomLevel: 3,
                 },
                 {
@@ -466,7 +467,7 @@
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(7)",
+                    url: "javascript:getHistById(7)",
                     zoomLevel: 2,
                 },
                 {
@@ -474,7 +475,7 @@
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(8)",
+                    url: "javascript:getHistById(8)",
                     zoomLevel: 3,
                 },
                 {
@@ -482,7 +483,7 @@
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(9)",
+                    url: "javascript:getHistById(9)",
                     zoomLevel: 2,
                 },
                 {
@@ -490,7 +491,7 @@
                     selectedColor: "#02ef00",
                     color: "#118c00",
                     rollOverColor: "#02ef00",
-                    url: "javascript:getWarById(10)",
+                    url: "javascript:getHistById(10)",
                     zoomLevel: 3,
                 }
             ]
@@ -502,12 +503,12 @@
 
     });
 
-    function getWarById(id) {
+    function getHistById(id) {
         const data = {
             id: id
         };
         $.ajax({
-            url: "/get/war/" + id,
+            url: "/get/hist/" + id,
             type: "GET",
             dataType: "html",
             data: data,

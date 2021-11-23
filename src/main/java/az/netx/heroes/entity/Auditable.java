@@ -11,8 +11,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PreUpdate;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -36,7 +38,14 @@ public abstract class Auditable<U extends Serializable> implements Serializable 
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate;
 
-    @Column(name = "status", columnDefinition = "varchar default 'ACTIVE'")
+    @Column(name = "status", insertable = false, columnDefinition = "varchar default 'ACTIVE'")
     private String status;
+
+    @PreUpdate
+    public void onUpdate() {
+        if (Objects.isNull(this.status)) {
+            this.status = "ACTIVE";
+        }
+    }
 
 }

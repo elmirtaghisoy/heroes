@@ -1,22 +1,16 @@
 <div th:fragment="warInfoSection">
     <div class="divider-30 divider-md-70 divider-xl-75"></div>
-    <h1 th:text="${war.warName}"><span class="color-main">About our</span><br> Strategy</h1>
+    <h1 th:text="${hist.header}"><span class="color-main"></span><br></h1>
     <div class="fw-divider-special">
         <p class="special"></p>
     </div>
     <div class="divider-40 divider-sm-50"></div>
-    <p>
-        Marketing and Advertising to the Military: One of the Most Attractive Consumer Segments in
-        the U.S.<br><br>
-
-        The Military Market is young and active - in fact, over 43% are between 17-24 years of age.
-        Advertising to the Military is also one of the best ways to engage hard to reach young men -
-        who are very family-oriented (55% are married and 44% have kids).
+    <p th:text="${hist.context}">
     </p>
     <div>
         <div class="divider-40 divider-sm-65"></div>
-        <button class="btn btn-outline-darkgrey large fw-400" type="button">Details</button>
-        <span class="m-45"> or </span>
+        <button class="btn btn-outline-darkgrey large fw-400" type="button">Davamı</button>
+        <div class="divider-40 divider-sm-65"></div>
         <div class="widget widget_social_buttons">
             <a class="fa fa-facebook" href="#" title="facebook"></a>
             <a class="fa fa-twitter" href="#" title="twitter"></a>
@@ -24,6 +18,5 @@
             <a class="fa fa-youtube-play" href="#" title="youtube-play"></a>
             <a class="fa fa-rss" href="#" title="rss"></a>
         </div>
-
     </div>
 </div>

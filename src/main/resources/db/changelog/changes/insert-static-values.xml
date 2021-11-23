@@ -2,16 +2,61 @@
 <databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
     <changeSet author="elmirt" id="1626823172391-99">
         <insert tableName="user">
             <column name="id" value="1"/>
             <column name="is_enable" value="1"/>
             <column name="name" value="ADMIN"/>
             <column name="password" value="$2a$08$rqPaLJMoAidcZlubevM0/.14639lvcIVlW5.WxMf.067VEkX26Fhy"/>
-            <column name="status" value="VARCHAR(255)" defaultValue="DEACTIVE"/>
+            <column name="status" value="DEACTIVE"/>
             <column name="surname" value="ADMIN"/>
             <column name="username" value="ADMIN"/>
         </insert>
     </changeSet>
+
+    <changeSet author="elmirt" id="1626823172391-100">
+        <insert tableName="victory_history">
+            <column name="id" value="1"/>
+            <column name="header" value="Cəbrayıl"/>
+        </insert>
+        <insert tableName="victory_history">
+            <column name="id" value="2"/>
+            <column name="header" value="Füzuli"/>
+        </insert>
+        <insert tableName="victory_history">
+            <column name="id" value="3"/>
+            <column name="header" value="Zəngilan"/>
+        </insert>
+        <insert tableName="victory_history">
+            <column name="id" value="4"/>
+            <column name="header" value="Qubadlı"/>
+        </insert>
+        <insert tableName="victory_history">
+            <column name="id" value="5"/>
+            <column name="header" value="Şuşa"/>
+        </insert>
+        <insert tableName="victory_history">
+            <column name="id" value="6"/>
+            <column name="header" value="Ağdam"/>
+        </insert>
+        <insert tableName="victory_history">
+            <column name="id" value="7"/>
+            <column name="header" value="Kəlbəcər"/>
+        </insert>
+        <insert tableName="victory_history">
+            <column name="id" value="8"/>
+            <column name="header" value="Laçın"/>
+        </insert>
+        <insert tableName="victory_history">
+            <column name="id" value="9"/>
+            <column name="header" value="Xocalı"/>
+        </insert>
+        <insert tableName="victory_history">
+            <column name="id" value="10"/>
+            <column name="header" value="Xocavənd"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>
 
