@@ -14,15 +14,14 @@
 
                 <div class="col-md-12">
                     <h1 class="bold"
-                        th:text="${martyred.rank.rankName} +' '+ ${martyred.name} +' '+${martyred.surname} +' '+${martyred.fatherName}">
-                        Team Member
+                        th:text="${hero.rank.rankName} +' '+ ${hero.name} +' '+${hero.surname} +' '+${hero.fatherName}">
                     </h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="index.html">Ana Səhifə</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#">Şəhidlərimiz</a>
+                            <a href="#">Qazilərimiz</a>
                         </li>
                     </ul>
                 </div>
@@ -46,24 +45,24 @@
 
                     <div class="col-md-5">
                         <div>
-                            <img alt="" th:src="${martyred.filePath}">
+                            <img alt="" th:src="${hero.filePath}">
                         </div>
                     </div>
 
                     <div class="col-md-7">
                         <div class="divider-30 divider-md-0 divider-xl-0"></div>
                         <h3 class="team-name"
-                            th:text="${martyred.name} +' '+${martyred.surname} +' '+${martyred.fatherName}"></h3>
+                            th:text="${hero.name} +' '+${hero.surname} +' '+${hero.fatherName}"></h3>
                         <p class="entry-description-profession divider-top-bottom"
-                           th:text="${martyred.rank.rankName}"></p>
-                        <p th:text="${martyred.about}">
+                           th:text="${hero.rank.rankName}"></p>
+                        <p th:text="${hero.about}">
                         </p>
 
-                        <ul th:each="reward :${martyred.rewards}">
+                        <ul th:each="reward :${hero.rewards}">
                             <li th:text="${reward.rewardName}"></li>
                         </ul>
 
-                        <ul th:each="war :${martyred.wars}">
+                        <ul th:each="war :${hero.wars}">
                             <li th:text="${war.warName}"></li>
                         </ul>
 
@@ -91,16 +90,16 @@
                 <div class="divider-35 divider-md-65"></div>
             </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-4 text-center" th:each="mr :${martyredList}">
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center" th:each="hr :${heroList}">
                 <div class="card text-center">
-                    <img alt="" class="card-img-top" th:src="${mr.filePath}">
+                    <img alt="" class="card-img-top" th:src="${hr.filePath}">
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="team-single.html"
-                               th:text="${mr.name} +' '+${mr.surname} +' '+${mr.fatherName}">
+                               th:text="${hr.name} +' '+${hr.surname} +' '+${hr.fatherName}">
                             </a>
                         </h4>
-                        <p class="card-text" th:text="${mr.rank.rankName}"></p>
+                        <p class="card-text" th:text="${hr.rank.rankName}"></p>
                     </div>
                 </div>
             </div>

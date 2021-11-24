@@ -1,0 +1,80 @@
+<html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+
+<body>
+
+<div class="header_absolute ds cover-background">
+
+    <section class="page_title padding-mobile cs s-py-60 s-py-md-80 s-py-xl-150">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <h1 class="bold">Zəfər Tariximiz</h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Ana Səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            Zəfər Tariximiz
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<section class="ls s-py-60 s-py-md-80 s-py-xl-150">
+    <div class="container">
+
+        <div class="row c-mb-30">
+
+            <main class="offset-lg-1 col-lg-10">
+                <div class="row isotope-wrapper masonry-layout blog-grid">
+                    <div class="col-xl-4 col-md-6" th:each="hist :${histList}">
+                        <article
+                                class="vertical-item text-center content-padding padding-small post type-post status-publish format-standard has-post-thumbnail">
+                            <div class="item-media post-thumbnail">
+                                <a href="blog-single-full.html">
+                                    <img alt="" th:src="${hist.filePath}">
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <header class="entry-header">
+                                    <h5 class="entry-title">
+                                        <a href="blog-single-full.html" rel="bookmark" th:text="${hist.header}">
+                                        </a>
+                                    </h5>
+                                </header>
+                                <div class="entry-content">
+                                    <p>Accusamus ad adipisci alias culpa deleniti ducimus, est et ex fugiat iusto
+                                        laudantium nam ullam.</p>
+                                </div>
+                                <div class="entry-meta">
+                                    <a rel="bookmark" th:href="@{/cl/hist/{id}(id=${hist.id})}">
+                                        <time class="entry-date published updated">Ətraflı oxu
+                                        </time>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+
+    </div>
+</section>
+
+</body>
+
+</html>

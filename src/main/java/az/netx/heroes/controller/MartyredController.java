@@ -204,7 +204,8 @@ public class MartyredController {
             Model model
     ) {
         model.addAttribute("martyred", martyredService.getMartyredById(id));
+        model.addAttribute("martyredList", martyredService.get3MartyredByNotId(id));
         model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
-        return "client/onePost";
+        return "client/oneMartyred";
     }
 }

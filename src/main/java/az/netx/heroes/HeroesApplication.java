@@ -14,21 +14,15 @@ public class HeroesApplication {
 
 /*
 {
-
-    1. Postlari ishle
-    2. frontu seliqeye sal
-    3. qelebe tariximizi ishle
-    4. liquibase qosh
-    ---------------------------------------------
-    1 - Security Bugfix
-    2 - Liquibase
-    3 - Front
-    ---------------------------------------------
-    1 - Post Ve Solider'in menuda gorunub gorunmemesi
-    2 - Admin panel kontekstinin duzeldilmesi
-    3 - Message servisi (mesajlarin oxunmasi prosesi dizanyi ajax)
-    4 - Deleteden sonra son linke redirect olsun
-    5 - List ile search ?
-    6 - Admin panel dizayninda deyishiklikler
+    1. Contact Front
+    2. Message post service
+    ------------------------
+    1. Urls
+    2. Security config
+    3. Front bugfix
+    ------------------------
+    4. Auditable aware
+    5. projection query optimization
+    ------------------------
 }
 */

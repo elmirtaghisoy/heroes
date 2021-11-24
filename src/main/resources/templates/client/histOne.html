@@ -1,0 +1,111 @@
+<html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+
+<body>
+
+
+<div class="header_absolute ds cover-background">
+
+    <section class="page_title padding-mobile cs s-py-60 s-py-md-80 s-py-xl-150">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <h1 class="bold" th:text="${hist.header}+' Zəfəri'"></h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Ana Səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item active" th:text="${hist.header}+' Zəfəri'">
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+<section class="ls s-py-60 s-py-md-80 s-py-xl-150 c-gutter-60">
+    <div class="container">
+        <div class="row">
+
+
+            <main class="col-lg-12">
+                <article class="event-single post type-event status-publish format-standard has-post-thumbnail">
+                    <div class="item-media post-thumbnail">
+                        <img alt="" th:src="${hist.filePath}">
+                    </div>
+
+                    <div class="item-content">
+                        <header class="entry-header">
+                            <h3 class="entry-title">
+                                <a href="event-single-right.html" th:text="${hist.header}"></a>
+                            </h3>
+                        </header>
+
+                        <div class="entry-content">
+                            <p th:text="${hist.context}"></p>
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <div class="divider-60 divider-md-80 divider-xl-150"></div>
+
+                <section class="event-single s-pt-60 s-pt-md-80 s-pt-xl-140">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <h1><span class="color-main">Digər</span> Zəfərlərimiz</h1>
+                                <div class="divider-20"></div>
+                                <div class="fw-divider-special-center">
+                                    <p class="special"></p>
+                                </div>
+                                <div class="divider-35 divider-md-55"></div>
+                            </div>
+                            <div class="col-sm-12 col-md-6" th:each="hs :${histList}">
+                                <article class="post fw-event type-fw-event side-item">
+                                    <div class="item-media post-thumbnail">
+                                        <img alt="" th:src="${hs.filePath}">
+                                        <div class="media-links">
+                                            <a class="abs-link" href="blog-left.html" title=""></a>
+                                        </div>
+                                    </div>
+                                    <div class="item-content entry-content">
+                                        <div class="item-content">
+                                            <h3 class="entry-title">
+                                                <a href="event-single-right.html"
+                                                   th:text="${hs.header} + ' Zəfəri'"> </a>
+                                            </h3>
+                                            <a class="read_more_events btn btn-outline-maincolor"
+                                               href="event-single-right.html">Ətraflı oxu</a>
+
+                                        </div>
+                                    </div>
+                                </article>
+                                <div class="divider-30 d-md-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+
+        </div>
+
+    </div>
+</section>
+
+</body>
+
+</html>

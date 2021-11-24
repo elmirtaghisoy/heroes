@@ -7,6 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface MartyredRepository extends JpaRepository<Martyred, Long> {
     Page<MartyredResponse> findAll(Specification<Martyred> martyredSpecification, Pageable pageRequest);
+
+    List<Martyred> findTop4ByIdNotAndStatus(Long id, String status);
 }

@@ -17,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static az.netx.heroes.component.constraint.ApplicationConstraint.HERO;
 import static az.netx.heroes.component.constraint.ApplicationConstraint.MARTYRED;
@@ -80,4 +82,10 @@ public class MartyredService {
         martyredRepository.save(entity);
     }
 
+    public List<MartyredResponse> get3MartyredByNotId(Long id) {
+        return martyredRepository.findTop4ByIdNotAndStatus(id, "ACTIVE")
+                .stream()
+                .map(objectMapper::E2R)
+                .collect(Collectors.toList());
+    }
 }

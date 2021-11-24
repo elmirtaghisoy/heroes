@@ -1,0 +1,139 @@
+<html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fortex - Bootstrap 4 premium MultePage HTML template</title>
+    <meta charset="utf-8">
+
+
+</head>
+
+<body>
+
+
+<div class="header_absolute ds cover-background">
+
+    <section class="page_title padding-mobile cs s-py-60 s-py-md-80 s-py-xl-150">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <h1 class="bold">Qazilərimiz</h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Ana Səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Qazilərimiz</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<section class="ls s-py-70 c-mb-30">
+    <div class="container">
+        <div class="row">
+            <div class="card card-body">
+                <form method="get" th:action="@{'/cl/hero'}">
+                    <div class="row d-flex justify-content-center">
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Ad</label>
+                            <input class="form-control" id="headerLabel" name="name" type="search">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Soyad</label>
+                            <input class="form-control" id="headerLabel" name="surname" type="search">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Ata Adı</label>
+                            <input class="form-control" id="headerLabel" name="fathername" type="search">
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="mb-4 col-4">
+                            <label class="form-label text-uppercase" for="lastRegDayLabel">Doğum Tarİx</label>
+                            <input class="form-control" id="lastRegDayLabel" name="birthDate"
+                                   type="date">
+                        </div>
+                        <div class="mb-4 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Rütbə</label>
+                            <select class="form-select" name="rank">
+                                <option value="-1"></option>
+                                <span th:each="rank :${ranks}">
+                                    <option th:text="${rank.rankName}" th:value="${rank.id}"></option>
+                                </span>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="mb-4 text-center col-2">
+                            <input class="btn btn-success text-uppercase" type="submit" value="AXTAR">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="divider-20 divider-xl-80"></div>
+
+            <div class="col-md-4 col-sm-6" th:each="hero : ${objectList.page}">
+                <div class="text-center">
+                    <div class="card text-center">
+                        <img alt="" class="card-img-top" th:src="${hero.filePath}">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a th:href="@{/cl/hero/{id}(id=${hero.id})}"
+                                   th:text="'Qazi '+${hero.name} +' ' +${hero.surname}">
+                                </a>
+                            </h4>
+                            <p class="card-text" th:text="${hero.rank.rankName}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider-0 divider-xl-30"></div>
+
+        </div>
+
+        <div class="row mt-4">
+            <nav aria-label="Page navigation" class="paging" style="margin-right: auto;margin-left: auto">
+                <ul class="pagination justify-content-center" th:if="${objectList.page.totalPages > 1}">
+                    <li class="page-item"
+                        th:classappend="${!objectList.paging.isPrevEnabled()? 'disabled' : ''}">
+                        <a class="page-link"
+                           tabindex="-1"
+                           th:href="@{'/cl/hero?page=' + ${objectList.paging.pageNumber - 1}+ ${srcUrl}}">Previous</a>
+                    </li>
+                    <th:block th:each="item : ${objectList.paging.getItems()}">
+                        <li class="page-item"
+                            th:classappend="${item.index == objectList.paging.pageNumber? 'active' : ''}"
+                            th:if="${item.pageItemType.name() == 'PAGE'}">
+                            <a class="page-link"
+                               th:href="@{'/cl/hero?page=' + ${item.index}+ ${srcUrl}}"
+                               th:text="${item.index}"></a>
+                        </li>
+                        <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                    </th:block>
+                    <li class="page-item"
+                        th:classappend="${!objectList.paging.isNextEnabled()? 'disabled' : ''}">
+                        <a class="page-link"
+                           th:href="@{'/cl/hero?page=' + ${objectList.paging.pageNumber + 1}+ ${srcUrl}}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

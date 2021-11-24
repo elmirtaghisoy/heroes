@@ -44,4 +44,11 @@ public class VictoryHistoryService {
         }
         victoryHistoryRepository.save(objectMapper.R2E(request));
     }
+
+    public List<VictoryHistoryResponse> get2HistByNotId(Long id) {
+        return victoryHistoryRepository.findTop2ByIdNotAndStatus(id, "ACTIVE")
+                .stream()
+                .map(objectMapper::E2R)
+                .collect(Collectors.toList());
+    }
 }

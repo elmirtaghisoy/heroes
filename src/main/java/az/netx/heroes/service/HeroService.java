@@ -17,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static az.netx.heroes.component.constraint.ApplicationConstraint.HERO;
 import static az.netx.heroes.component.constraint.ApplicationConstraint.SOLDIER_DEFAULT_IMG_PATH;
@@ -79,4 +81,10 @@ public class HeroService {
         heroRepository.save(entity);
     }
 
+    public List<HeroResponse> get3HeroByNotId(Long id) {
+        return heroRepository.findTop4ByIdNotAndStatus(id, "ACTIVE")
+                .stream()
+                .map(objectMapper::E2R)
+                .collect(Collectors.toList());
+    }
 }
