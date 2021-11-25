@@ -11,7 +11,7 @@
     <div class="container-fluid">
         <div class="main-container">
             <div class="row">
-                <form action="#" enctype="multipart/form-data" method="post" th:action="@{'/hero/create'}"
+                <form action="#" enctype="multipart/form-data" method="post" th:action="@{'/admin/hero/create'}"
                       th:object="${heroRequest}">
                     <div class="row">
                         <div class="mb-3 col-4">
@@ -70,10 +70,9 @@
                                th:errors="*{wars}"
                                th:if="${#fields.hasErrors('wars')}"></p>
                             <select class="form-select" multiple name="wars" th:field="*{wars}">
-                                <option th:text="Yoxdur" th:value="${-1}"></option>
                                 <span th:each="warVal :${warList}">
                                        <option th:text="${warVal.warName}" th:value="${warVal.id}"></option>
-                                    </span>
+                                </span>
                             </select>
                         </div>
                         <div class="mb-3 col-4">
@@ -84,7 +83,6 @@
 
                             <select class="form-select" multiple name="rewards"
                                     th:field="*{rewards}">
-                                <option th:text="Yoxdur" th:value="${-1}"></option>
                                 <span th:each="rewardVal ,status :${rewardList}">
                                      <option th:text="${rewardVal.rewardName}" th:value="${rewardVal.id}"></option>
                                 </span>

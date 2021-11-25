@@ -42,7 +42,7 @@ public class HeroController {
     private final WarService warService;
     private final PostCategoryService postCategoryService;
 
-    @GetMapping("/hero")
+    @GetMapping("/admin/hero")
     public String getHeroPage(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
@@ -77,7 +77,7 @@ public class HeroController {
         return "admin/hero";
     }
 
-    @GetMapping("/hero/create-page")
+    @GetMapping("/admin/hero/create-page")
     public String getCreatePage(Model model) {
         if (!model.containsAttribute("heroRequest")) {
             model.addAttribute("heroRequest", new HeroRequest());
@@ -89,7 +89,7 @@ public class HeroController {
         return "admin/createHeroPage";
     }
 
-    @GetMapping("/hero/{id}")
+    @GetMapping("/admin/hero/{id}")
     public String getById(
             @PathVariable(value = "id") Long heroId,
             Model model
@@ -109,7 +109,7 @@ public class HeroController {
         return "admin/updateHeroPage";
     }
 
-    @GetMapping(value = "/hero/get/delete")
+    @GetMapping(value = "/admin/hero/get/delete")
     public String getById4Delete(
             @RequestParam("id") Long id,
             Model model
@@ -118,7 +118,7 @@ public class HeroController {
         return "admin/heroRequestForm";
     }
 
-    @PostMapping("/hero/create")
+    @PostMapping("/admin/hero/create")
     public String createHero(
             @Validated @ModelAttribute("heroRequest") final HeroRequest request,
             final BindingResult bindingResult,
@@ -127,14 +127,14 @@ public class HeroController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.heroRequest", bindingResult);
             redirectAttributes.addFlashAttribute("heroRequest", request);
-            return "redirect:/hero/create-page";
+            return "redirect:/admin/hero/create-page";
         }
         heroService.createHero(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/hero";
+        return "redirect:/admin/hero";
     }
 
-    @PostMapping("/hero/update")
+    @PostMapping("/admin/hero/update")
     public String updateHero(
             @Validated @ModelAttribute("heroRequest") final HeroRequest request,
             final BindingResult bindingResult,
@@ -143,21 +143,21 @@ public class HeroController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.heroResponse", bindingResult);
             redirectAttributes.addFlashAttribute("heroResponse", request);
-            return "redirect:/hero/" + request.getId();
+            return "redirect:/admin/hero/" + request.getId();
         }
         heroService.updateHero(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/hero";
+        return "redirect:/admin/hero";
     }
 
-    @PostMapping("/hero/delete")
+    @PostMapping("/admin/hero/delete")
     public String deleteHero(
             @RequestParam("id") Long heroId,
             final RedirectAttributes redirectAttributes
     ) {
         heroService.deleteHero(heroId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/hero";
+        return "redirect:/admin/hero";
     }
 
     //CLIENT
