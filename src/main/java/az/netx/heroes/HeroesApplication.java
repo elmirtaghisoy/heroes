@@ -14,11 +14,11 @@ public class HeroesApplication {
 
 /*
 {
-    1. Contact Front
-    2. Message post service
-    ------------------------
     1. Urls
     2. Security config
+    ------------------------
+    1. Contact Front
+    2. Message post service
     3. Front bugfix
     ------------------------
     4. Auditable aware

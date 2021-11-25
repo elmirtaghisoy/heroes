@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--/*@thymesVar id="rankResponse" type="az.netx.heroes.model.response.RankResponse"*/-->
-<form method="post" th:action="@{'/categorization/rank/delete'}" th:object="${rankResponse}">
+<form method="post" th:action="@{'/admin/categorization/rank/delete'}" th:object="${rankResponse}">
     <div class="modal-body">
         <input id="id" th:field="*{id}" type="hidden"/>
         <div class="col-12">

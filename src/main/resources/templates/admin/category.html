@@ -102,7 +102,8 @@
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-danger" data-dismiss="modal" id="close-field-error-modal-rank"
+                                    <button class="btn btn-danger" data-dismiss="modal"
+                                            id="close-field-error-modal-rank"
                                             type="button">
                                         BAĞLA
                                     </button>
@@ -128,7 +129,8 @@
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-danger" data-dismiss="modal" id="close-field-error-modal-reward"
+                                    <button class="btn btn-danger" data-dismiss="modal"
+                                            id="close-field-error-modal-reward"
                                             type="button">
                                         BAĞLA
                                     </button>
@@ -154,7 +156,8 @@
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-danger" data-dismiss="modal" id="close-field-error-modal-postCategory"
+                                    <button class="btn btn-danger" data-dismiss="modal"
+                                            id="close-field-error-modal-postCategory"
                                             type="button">
                                         BAĞLA
                                     </button>
@@ -179,7 +182,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <form method="post" th:action="@{'/categorization/war/create'}" th:object="${warRequest}">
+                <form method="post" th:action="@{'/admin/categorization/war/create'}" th:object="${warRequest}">
                     <input class="form-control" id="contactNameLabel" name="warName"
                            placeholder="Döyüşün adını daxil edin"
                            th:field="*{warName}" type="text">
@@ -188,7 +191,7 @@
                     </div>
                 </form>
                 <tr class="align-middle" th:each="war : ${wars}">
-                    <form method="post" th:action="@{'/categorization/war/update'}" th:object="${warRequest}">
+                    <form method="post" th:action="@{'/admin/categorization/war/update'}" th:object="${warRequest}">
                         <input name="id" th:value="${war.id}" type="hidden">
                         <th scope="row" th:text="${war.id}"></th>
                         <td>
@@ -211,7 +214,7 @@
                     </form>
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
-                           data-toggle="modal" th:onclick="|init(${war.id},'delete','categorization/war')|">
+                           data-toggle="modal" th:onclick="|init(${war.id},'delete','/admin/categorization/war')|">
                             SİL
                         </a>
                     </td>
@@ -230,7 +233,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <form method="post" th:action="@{'/categorization/rank/create'}" th:object="${rankRequest}">
+                <form method="post" th:action="@{'/admin/categorization/rank/create'}" th:object="${rankRequest}">
                     <input class="form-control" id="contactNameLabel1" name="rankName"
                            placeholder="Rütbəni daxil edin"
                            th:field="*{rankName}" type="text">
@@ -239,7 +242,7 @@
                     </div>
                 </form>
                 <tr class="align-middle" th:each="rank : ${ranks}">
-                    <form method="post" th:action="@{'/categorization/rank/update'}" th:object="${rankRequest}">
+                    <form method="post" th:action="@{'/admin/categorization/rank/update'}" th:object="${rankRequest}">
                         <input name="id" th:value="${rank.id}" type="hidden">
                         <th scope="row" th:text="${rank.id}"></th>
                         <td>
@@ -262,7 +265,7 @@
                     </form>
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
-                           data-toggle="modal" th:onclick="|init(${rank.id},'delete','categorization/rank')|">
+                           data-toggle="modal" th:onclick="|init(${rank.id},'delete','/admin/categorization/rank')|">
                             SİL
                         </a>
                     </td>
@@ -282,7 +285,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <form method="post" th:action="@{'/categorization/reward/create'}" th:object="${rewardRequest}">
+                <form method="post" th:action="@{'/admin/categorization/reward/create'}" th:object="${rewardRequest}">
                     <input class="form-control" id="contactNameLabel2" name="rewardName"
                            placeholder="Medalı daxil edin"
                            th:field="*{rewardName}" type="text">
@@ -291,7 +294,8 @@
                     </div>
                 </form>
                 <tr class="align-middle" th:each="reward : ${rewards}">
-                    <form method="post" th:action="@{'/categorization/reward/update'}" th:object="${rewardRequest}">
+                    <form method="post" th:action="@{'/admin/categorization/reward/update'}"
+                          th:object="${rewardRequest}">
                         <input name="id" th:value="${reward.id}" type="hidden">
                         <th scope="row" th:text="${reward.id}"></th>
                         <td>
@@ -314,7 +318,8 @@
                     </form>
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
-                           data-toggle="modal" th:onclick="|init(${reward.id},'delete','categorization/reward')|">
+                           data-toggle="modal"
+                           th:onclick="|init(${reward.id},'delete','/admin/categorization/reward')|">
                             SİL
                         </a>
                     </td>
@@ -334,7 +339,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <form method="post" th:action="@{'/categorization/post-category/create'}" th:object="${postCategoryRequest}">
+                <form method="post" th:action="@{'/admin/categorization/post-category/create'}"
+                      th:object="${postCategoryRequest}">
                     <input class="form-control" id="contactNameLabel3" name="categoryName"
                            placeholder="Paylaşım kateqoriyasını daxil edin"
                            th:field="*{categoryName}" type="text">
@@ -343,7 +349,7 @@
                     </div>
                 </form>
                 <tr class="align-middle" th:each="postCategory : ${postCategories}">
-                    <form method="post" th:action="@{'/categorization/post-category/update'}"
+                    <form method="post" th:action="@{'/admin/categorization/post-category/update'}"
                           th:object="${postCategoryRequest}">
                         <input name="id" th:value="${postCategory.id}" type="hidden">
                         <th scope="row" th:text="${postCategory.id}"></th>
@@ -369,7 +375,7 @@
                     <td>
                         <a class="delete-button btn btn-danger mt-2 text-uppercase"
                            data-toggle="modal"
-                           th:onclick="|init(${postCategory.id},'delete','categorization/post-category')|">
+                           th:onclick="|init(${postCategory.id},'delete','/admin/categorization/post-category')|">
                             SİL
                         </a>
                     </td>

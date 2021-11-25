@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.UUID;
 
 @Controller
-@RequestMapping(value = "/categorization")
+@RequestMapping(value = "/admin/categorization")
 @RequiredArgsConstructor
 public class CategorizationController implements ControllerConstraints {
 
@@ -77,11 +77,11 @@ public class CategorizationController implements ControllerConstraints {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.warRequest", bindingResult);
             redirectAttributes.addFlashAttribute("warRequest", request);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         warService.createWar(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/rank/create")
@@ -93,11 +93,11 @@ public class CategorizationController implements ControllerConstraints {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.rankRequest", bindingResult);
             redirectAttributes.addFlashAttribute("rankRequest", request);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         rankService.createRank(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/post-category/create")
@@ -109,11 +109,11 @@ public class CategorizationController implements ControllerConstraints {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postCategoryRequest", bindingResult);
             redirectAttributes.addFlashAttribute("postCategoryRequest", request);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         postCategoryService.createPostCategory(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/reward/create")
@@ -125,11 +125,11 @@ public class CategorizationController implements ControllerConstraints {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.rewardRequest", bindingResult);
             redirectAttributes.addFlashAttribute("rewardRequest", request);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         rewardService.createReward(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @GetMapping(value = "/war")
@@ -185,11 +185,11 @@ public class CategorizationController implements ControllerConstraints {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.warRequest", bindingResult);
             redirectAttributes.addFlashAttribute("warRequest", request);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         warService.updateWar(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/rank/update")
@@ -201,11 +201,11 @@ public class CategorizationController implements ControllerConstraints {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.rankRequest", bindingResult);
             redirectAttributes.addFlashAttribute("rankRequest", request);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         rankService.updateRank(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/post-category/update")
@@ -217,11 +217,11 @@ public class CategorizationController implements ControllerConstraints {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postCategoryRequest", bindingResult);
             redirectAttributes.addFlashAttribute("postCategoryRequest", request);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         postCategoryService.updatePostCategory(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/reward/update")
@@ -233,11 +233,11 @@ public class CategorizationController implements ControllerConstraints {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.rewardRequest", bindingResult);
             redirectAttributes.addFlashAttribute("rewardRequest", request);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         rewardService.updateReward(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/war/delete")
@@ -249,10 +249,10 @@ public class CategorizationController implements ControllerConstraints {
         if (uuid.equals(ACCEPT_UUID)) {
             warService.deleteWar(warId);
             redirectAttributes.addFlashAttribute("success", SUCCESS);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         redirectAttributes.addFlashAttribute("error", UUID_ERROR);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/rank/delete")
@@ -264,10 +264,10 @@ public class CategorizationController implements ControllerConstraints {
         if (uuid.equals(ACCEPT_UUID)) {
             rankService.deleteRank(rankId);
             redirectAttributes.addFlashAttribute("success", SUCCESS);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         redirectAttributes.addFlashAttribute("error", UUID_ERROR);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/post-category/delete")
@@ -279,10 +279,10 @@ public class CategorizationController implements ControllerConstraints {
         if (uuid.equals(ACCEPT_UUID)) {
             postCategoryService.deletePostCategory(postCategoryId);
             redirectAttributes.addFlashAttribute("success", SUCCESS);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         redirectAttributes.addFlashAttribute("error", UUID_ERROR);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
     @PostMapping(value = "/reward/delete")
@@ -294,10 +294,10 @@ public class CategorizationController implements ControllerConstraints {
         if (uuid.equals(ACCEPT_UUID)) {
             rewardService.deleteReward(rewardId);
             redirectAttributes.addFlashAttribute("success", SUCCESS);
-            return "redirect:/categorization";
+            return "redirect:/admin/categorization";
         }
         redirectAttributes.addFlashAttribute("error", UUID_ERROR);
-        return "redirect:/categorization";
+        return "redirect:/admin/categorization";
     }
 
 }
