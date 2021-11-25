@@ -35,7 +35,7 @@ public class UserController {
         return "admin/login";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/admin/user")
     public String getUserPage(
             Model model
     ) {
@@ -43,7 +43,7 @@ public class UserController {
         return "admin/user";
     }
 
-    @GetMapping("/user/activate-page")
+    @GetMapping("/admin/user/activate-page")
     public String getActivationPage(
             Principal principal,
             Model model
@@ -63,10 +63,10 @@ public class UserController {
             model.addAttribute("error");
         }
 
-        return "redirect:/post";
+        return "redirect:/admin/post";
     }
 
-    @GetMapping("/user/create-page")
+    @GetMapping("/admin/user/create-page")
     public String getCreatePage(Model model) {
         if (!model.containsAttribute("userAddRequest")) {
             model.addAttribute("userAddRequest", new UserAddRequest());
@@ -77,7 +77,7 @@ public class UserController {
         return "admin/createUserPage";
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/admin/user/{id}")
     public String getById(
             @PathVariable(value = "id") Long id,
             Model model
@@ -93,7 +93,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/create/user")
+    @PostMapping("/admin/create/user")
     public String createUser(
             @Validated @ModelAttribute("userAddRequest") final UserAddRequest request,
             final BindingResult bindingResult,
@@ -102,18 +102,18 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userAddRequest", bindingResult);
             redirectAttributes.addFlashAttribute("userAddRequest", request);
-            return "redirect:/user/create-page";
+            return "redirect:/admin/user/create-page";
         }
         String result = userService.saveUser(request);
         if ("USERNAME_ALREADY_EXIST".equals(result)) {
             redirectAttributes.addFlashAttribute("error", USERNAME_ALREADY_EXIST);
-            return "redirect:/user/create-page";
+            return "redirect:/admin/user/create-page";
         }
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/user";
+        return "redirect:/admin/user";
     }
 
-    @PostMapping("/update/user")
+    @PostMapping("/admin/update/user")
     public String updateUser(
             @Validated @ModelAttribute("userAddRequest") final UserAddRequest request,
             final BindingResult bindingResult,
@@ -122,18 +122,18 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userAddRequest", bindingResult);
             redirectAttributes.addFlashAttribute("userAddRequest", request);
-            return "redirect:/user/" + request.getId();
+            return "redirect:/admin/user/" + request.getId();
         }
         String result = userService.updateUser(request);
         if ("USERNAME_ALREADY_EXIST".equals(result)) {
             redirectAttributes.addFlashAttribute("error", USERNAME_ALREADY_EXIST);
-            return "redirect:/user/" + request.getId();
+            return "redirect:/admin/user/" + request.getId();
         }
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/user";
+        return "redirect:/admin/user";
     }
 
-    @PostMapping("/user/activate")
+    @PostMapping("/admin/user/activate")
     public String activateUser(
             @Validated @ModelAttribute("userRequest") final UserRequest request,
             final BindingResult bindingResult,
@@ -142,24 +142,24 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userResponse", bindingResult);
             redirectAttributes.addFlashAttribute("userResponse", request);
-            return "redirect:/user/activate-page";
+            return "redirect:/admin/user/activate-page";
         }
         String result = userService.activateUser(request);
         switch (result) {
             case "USERNAME_ALREADY_EXIST":
                 redirectAttributes.addFlashAttribute("error", USERNAME_ALREADY_EXIST);
-                return "redirect:/user/activate-page";
+                return "redirect:/admin/user/activate-page";
             case "INVALID_PASS":
                 redirectAttributes.addFlashAttribute("error", INVALID_PASS);
-                return "redirect:/user/activate-page";
+                return "redirect:/admin/user/activate-page";
             default:
                 redirectAttributes.addFlashAttribute("success", SUCCESS);
-                return "redirect:/post";
+                return "redirect:/admin/post";
         }
     }
 
 
-    @PostMapping("/user/{action}")
+    @PostMapping("/admin/user/{action}")
     public String userActivity(
             @RequestParam("id") Long id,
             @PathVariable("action") String action,
@@ -167,17 +167,17 @@ public class UserController {
     ) {
         userService.userActivity(id, action);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/user";
+        return "redirect:/admin/user";
     }
 
-    @PostMapping("/reset/user")
+    @PostMapping("/admin/reset/user")
     public String resetUser(
             @RequestParam("id") Long id,
             final RedirectAttributes redirectAttributes
     ) {
         userService.resetUser(id);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/user";
+        return "redirect:/admin/user";
     }
 
 }

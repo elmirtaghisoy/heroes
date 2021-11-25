@@ -72,7 +72,7 @@
     <div class="row">
         <div class="collapse" id="collapseExample">
             <div class="card card-body">
-                <form method="get" th:action="@{'/message'}">
+                <form method="get" th:action="@{'/admin/message'}">
                     <div class="row d-flex justify-content-center">
                         <div class="mb-3 col-6">
                             <label class="form-label text-uppercase" for="headerLabel">Email</label>
@@ -143,7 +143,8 @@
                                 <td th:text="${message.email}"></td>
                                 <td th:text="${message.readTs}"></td>
                                 <td>
-                                    <form method="post" style="margin: 0 !important;" th:action="@{'message/read'}">
+                                    <form method="post" style="margin: 0 !important;"
+                                          th:action="@{'/admin/message/read'}">
                                         <input name="id" th:value="${message.id}" type="hidden">
                                         <input class="btn mt-1 btn-warning text-uppercase"
                                                style="display: block;width: 100%;color: white;" type="submit"
@@ -151,7 +152,8 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form method="post" style="margin: 0 !important;" th:action="@{'message/delete'}">
+                                    <form method="post" style="margin: 0 !important;"
+                                          th:action="@{'/admin/message/delete'}">
                                         <input name="id" th:value="${message.id}" type="hidden">
                                         <input class="btn mt-1 btn-danger text-uppercase"
                                                style="display: block;width: 100%" type="submit"
@@ -167,7 +169,8 @@
                                 <td th:text="${message.email}"></td>
                                 <td>YENI</td>
                                 <td>
-                                    <form method="post" style="margin: 0 !important;" th:action="@{'message/read'}">
+                                    <form method="post" style="margin: 0 !important;"
+                                          th:action="@{'/admin/message/read'}">
                                         <input name="id" th:value="${message.id}" type="hidden">
                                         <input class="btn mt-1 btn-warning text-uppercase"
                                                style="display: block;width: 100%;color: white;" type="submit"
@@ -175,7 +178,8 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form method="post" style="margin: 0 !important;" th:action="@{'message/delete'}">
+                                    <form method="post" style="margin: 0 !important;"
+                                          th:action="@{'/admin/message/delete'}">
                                         <input name="id" th:value="${message.id}" type="hidden">
                                         <input class="btn mt-1 btn-danger text-uppercase"
                                                style="display: block;width: 100%" type="submit"
@@ -195,13 +199,13 @@
                                 th:classappend="${!objectList.paging.isPrevEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
                                    tabindex="-1"
-                                   th:href="@{'/message/?page=' + ${objectList.paging.pageNumber - 1}+ ${srcUrl}}">Previous</a>
+                                   th:href="@{'/admin/message/?page=' + ${objectList.paging.pageNumber - 1}+ ${srcUrl}}">Previous</a>
                             </li>
                             <th:block th:each="item : ${objectList.paging.getItems()}">
                                 <li class="page-item"
                                     th:classappend="${item.index == objectList.paging.pageNumber? 'active' : ''}"
                                     th:if="${item.pageItemType.name() == 'PAGE'}">
-                                    <a class="page-link" th:href="@{'/message/?page=' + ${item.index}+ ${srcUrl}}"
+                                    <a class="page-link" th:href="@{'/admin/message/?page=' + ${item.index}+ ${srcUrl}}"
                                        th:text="${item.index}"></a>
                                 </li>
                                 <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
@@ -211,7 +215,7 @@
                             <li class="page-item"
                                 th:classappend="${!objectList.paging.isNextEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'/message/?page=' + ${objectList.paging.pageNumber + 1}+ ${srcUrl}}">Next</a>
+                                   th:href="@{'/admin/message/?page=' + ${objectList.paging.pageNumber + 1}+ ${srcUrl}}">Next</a>
                             </li>
                         </ul>
                     </nav>

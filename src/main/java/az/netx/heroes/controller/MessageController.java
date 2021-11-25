@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,13 +18,12 @@ import static az.netx.heroes.controller.ControllerConstraints.SUCCESS;
 import static az.netx.heroes.util.SearchUtil.messageSearchPathBuilder;
 
 @Controller
-@RequestMapping(value = "/message")
 @RequiredArgsConstructor
 public class MessageController {
 
     private final MessageService messageService;
 
-    @GetMapping
+    @GetMapping("/admin/message")
     public String getMessagePage(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "15") int size,
@@ -62,7 +60,7 @@ public class MessageController {
         return "admin/message";
     }
 
-    @PostMapping("/read")
+    @PostMapping("/admin/message/read")
     public String getById(
             @RequestParam(value = "id") Long id,
             Model model
@@ -71,13 +69,13 @@ public class MessageController {
         return "admin/viewMessagePage";
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/admin/message/delete")
     public String deleteById(
             @RequestParam(value = "id") Long id,
             final RedirectAttributes redirectAttributes
     ) {
         messageService.deleteMessage(id);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/message";
+        return "redirect:/admin/message";
     }
 }

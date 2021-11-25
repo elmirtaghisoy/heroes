@@ -25,7 +25,7 @@ public class VictoryHistoryController {
     private final VictoryHistoryService victoryHistoryService;
     private final PostCategoryService postCategoryService;
 
-    @GetMapping("/hist/all")
+    @GetMapping("/admin/hist/all")
     public String getAllHist(
             Model model
     ) {
@@ -34,6 +34,22 @@ public class VictoryHistoryController {
             model.addAttribute("success");
         }
         return "admin/hist";
+    }
+
+    @PostMapping("/admin/hist/update")
+    public String updateHist(
+            @Validated @ModelAttribute("histRequest") final VictoryHistoryRequest request,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes
+    ) throws IOException {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.histResponse", bindingResult);
+            redirectAttributes.addFlashAttribute("histResponse", request);
+            return "redirect:/admin/hist/all";
+        }
+        victoryHistoryService.updateHist(request);
+        redirectAttributes.addFlashAttribute("success", SUCCESS);
+        return "redirect:/admin/hist/all";
     }
 
     @GetMapping("/cl/hist/all")
@@ -56,22 +72,6 @@ public class VictoryHistoryController {
         model.addAttribute("histList", victoryHistoryService.get2HistByNotId(id));
         model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
         return "client/histOne";
-    }
-
-    @PostMapping("/hist/update")
-    public String updateHist(
-            @Validated @ModelAttribute("histRequest") final VictoryHistoryRequest request,
-            final BindingResult bindingResult,
-            final RedirectAttributes redirectAttributes
-    ) throws IOException {
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.histResponse", bindingResult);
-            redirectAttributes.addFlashAttribute("histResponse", request);
-            return "redirect:/hist/all";
-        }
-        victoryHistoryService.updateHist(request);
-        redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/hist/all";
     }
 
 }

@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <!--Standard-->
-                <a class="btn btn-primary text-uppercase" href="/user/create-page">İstifadəçİ əlavə et</a>
+                <a class="btn btn-primary text-uppercase" href="/admin/user/create-page">İstifadəçİ əlavə et</a>
             </div>
         </div>
     </div>
@@ -87,12 +87,12 @@
                     <th scope="row" th:text="${user.surname}"></th>
                     <td>
                         <a class="btn btn-warning mt-2 text-uppercase"
-                           th:href="@{/user/{id}(id=${user.id})}">
+                           th:href="@{/admin/user/{id}(id=${user.id})}">
                             DƏYİŞİKLİK ET
                         </a>
                     </td>
                     <td>
-                        <form method="post" th:action="@{'/reset/user'}">
+                        <form method="post" th:action="@{'/admin/reset/user'}">
                             <input name="id" th:value="${user.id}" type="hidden">
                             <button class="btn btn-primary mt-2 text-uppercase" type="submit">
                                 ŞİFRƏNİ YENİLƏ
@@ -100,7 +100,7 @@
                         </form>
                     </td>
                     <td>
-                        <form method="post" th:action="@{'/user/unblock'}">
+                        <form method="post" th:action="@{'/admin/user/unblock'}">
                             <input name="id" th:value="${user.id}" type="hidden">
                             <button class="btn btn-success mt-2 text-uppercase"
                                     th:if="${user.isEnable == 0 && user.id !=1}"
@@ -108,7 +108,7 @@
                                 AKTIV ET
                             </button>
                         </form>
-                        <form method="post" th:action="@{'/user/block'}">
+                        <form method="post" th:action="@{'/admin/user/block'}">
                             <input name="id" th:value="${user.id}" type="hidden">
                             <button class=" btn btn-danger mt-2 text-uppercase"
                                     th:if="${user.isEnable == 1 && user.id !=1}"

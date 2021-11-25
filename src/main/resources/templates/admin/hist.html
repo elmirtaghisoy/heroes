@@ -62,7 +62,7 @@
     <div class="container">
         <div class="accordion" id="accordionExample">
             <div class=" accordion-item" th:each="hist : ${histList}">
-                <form enctype="multipart/form-data" method="post" th:action="@{/hist/update}" th:object="${hist}">
+                <form enctype="multipart/form-data" method="post" th:action="@{/admin/hist/update}" th:object="${hist}">
                     <input name="id" th:value="${hist.id}" type="hidden">
                     <input name="header" th:value="${hist.header}" type="hidden">
                     <input name="filePath" th:value="${hist.filePath}" type="hidden">
