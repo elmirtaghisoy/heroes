@@ -41,7 +41,7 @@ public class MartyredController {
     private final WarService warService;
     private final PostCategoryService postCategoryService;
 
-    @GetMapping("/martyred")
+    @GetMapping("/admin/martyred")
     public String getMartyredPage(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
@@ -76,7 +76,7 @@ public class MartyredController {
         return "admin/martyred";
     }
 
-    @GetMapping("/martyred/create-page")
+    @GetMapping("/admin/martyred/create-page")
     public String getCreatePage(Model model) {
         if (!model.containsAttribute("martyredRequest")) {
             model.addAttribute("martyredRequest", new MartyredRequest());
@@ -88,7 +88,7 @@ public class MartyredController {
         return "admin/createMartyredPage";
     }
 
-    @GetMapping("/martyred/{id}")
+    @GetMapping("/admin/martyred/{id}")
     public String getById(
             @PathVariable(value = "id") Long martyredId,
             Model model
@@ -111,7 +111,7 @@ public class MartyredController {
         return "admin/updateMartyredPage";
     }
 
-    @GetMapping(value = "/martyred/get/delete")
+    @GetMapping(value = "/admin/martyred/get/delete")
     public String getById4Delete(
             @RequestParam("id") Long id,
             Model model
@@ -120,7 +120,7 @@ public class MartyredController {
         return "admin/martyredRequestForm";
     }
 
-    @PostMapping("/martyred/create")
+    @PostMapping("/admin/martyred/create")
     public String createMartyred(
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,
             final BindingResult bindingResult,
@@ -129,14 +129,14 @@ public class MartyredController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.martyredRequest", bindingResult);
             redirectAttributes.addFlashAttribute("martyredRequest", request);
-            return "redirect:/martyred/create-page";
+            return "redirect:/admin/martyred/create-page";
         }
         martyredService.createMartyred(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/martyred";
+        return "redirect:/admin/martyred";
     }
 
-    @PostMapping("/martyred/update")
+    @PostMapping("/admin/martyred/update")
     public String updateMartyred(
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,
             final BindingResult bindingResult,
@@ -145,21 +145,21 @@ public class MartyredController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.martyredResponse", bindingResult);
             redirectAttributes.addFlashAttribute("martyredResponse", request);
-            return "redirect:/martyred/" + request.getId();
+            return "redirect:/admin/martyred/" + request.getId();
         }
         martyredService.updateMartyred(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/martyred";
+        return "redirect:/admin/martyred";
     }
 
-    @PostMapping("/martyred/delete")
+    @PostMapping("/admin/martyred/delete")
     public String deleteMartyred(
             @RequestParam("id") Long martyredId,
             final RedirectAttributes redirectAttributes
     ) {
         martyredService.deleteMartyred(martyredId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/martyred";
+        return "redirect:/admin/martyred";
     }
 
     //CLIENT
