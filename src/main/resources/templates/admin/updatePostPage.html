@@ -11,7 +11,7 @@
     <div class="container-fluid">
         <div class="main-container">
             <div class="row">
-                <form action="#" enctype="multipart/form-data" method="post" th:action="@{'/post/update'}"
+                <form action="#" enctype="multipart/form-data" method="post" th:action="@{'/admin/post/update'}"
                       th:object="${postResponse}">
                     <div class="row mb-3">
                         <div class="accordion " id="accordionExample">
@@ -81,7 +81,7 @@
                 </form>
                 <div class="row">
                     <a class="btn btn-warning text-uppercase mb-3" style="color: white"
-                       th:href="@{/post/{id}/file(id=${postResponse.id})}">
+                       th:href="@{/admin/post/{id}/file(id=${postResponse.id})}">
                         Fayllarda dəyİşİklİk et
                     </a>
                 </div>

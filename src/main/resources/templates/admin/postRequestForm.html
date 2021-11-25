@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--/*@thymesVar id="postResponse" type="az.netx.heroes.model.response.PostResponse"*/-->
-<form method="post" th:action="@{'/post/delete'}" th:object="${postResponse}">
+<form method="post" th:action="@{'/admin/post/delete'}" th:object="${postResponse}">
     <div class="modal-body">
         <input id="id" th:field="${postResponse.id}" type="hidden"/>
         <div class="col-12">

@@ -35,7 +35,7 @@ public class PostController {
     private final PostCategoryService postCategoryService;
     private String ACCEPT_UUID;
 
-    @GetMapping("/post")
+    @GetMapping("/admin/post")
     public String getPostPage(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
@@ -69,7 +69,7 @@ public class PostController {
         return "admin/post";
     }
 
-    @GetMapping("/post/create-page")
+    @GetMapping("/admin/post/create-page")
     public String getCreatePage(Model model) {
         if (!model.containsAttribute("postRequest")) {
             model.addAttribute("postRequest", new PostRequest());
@@ -79,7 +79,7 @@ public class PostController {
         return "admin/createPostPage";
     }
 
-    @GetMapping("/post/{id}")
+    @GetMapping("/admin/post/{id}")
     public String getById(
             @PathVariable(value = "id") Long id,
             Model model
@@ -92,7 +92,7 @@ public class PostController {
         return "admin/updatePostPage";
     }
 
-    @GetMapping(value = "/post/get/delete")
+    @GetMapping(value = "/admin/post/get/delete")
     public String getById4Delete(
             @RequestParam("id") Long id,
             Model model
@@ -101,7 +101,7 @@ public class PostController {
         return "admin/postRequestForm";
     }
 
-    @GetMapping("/post/{id}/file")
+    @GetMapping("/admin/post/{id}/file")
     public String getFilesByObjId(
             @PathVariable(value = "id") Long objId,
             Model model
@@ -110,7 +110,7 @@ public class PostController {
         return "admin/files";
     }
 
-    @PostMapping("/post/create")
+    @PostMapping("/admin/post/create")
     public String createPost(
             @Validated @ModelAttribute("postRequest") final PostRequest request,
             final BindingResult bindingResult,
@@ -119,14 +119,14 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postRequest", bindingResult);
             redirectAttributes.addFlashAttribute("postRequest", request);
-            return "redirect:/post/create-page";
+            return "redirect:/admin/post/create-page";
         }
         postService.createPost(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/post";
+        return "redirect:/admin/post";
     }
 
-    @PostMapping("/post/update")
+    @PostMapping("/admin/post/update")
     public String updatePost(
             @Validated @ModelAttribute("postRequest") final PostRequest request,
             final BindingResult bindingResult,
@@ -135,21 +135,21 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postResponse", bindingResult);
             redirectAttributes.addFlashAttribute("postResponse", request);
-            return "redirect:/post/" + request.getId();
+            return "redirect:/admin/post/" + request.getId();
         }
         postService.updatePost(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/post";
+        return "redirect:/admin/post";
     }
 
-    @PostMapping("/post/delete")
+    @PostMapping("/admin/post/delete")
     public String deletePost(
             @RequestParam("id") Long id,
             final RedirectAttributes redirectAttributes
     ) {
         postService.deletePost(id);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/post";
+        return "redirect:/admin/post";
     }
 
     @PostMapping("/post/file/delete")
@@ -160,10 +160,10 @@ public class PostController {
     ) {
         postService.deleteFileById(fileId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/post/" + objId + "/file";
+        return "redirect:/admin/post/" + objId + "/file";
     }
 
-    @PostMapping("/post/{id}/file")
+    @PostMapping("/admin/post/{id}/file")
     public String saveFilesByObjId(
             @PathVariable("id") Long objId,
             @RequestParam("files") List<MultipartFile> files,
@@ -171,7 +171,7 @@ public class PostController {
     ) throws IOException {
         postService.saveAdditionalFiles(files, objId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/post/" + objId + "/file";
+        return "redirect:/admin/post/" + objId + "/file";
     }
 
     //CLIENT
