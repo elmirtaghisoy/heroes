@@ -14,15 +14,14 @@ public class HeroesApplication {
 
 /*
 {
-    1. Urls
-    2. Security config
     ------------------------
-    1. Contact Front
-    2. Message post service
-    3. Front bugfix
+    1. Front bugfix
+    2. (dateformat)
+    3. Message post service
+    4. Contact Front
     ------------------------
     4. Auditable aware
-    5. projection query optimization
+    5. Projection query optimization
     ------------------------
 }
 */

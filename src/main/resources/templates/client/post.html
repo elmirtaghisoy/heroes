@@ -46,7 +46,7 @@
 
             <main class="col-lg-12">
                 <div class="card card-body">
-                    <form method="get" th:action="@{'/cl/post/-1'}">
+                    <form method="get" th:action="@{'/post/-1'}">
                         <div class="row d-flex justify-content-center">
                             <div class="mb-4 col-sm-4 col-12">
                                 <label class="form-label text-uppercase" for="headerLabel">Başlıq</label>
@@ -102,7 +102,7 @@
                                 <a href="#" th:text="${post.header}"></a>
                             </h3>
                             <a class="read_more_events btn btn-outline-maincolor"
-                               th:href="@{/cl/post/id/{id}(id=${post.id})}">
+                               th:href="@{/post/id/{id}(id=${post.id})}">
                                 Ətraflı
                             </a>
                         </div>
@@ -116,14 +116,14 @@
                                 th:classappend="${!objectList.paging.isPrevEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
                                    tabindex="-1"
-                                   th:href="@{'/cl/post/'+${currentCategory.id}+'?page=' + ${objectList.paging.pageNumber - 1}+ ${srcUrl}}">Previous</a>
+                                   th:href="@{'/post/'+${currentCategory.id}+'?page=' + ${objectList.paging.pageNumber - 1}+ ${srcUrl}}">Previous</a>
                             </li>
                             <th:block th:each="item : ${objectList.paging.getItems()}">
                                 <li class="page-item"
                                     th:classappend="${item.index == objectList.paging.pageNumber? 'active' : ''}"
                                     th:if="${item.pageItemType.name() == 'PAGE'}">
                                     <a class="page-link"
-                                       th:href="@{'/cl/post/'+${currentCategory.id}+'?page=' + ${item.index}+ ${srcUrl}}"
+                                       th:href="@{'/post/'+${currentCategory.id}+'?page=' + ${item.index}+ ${srcUrl}}"
                                        th:text="${item.index}"></a>
                                 </li>
                                 <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
@@ -133,7 +133,7 @@
                             <li class="page-item"
                                 th:classappend="${!objectList.paging.isNextEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'/cl/post/'+${currentCategory.id}+'?page=' + ${objectList.paging.pageNumber + 1}+ ${srcUrl}}">Next</a>
+                                   th:href="@{'/post/'+${currentCategory.id}+'?page=' + ${objectList.paging.pageNumber + 1}+ ${srcUrl}}">Next</a>
                             </li>
                         </ul>
                     </nav>

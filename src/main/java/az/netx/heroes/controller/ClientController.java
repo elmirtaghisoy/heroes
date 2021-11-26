@@ -1,5 +1,6 @@
 package az.netx.heroes.controller;
 
+import az.netx.heroes.service.PostCategoryService;
 import az.netx.heroes.service.VictoryHistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ClientController {
 
     private final VictoryHistoryService victoryHistoryService;
+    private final PostCategoryService postCategoryService;
 
-    @GetMapping("/home")
-    public String index() {
+    @GetMapping("/")
+    public String index(
+            Model model
+    ) {
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
         return "client/index";
     }
 

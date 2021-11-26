@@ -176,7 +176,7 @@ public class PostController {
 
     //CLIENT
 
-    @GetMapping("/cl/post/{category}")
+    @GetMapping("/post/{category}")
     public String clientGetPost(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
@@ -217,7 +217,7 @@ public class PostController {
         return "client/post";
     }
 
-    @GetMapping("/cl/post/id/{id}")
+    @GetMapping("/post/id/{id}")
     public String clientGetPostById(
             @PathVariable(value = "id") Long id,
             Model model

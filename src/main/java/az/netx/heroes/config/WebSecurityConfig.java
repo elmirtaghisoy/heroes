@@ -35,9 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/**", "/static/**", "/message/send")
-                .permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -45,10 +44,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/admin/user/activate-page")
                 .permitAll()
                 .and()
+                .httpBasic()
+                .and()
                 .logout()
                 .permitAll().and()
-                .exceptionHandling().accessDeniedPage("/login");
-        http.csrf().ignoringAntMatchers("/message/send").disable();
+                .exceptionHandling().accessDeniedPage("/");
+
     }
 
 }
