@@ -15,17 +15,14 @@ public class HeroesApplication {
 /*
 {
     ---------------------------------
-    3. Contact Front
-    4. BreadCumbs pics,icons
+    1. user operations secure
+    2. Auditable aware
+    4. Projection query optimization
     ---------------------------------
-    7. video
-    9. mp3
-    10. pictures
-    12. minifie resources
-    13. optimize queries
-    --------------------------------
-    4. Auditable aware
-    5. Projection query optimization
+    1. favicon
+    2. Contact Front
+    3. BreadCumbs contact pics,icons
+    4. add logo change sitename
     --------------------------------
 }
 */

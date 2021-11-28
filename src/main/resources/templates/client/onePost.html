@@ -69,8 +69,16 @@
 
                         <div class="col-12 text-center" th:each="file : ${post.filePaths}">
                             <div th:switch="${file.fileType}">
-                                <img class="img-thumbnail" style="height:200; width:auto;" th:case="1"
-                                     th:src="@{${file.folder}}">
+                                <div class="item-media">
+                                    <img class="img-thumbnail" style="height:200; width:auto;" th:case="1"
+                                         th:src="@{${file.folder}}">
+                                    <div class="media-links">
+                                        <div class="links-wrap">
+                                            <a class="link-zoom photoswipe-link" th:href="@{${file.folder}}"
+                                               title=""></a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <video controls height="200" th:case="2" width="auto">
                                     <source th:src="@{${file.folder}}" type="video/mp4">
                                 </video>
