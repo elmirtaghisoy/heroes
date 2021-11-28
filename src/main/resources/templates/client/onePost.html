@@ -105,12 +105,12 @@
                         <h3 class="widget-title">Digər Məqalələr</h3>
                         <ul class="list-unstyled">
                             <li class="media" th:each="post :${otherPosts}">
-                                <a class="media-image" th:href="@{/post/{id}(id=${post.id})}">
+                                <a class="media-image" th:href="@{/post/id/{id}(id=${post.id})}">
                                     <img alt="" th:src="${post.filePath}">
                                 </a>
                                 <div class="media-body">
                                     <h4>
-                                        <a th:href="@{/post/{id}(id=${post.id})}" th:text="${post.header}"></a>
+                                        <a th:href="@{/post/id/{id}(id=${post.id})}" th:text="${post.header}"></a>
                                     </h4>
                                     <p class="item-meta"
                                        th:text="${#temporals.format(post.createdDate,'yyyy-MM-dd')}"></p>

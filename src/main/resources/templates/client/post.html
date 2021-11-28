@@ -95,7 +95,7 @@
                         <div class="item-content">
                             <p class="entry-meta">
                                 <span class="data-events"
-                                      th:text="${#temporals.format(post.createdDate(),'yyyy-MM-dd')}"></span>
+                                      th:text="${#temporals.format(post.createdDate,'yyyy-MM-dd')}"></span>
                                 <span class="location-events" style="cursor: default"
                                       th:text="${post.category.categoryName}"></span>
                             </p>
