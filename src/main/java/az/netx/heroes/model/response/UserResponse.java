@@ -17,4 +17,5 @@ public class UserResponse {
     private String surname;
     private String status;
     private Integer isEnable;
+    private Integer isAdmin;
 }

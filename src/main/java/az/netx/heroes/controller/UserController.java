@@ -30,17 +30,17 @@ public class UserController {
     private final UserService userService;
     private final ObjectMapper objectMapper;
 
-    @GetMapping("/login")
-    public String login() {
-        return "admin/login";
-    }
-
     @GetMapping("/admin/user")
     public String getUserPage(
             Model model
     ) {
         model.addAttribute("users", userService.findAllUser());
         return "admin/user";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "admin/login";
     }
 
     @GetMapping("/admin/user/activate-page")
@@ -50,7 +50,6 @@ public class UserController {
     ) {
         if (!model.containsAttribute("userResponse")) {
             UserResponse user = objectMapper.E2R(userService.getUserByUsername(principal.getName()));
-            System.out.println(user.toString());
             if (user.getStatus().equals("DEACTIVE")) {
                 model.addAttribute("userResponse", user);
                 return "admin/activationPage";

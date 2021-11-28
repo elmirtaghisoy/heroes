@@ -50,14 +50,12 @@ public class ClientController {
         return "client/layout/warHistorySection";
     }
 
-    // CLIENT
     @PostMapping("/message/send")
     public String sendMessage(
             @Validated @ModelAttribute("messageRequest") final MessageRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
     ) {
-        System.out.println(request);
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.messageRequest", bindingResult);
             redirectAttributes.addFlashAttribute("messageRequest", request);
@@ -66,6 +64,22 @@ public class ClientController {
         messageService.createMessage(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/";
+    }
+
+    @GetMapping("/contact")
+    public String getContactPage(
+            Model model
+    ) {
+        if (model.containsAttribute("success")) {
+            model.addAttribute("success");
+        }
+
+        if (!model.containsAttribute("messageRequest")) {
+            model.addAttribute("messageRequest", new MessageRequest());
+        }
+
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
+        return "client/contact";
     }
 
 }

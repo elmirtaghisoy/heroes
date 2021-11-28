@@ -1,0 +1,170 @@
+<html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+
+<body>
+<div th:replace="client/layout/header.html::header"></div>
+
+<div class="header_absolute ds cover-background">
+
+    <section class="page_title padding-mobile cs s-py-60 s-py-md-80 s-py-xl-150">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <h1 class="bold">Bİzİmlə Əlaqə</h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a th:href="@{/}">Ana Səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item active" style="cursor: default">
+                            Bizimlə Əlaqə
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<section class="ls">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="divider-40 divider-lg-150"></div>
+
+            <div class="col-lg-6  mt-35 animate" data-animation="pullDown">
+
+                <h3 class="title_block"><span>Əlaqə</span> Vasitələri</h3>
+                <p class="pb-25">Təklif və iradlarınızı əlaqə nömrəmizə, email ünvanımıza və ya birbaşa
+                    sayt vasitəsi ilə bildirə bilərsiniz</p>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="icon-box">
+                            <div class="media">
+                                <div class="icon-styled color-main fs-40">
+                                    <i class="ico icon-smartphone"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h6 class="fw-300">
+                                        Telefon
+                                    </h6>
+                                    <p>
+                                        +99470-731-37-58
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="icon-box">
+                            <div class="media">
+                                <div class="icon-styled color-main fs-40">
+                                    <i class="ico icon-placeholder"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h6 class="fw-300">
+                                        Email
+                                    </h6>
+                                    <p>
+                                        zeferyolu@gmail.com
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider-30 d-block d-sm-none"></div>
+
+                </div>
+
+            </div>
+
+            <div class="divider-40 d-lg-none d-md-block"></div>
+
+
+            <div class="padding-mobile-small col-lg-6 cs px-70 py-66 animate" data-animation="scaleAppear">
+
+                <form class="c-mb-10 c-gutter-10" id="messageForm" method="post" th:action="@{'/message/send'}"
+                      th:object="${messageRequest}">
+                    <div class="row">
+
+                        <div class="col-sm-12">
+
+                            <h4 class="title_block">Dərhal<span> Əlaqə</span></h4>
+
+                            <div class="form-group has-placeholder">
+                                <label for="email">Əlaqə vasitəsi</label>
+                                <input aria-required="true" class="form-control" id="email" name="email"
+                                       placeholder="Email ünvanınızı və ya Mobil nömrənizi daxil edin" size="30"
+                                       type="text"
+                                       value="">
+                            </div>
+                            <div class="form-group has-placeholder">
+                                <label for="header">Mövzu</label>
+                                <input aria-required="true" class="form-control" id="header" name="header"
+                                       placeholder="Mövzunun başlığını daxil edin"
+                                       size="30" type="text" value="">
+                            </div>
+
+                            <div class="form-group has-placeholder">
+                                <label for="context">Mətn</label>
+                                <textarea aria-required="true" class="form-control" cols="45" id="context"
+                                          name="context"
+                                          placeholder="Təklif və iradlarınızı burada qeyd edin"
+                                          rows="6"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-30">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <button class="btn btn-outline-darkgrey" id="send" th:onclick="validateInput()"
+                                        type="button">
+                                    Göndər
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="divider-100 divider-lg-130"></div>
+        </div>
+    </div>
+</section>
+<script>
+    function validateInput() {
+        var message = "";
+        if (document.getElementById("email").value.length === 0) {
+            message += "Əlaqə vasitəsi -> Sizə geri dönüş edə bilməyimiz üçün əlaqə vasitəsini daxil edin.\n";
+        }
+        if (document.getElementById("header").value.length === 0) {
+            message += "Mövzu -> Mövzunu təyin edə bilməyimiz üçün mətnə başlıq əlavə edin.\n";
+        }
+        if (document.getElementById("context").value.length === 0) {
+            message += "Mətn -> Zəhmət olmasa mövzunu daxil edin.";
+        }
+        if (message.length !== 0) {
+            alert(message)
+            return false;
+        } else {
+            document.getElementById("messageForm").submit();
+            alert("Mesajiniz uğurla göndərildi.\nTezliklə sizinlə əlaqə saxlanılacaq.")
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

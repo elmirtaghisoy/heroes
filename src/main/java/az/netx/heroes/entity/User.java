@@ -44,4 +44,7 @@ public class User {
 
     @Column(name = "is_enable", insertable = false, columnDefinition = "boolean default 1")
     private Integer isEnable;
+
+    @Column(name = "is_admin", insertable = false, columnDefinition = "boolean default 1")
+    private Integer isAdmin;
 }

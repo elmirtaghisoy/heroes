@@ -10,6 +10,7 @@
             <column name="about" type="TEXT"/>
             <column name="email" type="VARCHAR(255)"/>
             <column name="is_enable" type="int" defaultValue="0"/>
+            <column name="is_admin" type="int" defaultValue="0"/>
             <column name="name" type="VARCHAR(255)"/>
             <column name="password" type="VARCHAR(255)"/>
             <column name="status" type="VARCHAR(255)" defaultValue="DEACTIVE"/>
