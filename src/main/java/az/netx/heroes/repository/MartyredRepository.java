@@ -12,5 +12,5 @@ import java.util.List;
 public interface MartyredRepository extends JpaRepository<Martyred, Long> {
     Page<MartyredResponse> findAll(Specification<Martyred> martyredSpecification, Pageable pageRequest);
 
-    List<Martyred> findTop4ByIdNotAndStatus(Long id, String status);
+    List<Martyred> findTop3ByIdNotAndStatus(Long id, String status);
 }

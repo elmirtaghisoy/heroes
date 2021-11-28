@@ -38,12 +38,12 @@ public class HeroSpecification implements Specification<Hero> {
             if (Objects.nonNull(request.getFatherName())) {
                 predicates.add(cb.like(root.get(Hero_.fatherName), "%" + request.getFatherName() + "%"));
             }
-            if (Objects.nonNull(request.getBirthDate())) {
+            if (Objects.nonNull(request.getBirthDate()) && !request.getBirthDate().isEmpty()) {
                 predicates.add(
                         cb.greaterThanOrEqualTo(root.get(Hero_.birthDate), LocalDate.parse(request.getBirthDate()))
                 );
             }
-            if (Objects.nonNull(request.getBirthDate())) {
+            if (Objects.nonNull(request.getBirthDate()) && !request.getBirthDate().isEmpty()) {
                 predicates.add(
                         cb.lessThanOrEqualTo(root.get(Hero_.birthDate), LocalDate.parse(request.getBirthDate()))
                 );

@@ -12,5 +12,5 @@ import java.util.List;
 public interface HeroRepository extends JpaRepository<Hero, Long> {
     Page<HeroResponse> findAll(Specification<Hero> heroSpecification, Pageable pageRequest);
 
-    List<Hero> findTop4ByIdNotAndStatus(Long id, String status);
+    List<Hero> findTop3ByIdNotAndStatus(Long id, String status);
 }

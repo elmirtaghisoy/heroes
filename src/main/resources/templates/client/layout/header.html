@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="header">
-    <div class="header_absolute header_under_slider ds">
+    <div class="header_absolute  ds">
         <section class="page_topline ds s-overlay">
             <div class="container">
                 <div class="row align-items-center">
@@ -42,17 +42,17 @@
                             <nav class="top-nav">
                                 <ul class="nav sf-menu">
 
-                                    <li class="animate" data-animation="fadeIn" data-delay="250">
+                                    <li>
                                         <a th:href="@{/}">Ana Səhifə</a>
                                     </li>
 
-                                    <li class="animate" data-animation="fadeIn" data-delay="250">
+                                    <li>
                                         <a th:href="@{/history}">Qələbə Tariximiz</a>
                                     </li>
 
                                     <!-- blog -->
-                                    <li class="animate" data-animation="fadeIn" data-delay="250">
-                                        <a>Məqalələr</a>
+                                    <li>
+                                        <a style="cursor: pointer">Məqalələr</a>
                                         <ul>
                                             <li th:each="cat :${categoryList}">
                                                 <a th:href="@{/post/{id}(id=${cat.id})}"
@@ -64,8 +64,8 @@
 
 
                                     <!-- shop -->
-                                    <li class="animate" data-animation="fadeIn" data-delay="250">
-                                        <a>Qəhrəmanlarımız</a>
+                                    <li>
+                                        <a style="cursor: pointer">Qəhrəmanlarımız</a>
                                         <ul>
                                             <li>
                                                 <a th:href="@{/martyred}">Şəhidlərimiz</a>
@@ -79,11 +79,11 @@
 
 
                                     <!-- contacts -->
-                                    <li class="animate" data-animation="fadeIn" data-delay="250">
+                                    <li>
                                         <a th:href="@{/contact}">Əlaqə</a>
                                     </li>
 
-                                    <li class="animate" data-animation="fadeIn" data-delay="250">
+                                    <li>
                                         <a>Dil Seçimi</a>
                                         <ul>
                                             <li>

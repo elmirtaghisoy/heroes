@@ -6,6 +6,7 @@
 
 <body>
 
+<div th:replace="client/layout/header.html::header"></div>
 
 <div class="header_absolute ds cover-background">
 
@@ -18,7 +19,7 @@
                     <h1 class="bold" th:text="${hist.header}+' Zəfəri'"></h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana Səhifə</a>
+                            <a th:href="@{/}">Ana Səhifə</a>
                         </li>
                         <li class="breadcrumb-item active" th:text="${hist.header}+' Zəfəri'">
                         </li>
@@ -47,7 +48,7 @@
                     <div class="item-content">
                         <header class="entry-header">
                             <h3 class="entry-title">
-                                <a href="event-single-right.html" th:text="${hist.header}"></a>
+                                <a th:href="@{/history/{id}(id=${hist.id})}" th:text="${hist.header}"></a>
                             </h3>
                         </header>
 
@@ -77,17 +78,17 @@
                                     <div class="item-media post-thumbnail">
                                         <img alt="" th:src="${hs.filePath}">
                                         <div class="media-links">
-                                            <a class="abs-link" href="blog-left.html" title=""></a>
+                                            <a class="abs-link" th:href="@{/history/{id}(id=${hist.id})}" title=""></a>
                                         </div>
                                     </div>
                                     <div class="item-content entry-content">
                                         <div class="item-content">
                                             <h3 class="entry-title">
-                                                <a href="event-single-right.html"
+                                                <a th:href="@{/history/{id}(id=${hist.id})}"
                                                    th:text="${hs.header} + ' Zəfəri'"> </a>
                                             </h3>
                                             <a class="read_more_events btn btn-outline-maincolor"
-                                               href="event-single-right.html">Ətraflı oxu</a>
+                                               th:href="@{/history/{id}(id=${hist.id})}">Ətraflı oxu</a>
 
                                         </div>
                                     </div>

@@ -1,11 +1,10 @@
 <html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Fortex - Bootstrap 4 premium MultePage HTML template</title>
-    <meta charset="utf-8">
 
 </head>
 
 <body>
+<div th:replace="client/layout/header.html::header"></div>
 
 
 <div class="header_absolute ds cover-background">
@@ -18,10 +17,11 @@
                     <h1 class="bold" th:text="${post.header}"></h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana Səhifə</a>
+                            <a th:href="@{/}">Ana Səhifə</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#" th:text="${post.category.categoryName}">Pages</a>
+                            <a th:href="@{/post/{id}(id=${post.category.id})}"
+                               th:text="${post.category.categoryName}"></a>
                         </li>
                     </ul>
                 </div>
@@ -44,8 +44,9 @@
                     <div class="item-content">
 
                         <div class="item-media post-thumbnail">
-                            <span class="cat-links"><a href="http://drivelywp/category/news/"
-                                                       th:text="${post.category.categoryName}"></a></span>
+                            <span class="cat-links"><a
+                                    th:href="@{/post/{id}(id=${post.category.id})}"
+                                    th:text="${post.category.categoryName}"></a></span>
                             <img alt="" th:src="${post.filePath}">
                         </div>
 
@@ -53,7 +54,7 @@
                             <header class="entry-header single-post">
                                 <div class="entry-meta color-darkgrey">
                                     <span class="posted-on">
-                                        <a href="blog-single-right.html" rel="bookmark">
+                                        <a rel="bookmark" style="cursor: default">
                                             <time class="entry-date published updated"
                                                   datetime="2018-01-03T10:11:37+00:00"
                                                   th:text="${post.createdDate}"></time>
@@ -91,7 +92,8 @@
 
                     <ul>
                         <li class="cat-item" th:each="cat :${categoryList}">
-                            <a href="blog-right.html" th:text="${cat.categoryName}"></a>
+                            <a th:href="@{/post/{id}(id=${cat.id})}"
+                               th:text="${cat.categoryName}"></a>
                         </li>
                     </ul>
                 </div>
@@ -102,12 +104,12 @@
                         <h3 class="widget-title">Digər Məqalələr</h3>
                         <ul class="list-unstyled">
                             <li class="media" th:each="post :${otherPosts}">
-                                <a class="media-image" href="blog-single-right.html">
+                                <a class="media-image" th:href="@{/post/{id}(id=${post.id})}">
                                     <img alt="" th:src="${post.filePath}">
                                 </a>
                                 <div class="media-body">
                                     <h4>
-                                        <a href="blog-single-right.html" th:text="${post.header}"></a>
+                                        <a th:href="@{/post/{id}(id=${post.id})}" th:text="${post.header}"></a>
                                     </h4>
                                     <p class="item-meta" th:text="${post.createdDate}">
                                     </p>

@@ -5,7 +5,112 @@
     <title>PathSoft - IT Solution for You Business</title>
 </head>
 <body>
+<div class="header_absolute header_under_slider ds">
+    <section class="page_topline ds s-overlay">
+        <div class="container">
+            <div class="row align-items-center">
 
+                <div class="col-12 col-sm-12 text-center">
+                    <div class="d-lg-flex justify-content-lg-end align-items-lg-center">
+                        <div class="mr-auto ml-auto">
+
+                            <div class="d-flex justify-content-center justify-content-lg-start">
+                                <a class="logo animate" data-animation="fadeInLeft" data-delay="250">
+                                    <img alt="" src="/static/client/images/logo.png">
+                                </a>
+                                <a class="logo animate" data-animation="fadeInRight" data-delay="250">
+                                    <img alt="" src="/static/client/images/logo2.png">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--eof topline-->
+
+    <!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->
+    <header class="page_header ds justify-nav-end" style="background-color: #131e25b3;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-2 col-lg-3 col-md-4 col-11">
+                    <a class="logo" th:href="@{/}">
+                        <h3>Heroes.az</h3>
+                    </a>
+                </div>
+                <div class="col-xl-10 col-lg-9 col-md-8 col-1">
+                    <div class="nav-wrap">
+
+                        <!-- main nav start -->
+                        <nav class="top-nav">
+                            <ul class="nav sf-menu">
+
+                                <li class="animate" data-animation="fadeIn" data-delay="100">
+                                    <a th:href="@{/}">Ana Səhifə</a>
+                                </li>
+
+                                <li class="animate" data-animation="fadeIn" data-delay="100">
+                                    <a th:href="@{/history}">Qələbə Tariximiz</a>
+                                </li>
+
+                                <!-- blog -->
+                                <li class="animate" data-animation="fadeIn" data-delay="100" style="cursor: pointer">
+                                    <a>Məqalələr</a>
+                                    <ul>
+                                        <li th:each="cat :${categoryList}">
+                                            <a th:href="@{/post/{id}(id=${cat.id})}"
+                                               th:text="${cat.categoryName}"></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- eof blog -->
+
+
+                                <!-- shop -->
+                                <li class="animate" data-animation="fadeIn" data-delay="100" style="cursor: pointer">
+                                    <a>Qəhrəmanlarımız</a>
+                                    <ul>
+                                        <li>
+                                            <a th:href="@{/martyred}">Şəhidlərimiz</a>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/hero}">Qazilərimiz</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- eof shop -->
+
+
+                                <!-- contacts -->
+                                <li class="animate" data-animation="fadeIn" data-delay="100">
+                                    <a th:href="@{/contact}">Əlaqə</a>
+                                </li>
+
+                                <li class="animate" data-animation="fadeIn" data-delay="100" style="cursor: pointer">
+                                    <a>Dil Seçimi</a>
+                                    <ul>
+                                        <li>
+                                            <div id="google_translate_element"></div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- eof contacts -->
+                            </ul>
+
+
+                        </nav>
+                        <!-- eof main nav -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header toggler -->
+        <span class="toggle_menu"><span></span></span>
+    </header>
+</div>
 
 <section class="page_slider">
     <div class="ds flexslider flexslider-style2">
@@ -82,13 +187,13 @@
             <div class="col-md-6 col-sm-12 animate" data-animation="bigEntrance" data-delay="50">
                 <div class="ls icon-box text-center">
                     <h4>
-                        <a href="service-single.html">Qəhrəmanlarımız</a>
+                        <a th:href="@{/hero}">Qəhrəmanlarımız</a>
                     </h4>
 
                     <p>
                         Qarabağ döyüşündə iştirak etmiş Şəhidlərimiz haqqında məlumatlar.
                     </p>
-                    <a class="simple_link" href="service-single.html">Ətraflı</a>
+                    <a class="simple_link" th:href="@{/hero}">Ətraflı</a>
 
                 </div>
                 <div class="divider-40 d-sm-block d-md-none"></div>
@@ -96,13 +201,13 @@
             <div class="col-md-6 col-sm-12 animate" data-animation="bigEntrance" data-delay="50">
                 <div class="ls icon-box text-center">
                     <h4>
-                        <a href="service-single.html">Zəfər Tarİxİmiz</a>
+                        <a th:href="@{/history}">Zəfər Tarİxİmiz</a>
                     </h4>
 
                     <p>
                         44 günlük vətən müharibəsi haqqında məlumatlar.
                     </p>
-                    <a class="simple_link" href="service-single.html">Ətraflı</a>
+                    <a class="simple_link" th:href="@{/history}">Ətraflı</a>
 
                 </div>
                 <div class="divider-40 d-sm-block d-md-none"></div>
@@ -114,7 +219,7 @@
 <section class="ds s-pb-60 s-pb-md-80 s-pb-xl-150 ">
     <div class="container">
         <div class="row align-items-center c-gutter-60">
-            <div class="col-md-12 col-lg-7 animate" data-animation="fadeIn" data-delay="60">
+            <div class="col-md-12 col-lg-7 animate" data-animation="fadeIn" data-delay="20">
                 <div class="item-media">
                     <div class="embed-responsive">
                         <div id="chartdiv" style="height: 500px;"></div>
@@ -122,7 +227,7 @@
                 </div>
             </div>
             <div class="col-md-12 col-lg-5">
-                <div class="animate" data-animation="fadeInRight" data-delay="60" id="warInfo">
+                <div class="animate" data-animation="fadeInRight" data-delay="20" id="warInfo">
                     <div class="divider-30 divider-md-70 divider-xl-75"></div>
                     <h1><span class="color-main">Zəfər</span><br> Tarİxİmİz</h1>
                     <div class="fw-divider-special">
@@ -162,7 +267,7 @@
                 <div class="testimonials-slider owl-carousel" data-autoplay="true" data-dots="false"
                      data-loop="true" data-margin="30" data-nav="false" data-responsive-lg="3"
                      data-responsive-md="3" data-responsive-sm="1" data-responsive-xs="1">
-                    <div class="quote-item animate" data-animation="bigEntrance" data-delay="60">
+                    <div class="quote-item">
                         <p>
                             <i class="fa fa-quote-left"></i>
                             We are self-funded association of veterans. There is no charge for any of our
@@ -179,7 +284,7 @@
                     </div>
 
 
-                    <div class="quote-item animate" data-animation="bigEntrance" data-delay="60">
+                    <div class="quote-item">
                         <p>
                             <i class="fa fa-quote-left"></i>
                             We are self-funded association of veterans. There is no charge for any of our
@@ -196,7 +301,7 @@
                     </div>
 
 
-                    <div class="quote-item animate" data-animation="bigEntrance" data-delay="60">
+                    <div class="quote-item">
                         <p>
                             <i class="fa fa-quote-left"></i>
                             We are self-funded association of veterans. There is no charge for any of our
@@ -211,7 +316,7 @@
                         </footer>
                     </div>
 
-                </div><!-- .testimonials-slider -->
+                </div>
 
             </div>
 
@@ -222,7 +327,6 @@
 <section class="ds s-pt-60 s-pt-md-70 s-pt-xl-141 s-pb-60 s-pb-md-80 s-pb-xl-150" id="information-block">
     <div class="container">
         <div class="row c-gutter-50">
-
             <div class="divider-10 divider-lg-10 divider-xl-5"></div>
             <div class="col-md-9 col-lg-6 col-sm-12">
                 <h1><span class="color-main">Bİzİmlə</span> Əlaqə</h1>
@@ -230,42 +334,44 @@
                     <p class="special"></p>
                 </div>
                 <div class="divider-40 divider-md-65"></div>
-                <div class="form-group">
-                    <label for="form-name">Ad</label>
-                    <input aria-required="true" class="form-control" id="form-name" name="name"
-                           placeholder="Adınızı daxil edin" size="30"
-                           type="text" value="">
-                </div>
-                <div class="form-group">
-                    <label for="email-name">Soyad</label>
-                    <input aria-required="true" class="form-control" id="email-name" name="email"
-                           placeholder="Soydınızı daxil edin" size="30"
-                           type="email" value="">
-                </div>
-                <div class="form-group">
-                    <label for="email-name">Email</label>
-                    <input aria-required="true" class="form-control" id="email-name" name="email"
-                           placeholder="Email ünvanınızı daxil edin" size="30"
-                           type="email" value="">
-                </div>
-                <div class="form-group">
-                    <label for="email-name">Əlaqə nömrəsi</label>
-                    <input aria-required="true" class="form-control" id="email-name" name="email"
-                           placeholder="Əlaqə nömrənizi daxil edin" size="30"
-                           type="email" value="">
-                </div>
-                <div class="form-group">
-                    <label for="form-message">Mətn</label>
-                    <textarea aria-required="true" class="form-control" cols="20" id="form-message" name="message"
-                              placeholder="Təklif və iradlarınızı burada qeyd edin"
-                              rows="3"></textarea>
-                </div>
+                <form method="post" th:action="@{'/message/send'}" th:object="${messageRequest}">
+                    <div class="form-group">
+                        <label for="email-name">Əlaqə vasitəsi</label>
+                        <p class="text-danger fw-bolder" style="display: inline"
+                           th:errors="*{email}"
+                           th:if="${#fields.hasErrors('email')}"></p>
+                        <input aria-required="true" class="form-control" id="email-name" name="email"
+                               placeholder="Email ünvanınızı və ya Mobil nömrənizi daxil edin"
+                               size="200" th:field="*{email}"
+                               type="text" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-name">Mövzu</label>
+                        <p class="text-danger fw-bolder" style="display: inline"
+                           th:errors="*{header}"
+                           th:if="${#fields.hasErrors('header')}"></p>
+                        <input aria-required="true" class="form-control" id="form-name" name="header"
+                               placeholder="Mövzunun başlığını daxil edin"
+                               size="30" th:field="*{header}"
+                               type="text" value="">
+                    </div>
+                    <div class="form-group">
+                        <p class="text-danger fw-bolder" style="display: inline"
+                           th:errors="*{context}"
+                           th:if="${#fields.hasErrors('context')}"></p>
+                        <label for="form-message">Mətn</label>
+                        <textarea aria-required="true" class="form-control" cols="20" id="form-message"
+                                  name="context" placeholder="Təklif və iradlarınızı burada qeyd edin"
+                                  rows="3"
+                                  th:field="*{context}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-outline-darkgrey mt-30" id="form_submit" name="contact_submit"
+                                type="submit">Göndər
+                        </button>
+                    </div>
+                </form>
 
-                <div class="form-group">
-                    <button class="btn btn-outline-darkgrey mt-30" id="form_submit" name="contact_submit"
-                            type="submit">Göndər
-                    </button>
-                </div>
             </div>
 
 

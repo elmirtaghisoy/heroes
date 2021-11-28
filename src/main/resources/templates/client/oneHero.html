@@ -1,11 +1,11 @@
 <html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Fortex - Bootstrap 4 premium MultePage HTML template</title>
-    <meta charset="utf-8">
 
 </head>
 
 <body>
+<div th:replace="client/layout/header.html::header"></div>
+
 <div class="header_absolute ds cover-background">
     <section class="page_title padding-mobile cs s-py-60 s-py-md-80 s-py-xl-150">
         <div class="container">
@@ -18,10 +18,10 @@
                     </h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana Səhifə</a>
+                            <a th:href="@{/}">Ana Səhifə</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#">Qazilərimiz</a>
+                            <a style="cursor: default">Qazilərimiz</a>
                         </li>
                     </ul>
                 </div>
@@ -82,7 +82,7 @@
         <div class="row c-gutter-50 mobile-padding-normal">
 
             <div class="col-sm-12 text-center">
-                <h1><span class="color-main">my </span>colleagues</h1>
+                <h1>Qazİlərİmİz</h1>
                 <div class="divider-20"></div>
                 <div class="fw-divider-special-center">
                     <p class="special"></p>
@@ -95,7 +95,7 @@
                     <img alt="" class="card-img-top" th:src="${hr.filePath}">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="team-single.html"
+                            <a th:href="@{/hero/{id}(id=${hr.id})}"
                                th:text="${hr.name} +' '+${hr.surname} +' '+${hr.fatherName}">
                             </a>
                         </h4>

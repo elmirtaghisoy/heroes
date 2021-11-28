@@ -5,6 +5,7 @@
 </head>
 
 <body>
+<div th:replace="client/layout/header.html::header"></div>
 
 <div class="header_absolute ds cover-background">
 
@@ -14,12 +15,12 @@
 
 
                 <div class="col-md-12">
-                    <h1 class="bold">Zəfər Tariximiz</h1>
+                    <h1 class="bold">Zəfər Tarİxİmİz</h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana Səhifə</a>
+                            <a th:href="@{/}">Ana Səhifə</a>
                         </li>
-                        <li class="breadcrumb-item active">
+                        <li class="breadcrumb-item active" style="cursor: default">
                             Zəfər Tariximiz
                         </li>
                     </ul>
@@ -43,14 +44,15 @@
                         <article
                                 class="vertical-item text-center content-padding padding-small post type-post status-publish format-standard has-post-thumbnail">
                             <div class="item-media post-thumbnail">
-                                <a href="blog-single-full.html">
+                                <a th:href="@{/history/{id}(id=${hist.id})}">
                                     <img alt="" th:src="${hist.filePath}">
                                 </a>
                             </div>
                             <div class="item-content">
                                 <header class="entry-header">
                                     <h5 class="entry-title">
-                                        <a href="blog-single-full.html" rel="bookmark" th:text="${hist.header}">
+                                        <a rel="bookmark" th:href="@{/history/{id}(id=${hist.id})}"
+                                           th:text="${hist.header}">
                                         </a>
                                     </h5>
                                 </header>
@@ -59,7 +61,7 @@
                                         laudantium nam ullam.</p>
                                 </div>
                                 <div class="entry-meta">
-                                    <a rel="bookmark" th:href="@{/hist/{id}(id=${hist.id})}">
+                                    <a rel="bookmark" th:href="@{/history/{id}(id=${hist.id})}">
                                         <time class="entry-date published updated">Ətraflı oxu
                                         </time>
                                     </a>

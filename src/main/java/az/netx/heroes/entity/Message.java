@@ -9,7 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -39,11 +41,9 @@ public class Message {
     @Column(name = "read_ts")
     private LocalDateTime readTs;
 
-    // file
-
     @PrePersist
     public void onCreate() {
-        this.readTs = LocalDateTime.MIN;
+        this.readTs = LocalDateTime.of(LocalDate.of(2000, 1, 1), LocalTime.MIDNIGHT);
         this.receivedTs = LocalDateTime.now();
     }
 }

@@ -1,13 +1,10 @@
 <html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Fortex - Bootstrap 4 premium MultePage HTML template</title>
-    <meta charset="utf-8">
-
 
 </head>
 
 <body>
-
+<div th:replace="client/layout/header.html::header"></div>
 
 <div class="header_absolute ds cover-background">
 
@@ -17,13 +14,13 @@
 
 
                 <div class="col-md-12">
-                    <h1 class="bold">Qazilərimiz</h1>
+                    <h1 class="bold">QazİlərİmİZ</h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana Səhifə</a>
+                            <a th:href="@{/}">Ana Səhifə</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#">Qazilərimiz</a>
+                            <a style="cursor: default">Qazilərimiz</a>
                         </li>
                     </ul>
                 </div>
@@ -41,26 +38,26 @@
             <div class="card card-body">
                 <form method="get" th:action="@{'/hero'}">
                     <div class="row d-flex justify-content-center">
-                        <div class="mb-3 col-4">
+                        <div class="mb-4 col-sm-4 col-12">
                             <label class="form-label text-uppercase" for="headerLabel">Ad</label>
                             <input class="form-control" id="headerLabel" name="name" type="search">
                         </div>
-                        <div class="mb-3 col-4">
+                        <div class="mb-4 col-sm-4 col-12">
                             <label class="form-label text-uppercase" for="headerLabel">Soyad</label>
                             <input class="form-control" id="headerLabel" name="surname" type="search">
                         </div>
-                        <div class="mb-3 col-4">
+                        <div class="mb-4 col-sm-4 col-12">
                             <label class="form-label text-uppercase" for="headerLabel">Ata Adı</label>
                             <input class="form-control" id="headerLabel" name="fathername" type="search">
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center">
-                        <div class="mb-4 col-4">
+                        <div class="mb-4 col-sm-4 col-12">
                             <label class="form-label text-uppercase" for="lastRegDayLabel">Doğum Tarİx</label>
                             <input class="form-control" id="lastRegDayLabel" name="birthDate"
                                    type="date">
                         </div>
-                        <div class="mb-4 col-4">
+                        <div class="mb-4 col-sm-4 col-12">
                             <label class="form-label text-uppercase" for="headerLabel">Rütbə</label>
                             <select class="form-select" name="rank">
                                 <option value="-1"></option>
@@ -87,7 +84,7 @@
                         <div class="card-body">
                             <h4 class="card-title">
                                 <a th:href="@{/hero/{id}(id=${hero.id})}"
-                                   th:text="'Qazi '+${hero.name} +' ' +${hero.surname}">
+                                   th:text="'Qazİ '+${hero.name} +' ' +${hero.surname}">
                                 </a>
                             </h4>
                             <p class="card-text" th:text="${hero.rank.rankName}"></p>

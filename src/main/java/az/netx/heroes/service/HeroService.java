@@ -82,7 +82,7 @@ public class HeroService {
     }
 
     public List<HeroResponse> get3HeroByNotId(Long id) {
-        return heroRepository.findTop4ByIdNotAndStatus(id, "ACTIVE")
+        return heroRepository.findTop3ByIdNotAndStatus(id, "ACTIVE")
                 .stream()
                 .map(objectMapper::E2R)
                 .collect(Collectors.toList());

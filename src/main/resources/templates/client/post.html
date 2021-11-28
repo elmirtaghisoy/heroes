@@ -1,13 +1,11 @@
 <html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
 
-<!-- Mirrored from html.modernwebtemplates.com/fortex/post.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Nov 2021 22:06:08 GMT -->
 <head>
-    <title>Fortex - Bootstrap 4 premium MultePage HTML template</title>
-    <meta charset="utf-8">
 
 </head>
 
 <body>
+<div th:replace="client/layout/header.html::header"></div>
 
 <div class="header_absolute ds cover-background">
 
@@ -20,12 +18,13 @@
                     <h1 class="bold" th:text="${currentCategory.categoryName}"></h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana Səhifə</a>
+                            <a th:href="@{/}">Ana Səhifə</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#">Məqalələr</a>
+                            <a style="cursor: default">Məqalələr</a>
                         </li>
-                        <li class="breadcrumb-item active" th:text="${currentCategory.categoryName}">
+                        <li class="breadcrumb-item active" style="cursor: default"
+                            th:text="${currentCategory.categoryName}">
                         </li>
                     </ul>
                 </div>
@@ -66,7 +65,7 @@
                                 <label class="form-label text-uppercase" for="headerLabel">Kateqoriya</label>
                                 <select class="form-select" name="category" th:object="${categoryList}">
                                     <option selected th:text="${currentCategory.categoryName}"
-                                            th:value="'** '+${currentCategory.id}+' **'"></option>
+                                            th:value="${currentCategory.id}"></option>
                                     <span th:each="categoryVal :${categoryList}">
                                              <option th:text="${categoryVal.categoryName}" th:value="${categoryVal.id}">
                                              </option>
@@ -87,7 +86,7 @@
                         <div class="item-media cover-image">
                             <img alt="" th:src="${post.filePath}">
                             <div class="media-links">
-                                <a class="abs-link" href="event-single-full.html" title=""></a>
+                                <a class="abs-link" th:href="@{/post/id/{id}(id=${post.id})}" title=""></a>
                             </div>
                         </div>
                     </div>
@@ -96,10 +95,11 @@
                         <div class="item-content">
                             <p class="entry-meta">
                                 <span class="data-events" th:text="${post.createdDate}"></span>
-                                <span class="location-events" th:text="${post.category.categoryName}"></span>
+                                <span class="location-events" style="cursor: default"
+                                      th:text="${post.category.categoryName}"></span>
                             </p>
                             <h3 class="entry-title">
-                                <a href="#" th:text="${post.header}"></a>
+                                <a th:href="@{/post/id/{id}(id=${post.id})}" th:text="${post.header}"></a>
                             </h3>
                             <a class="read_more_events btn btn-outline-maincolor"
                                th:href="@{/post/id/{id}(id=${post.id})}">
@@ -147,6 +147,4 @@
 
 </body>
 
-
-<!-- Mirrored from html.modernwebtemplates.com/fortex/post.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Nov 2021 22:06:08 GMT -->
 </html>

@@ -83,7 +83,7 @@ public class MartyredService {
     }
 
     public List<MartyredResponse> get3MartyredByNotId(Long id) {
-        return martyredRepository.findTop4ByIdNotAndStatus(id, "ACTIVE")
+        return martyredRepository.findTop3ByIdNotAndStatus(id, "ACTIVE")
                 .stream()
                 .map(objectMapper::E2R)
                 .collect(Collectors.toList());

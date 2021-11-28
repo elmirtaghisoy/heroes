@@ -14,11 +14,16 @@ public class HeroesApplication {
 
 /*
 {
-    ------------------------
-    1. Front bugfix
-    2. (dateformat)
-    3. Message post service
-    4. Contact Front
+    1. datetime
+    3. Contact Front
+    4. BreadCumbs pics,icons
+    ---------------------------------
+    7. video
+    9. mp3
+    10. pictures
+    11. texteditor converter
+    12. minifie resources
+    13. optimize queries
     ------------------------
     4. Auditable aware
     5. Projection query optimization
