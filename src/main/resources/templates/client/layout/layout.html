@@ -45,6 +45,8 @@
             border-color: transparent transparent #000000;
         }
     </style>
+    <script th:src="@{/static/admin/ckeditor/ckeditor.js}"></script>
+    <script th:src="@{/static/admin/ckeditor/config.js}"></script>
 </head>
 <body>
 <!--[if lt IE 9]>
@@ -102,6 +104,9 @@
         <div th:replace="client/layout/footer.html::footer"></div>
     </div>
 </div>
+<script>
+
+</script>
 <script data-cfasync="false"
         src="https://html.modernwebtemplates.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script th:src="@{/static/client/js/compressed.js}"></script>

@@ -33,7 +33,7 @@
                         <div class="mb-3 col-4">
                             <label class="form-label text-uppercase" for="headerLabel">Göndərilmə Tarixi</label>
                             <input class="form-control" disabled id="headerLabel1" name="receivedTs"
-                                   th:field="*{receivedTs}"
+                                   th:value="${#temporals.format(messageResponse.receivedTs,'yyyy-MM-dd HH:mm')}"
                                    type="text">
                         </div>
                     </div>

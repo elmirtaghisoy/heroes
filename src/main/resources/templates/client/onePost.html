@@ -56,14 +56,15 @@
                                     <span class="posted-on">
                                         <a rel="bookmark" style="cursor: default">
                                             <time class="entry-date published updated"
-                                                  datetime="2018-01-03T10:11:37+00:00"
-                                                  th:text="${post.createdDate}"></time>
+                                                  th:text="${#temporals.format(post.createdDate,'yyyy-MM-dd')}">
+                                            </time>
                                         </a>
 									</span>
                                 </div>
                                 <h1 class="entry-title" th:text="${post.header}"></h1>
                             </header>
-                            <span th:text="${post.context}"></span>
+                            <span id="editor" style="display: none" th:text="${post.context}"></span>
+                            <div id="output"></div>
                         </div>
 
                         <div class="col-12 text-center" th:each="file : ${post.filePaths}">
@@ -111,8 +112,8 @@
                                     <h4>
                                         <a th:href="@{/post/{id}(id=${post.id})}" th:text="${post.header}"></a>
                                     </h4>
-                                    <p class="item-meta" th:text="${post.createdDate}">
-                                    </p>
+                                    <p class="item-meta"
+                                       th:text="${#temporals.format(post.createdDate,'yyyy-MM-dd')}"></p>
                                 </div>
                             </li>
                         </ul>
@@ -126,6 +127,9 @@
 
     </div>
 </section>
-
+<script>
+    var html = document.getElementById("editor").textContent;
+    var object = document.getElementById("output").innerHTML = html;
+</script>
 </body>
 </html>

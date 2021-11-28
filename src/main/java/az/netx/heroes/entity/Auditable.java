@@ -47,5 +47,4 @@ public abstract class Auditable<U extends Serializable> implements Serializable 
             this.status = "ACTIVE";
         }
     }
-
 }

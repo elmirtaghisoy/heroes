@@ -55,9 +55,9 @@
                             th:text="${hero.name} +' '+${hero.surname} +' '+${hero.fatherName}"></h3>
                         <p class="entry-description-profession divider-top-bottom"
                            th:text="${hero.rank.rankName}"></p>
-                        <p th:text="${hero.about}">
+                        <p id="editor" style="display: none" th:text="${hero.about}">
                         </p>
-
+                        <div id="output"></div>
                         <ul th:each="reward :${hero.rewards}">
                             <li th:text="${reward.rewardName}"></li>
                         </ul>
@@ -107,6 +107,9 @@
         </div>
     </div>
 </section>
-
+<script>
+    var html = document.getElementById("editor").textContent;
+    var object = document.getElementById("output").innerHTML = html;
+</script>
 </body>
 </html>

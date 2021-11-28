@@ -139,9 +139,9 @@
                                 th:if="${message.status=='READ'}">
                                 <th scope="row" th:text="${message.id}"></th>
                                 <td th:text="${message.header}"></td>
-                                <td th:text="${message.receivedTs}"></td>
+                                <td th:text="${#temporals.format(message.receivedTs,'yyyy-MM-dd HH:mm')}"></td>
                                 <td th:text="${message.email}"></td>
-                                <td th:text="${message.readTs}"></td>
+                                <td th:text="${#temporals.format(message.readTs,'yyyy-MM-dd HH:mm')}"></td>
                                 <td>
                                     <form method="post" style="margin: 0 !important;"
                                           th:action="@{'/admin/message/read'}">
@@ -165,7 +165,7 @@
                                 th:if="${message.status=='UNREAD'}">
                                  <th scope="row" th:text="${message.id}"></th>
                                 <td th:text="${message.header}"></td>
-                                <td th:text="${message.receivedTs}"></td>
+                                <td th:text="${#temporals.format(message.receivedTs,'yyyy-MM-dd HH:mm')}"></td>
                                 <td th:text="${message.email}"></td>
                                 <td>YENI</td>
                                 <td>

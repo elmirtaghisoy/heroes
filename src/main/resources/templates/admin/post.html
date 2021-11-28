@@ -120,7 +120,8 @@
                                 <h5 class="card-title" th:text="${post.header}"></h5>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title" th:text="${post.createdDate}"></h5>
+                                <h5 class="card-title"
+                                    th:text="${#temporals.format(post.createdDate,'yyyy-MM-dd')}"></h5>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${post.category.categoryName}"></h5>
