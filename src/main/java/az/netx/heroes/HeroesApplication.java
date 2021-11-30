@@ -17,10 +17,11 @@ public class HeroesApplication {
     ---------------------------------
     1. icons
     2. favicon
-    --------------------------------
-    1. user operations secure
-    2. Auditable aware
-    4. Projection query optimization ?
+    3. image resize
+    4. admin multi select bugfix
+    5. user operations secure
+    6. Auditable aware
+    7. Projection query optimization ?
     ---------------------------------
 }
 */

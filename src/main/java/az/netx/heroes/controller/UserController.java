@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 import static az.netx.heroes.controller.ControllerConstraints.INVALID_PASS;
@@ -46,7 +47,8 @@ public class UserController {
     @GetMapping("/admin/user/activate-page")
     public String getActivationPage(
             Principal principal,
-            Model model
+            Model model,
+            HttpServletRequest request
     ) {
         if (!model.containsAttribute("userResponse")) {
             UserResponse user = objectMapper.E2R(userService.getUserByUsername(principal.getName()));
@@ -61,6 +63,8 @@ public class UserController {
         if (model.containsAttribute("error")) {
             model.addAttribute("error");
         }
+
+        request.getSession().setAttribute("LoggedUser", objectMapper.E2R(userService.getUserByUsername(principal.getName())));
 
         return "redirect:/admin/post";
     }
