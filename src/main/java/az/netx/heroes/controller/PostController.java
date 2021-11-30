@@ -131,11 +131,8 @@ public class PostController {
     public String createPost(
             @Validated @ModelAttribute("postRequest") final PostRequest request,
             final BindingResult bindingResult,
-            final RedirectAttributes redirectAttributes,
-            Model model,
-            HttpSession session
+            final RedirectAttributes redirectAttributes
     ) throws IOException {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postRequest", bindingResult);
@@ -151,11 +148,8 @@ public class PostController {
     public String updatePost(
             @Validated @ModelAttribute("postRequest") final PostRequest request,
             final BindingResult bindingResult,
-            final RedirectAttributes redirectAttributes,
-            Model model,
-            HttpSession session
+            final RedirectAttributes redirectAttributes
     ) throws IOException {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postResponse", bindingResult);
@@ -170,11 +164,8 @@ public class PostController {
     @PostMapping("/admin/post/delete")
     public String deletePost(
             @RequestParam("id") Long id,
-            final RedirectAttributes redirectAttributes,
-            Model model,
-            HttpSession session
+            final RedirectAttributes redirectAttributes
     ) {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
 
         postService.deletePost(id);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
@@ -185,12 +176,8 @@ public class PostController {
     public String deleteFileById(
             @RequestParam(value = "id") Long fileId,
             @RequestParam(value = "objId") Long objId,
-            final RedirectAttributes redirectAttributes,
-            Model model,
-            HttpSession session
+            final RedirectAttributes redirectAttributes
     ) {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
-
         postService.deleteFileById(fileId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/admin/post/" + objId + "/file";
@@ -200,12 +187,8 @@ public class PostController {
     public String saveFilesByObjId(
             @PathVariable("id") Long objId,
             @RequestParam("files") List<MultipartFile> files,
-            final RedirectAttributes redirectAttributes,
-            Model model,
-            HttpSession session
+            final RedirectAttributes redirectAttributes
     ) throws IOException {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
-
         postService.saveAdditionalFiles(files, objId);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/admin/post/" + objId + "/file";

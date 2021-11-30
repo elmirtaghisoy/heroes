@@ -63,9 +63,6 @@ public class UserController {
         if (model.containsAttribute("error")) {
             model.addAttribute("error");
         }
-
-        request.getSession().setAttribute("LoggedUser", objectMapper.E2R(userService.getUserByUsername(principal.getName())));
-
         return "redirect:/admin/post";
     }
 
