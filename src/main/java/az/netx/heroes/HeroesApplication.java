@@ -15,13 +15,13 @@ public class HeroesApplication {
 /*
 {
     ---------------------------------
-    1. icons
-    2. favicon
-    3. image resize
-    4. admin multi select bugfix
-    5. user operations secure
-    6. Auditable aware
-    7. Projection query optimization ?
+    +1. Login redirecting
+    +2. Auditable aware
+    3. user operations secure
+    4. Projection query optimization ?
+    5. favicon admin+client
+    6. image resize
+    7. admin multi select bugfix
     ---------------------------------
 }
 */
