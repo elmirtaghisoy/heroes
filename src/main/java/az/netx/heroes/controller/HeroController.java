@@ -43,7 +43,7 @@ public class HeroController {
     private final PostCategoryService postCategoryService;
 
     @GetMapping("/admin/hero")
-    public String getHeroPage(
+    public String getHeroPageAdmin(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
             @RequestParam(value = "name", required = false) String name,
@@ -80,7 +80,9 @@ public class HeroController {
     }
 
     @GetMapping("/admin/hero/create-page")
-    public String getCreatePage(Model model) {
+    public String getCreatePageAdmin(
+            Model model
+    ) {
         if (!model.containsAttribute("heroRequest")) {
             model.addAttribute("heroRequest", new HeroRequest());
         }
@@ -92,7 +94,7 @@ public class HeroController {
     }
 
     @GetMapping("/admin/hero/{id}")
-    public String getById(
+    public String getByIdAdmin(
             @PathVariable(value = "id") Long heroId,
             Model model
     ) {
@@ -112,7 +114,7 @@ public class HeroController {
     }
 
     @GetMapping(value = "/admin/hero/get/delete")
-    public String getById4Delete(
+    public String getById4DeleteAdmin(
             @RequestParam("id") Long id,
             Model model
     ) {
@@ -121,7 +123,7 @@ public class HeroController {
     }
 
     @PostMapping("/admin/hero/create")
-    public String createHero(
+    public String createHeroAdmin(
             @Validated @ModelAttribute("heroRequest") final HeroRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -137,7 +139,7 @@ public class HeroController {
     }
 
     @PostMapping("/admin/hero/update")
-    public String updateHero(
+    public String updateHeroAdmin(
             @Validated @ModelAttribute("heroRequest") final HeroRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -153,7 +155,7 @@ public class HeroController {
     }
 
     @PostMapping("/admin/hero/delete")
-    public String deleteHero(
+    public String deleteHeroAdmin(
             @RequestParam("id") Long heroId,
             final RedirectAttributes redirectAttributes
     ) {

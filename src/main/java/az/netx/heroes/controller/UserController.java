@@ -32,7 +32,7 @@ public class UserController {
     private final ObjectMapper objectMapper;
 
     @GetMapping("/admin/user")
-    public String getUserPage(
+    public String getUserPageAdmin(
             Model model
     ) {
         model.addAttribute("users", userService.findAllUser());
@@ -60,6 +60,8 @@ public class UserController {
             return "admin/activationPage";
         }
 
+        request.getSession().setAttribute("loggedUser", objectMapper.E2R(userService.getUserByUsername(principal.getName())));
+
         if (model.containsAttribute("error")) {
             model.addAttribute("error");
         }
@@ -67,7 +69,7 @@ public class UserController {
     }
 
     @GetMapping("/admin/user/create-page")
-    public String getCreatePage(Model model) {
+    public String getCreatePageAdmin(Model model) {
         if (!model.containsAttribute("userAddRequest")) {
             model.addAttribute("userAddRequest", new UserAddRequest());
         }
@@ -78,7 +80,7 @@ public class UserController {
     }
 
     @GetMapping("/admin/user/{id}")
-    public String getById(
+    public String getByIdAdmin(
             @PathVariable(value = "id") Long id,
             Model model
     ) {
@@ -94,10 +96,11 @@ public class UserController {
 
 
     @PostMapping("/admin/create/user")
-    public String createUser(
+    public String createUserAdmin(
             @Validated @ModelAttribute("userAddRequest") final UserAddRequest request,
             final BindingResult bindingResult,
-            final RedirectAttributes redirectAttributes
+            final RedirectAttributes redirectAttributes,
+            Model model
     ) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userAddRequest", bindingResult);
@@ -114,7 +117,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/update/user")
-    public String updateUser(
+    public String updateUserAdmin(
             @Validated @ModelAttribute("userAddRequest") final UserAddRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -134,7 +137,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/activate")
-    public String activateUser(
+    public String activateUserAdmin(
             @Validated @ModelAttribute("userRequest") final UserRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes

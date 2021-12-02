@@ -17,8 +17,8 @@ public class HeroesApplication {
     ---------------------------------
     +1. Login redirecting
     +2. Auditable aware
-    3. user operations secure
-    4. Projection query optimization ?
+    +3. user operations secure
+    4. Projection query optimization
     5. favicon admin+client
     6. image resize
     7. admin multi select bugfix

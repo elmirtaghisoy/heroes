@@ -24,7 +24,7 @@ public class MessageController {
     private final MessageService messageService;
 
     @GetMapping("/admin/message")
-    public String getMessagePage(
+    public String getMessagePageAdmin(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "15") int size,
             @RequestParam(value = "email", required = false) String email,
@@ -61,7 +61,7 @@ public class MessageController {
     }
 
     @PostMapping("/admin/message/read")
-    public String getById(
+    public String getByIdAdmin(
             @RequestParam(value = "id") Long id,
             Model model
     ) {
@@ -70,7 +70,7 @@ public class MessageController {
     }
 
     @PostMapping("/admin/message/delete")
-    public String deleteById(
+    public String deleteByIdAdmin(
             @RequestParam(value = "id") Long id,
             final RedirectAttributes redirectAttributes
     ) {

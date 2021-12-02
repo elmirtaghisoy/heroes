@@ -42,7 +42,7 @@ public class MartyredController {
     private final PostCategoryService postCategoryService;
 
     @GetMapping("/admin/martyred")
-    public String getMartyredPage(
+    public String getMartyredPageAdmin(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
             @RequestParam(value = "name", required = false) String name,
@@ -82,7 +82,9 @@ public class MartyredController {
     }
 
     @GetMapping("/admin/martyred/create-page")
-    public String getCreatePage(Model model) {
+    public String getCreatePageAdmin(
+            Model model
+    ) {
         if (!model.containsAttribute("martyredRequest")) {
             model.addAttribute("martyredRequest", new MartyredRequest());
         }
@@ -94,7 +96,7 @@ public class MartyredController {
     }
 
     @GetMapping("/admin/martyred/{id}")
-    public String getById(
+    public String getByIdAdmin(
             @PathVariable(value = "id") Long martyredId,
             Model model
     ) {
@@ -117,7 +119,7 @@ public class MartyredController {
     }
 
     @GetMapping(value = "/admin/martyred/get/delete")
-    public String getById4Delete(
+    public String getById4DeleteAdmin(
             @RequestParam("id") Long id,
             Model model
     ) {
@@ -126,7 +128,7 @@ public class MartyredController {
     }
 
     @PostMapping("/admin/martyred/create")
-    public String createMartyred(
+    public String createMartyredAdmin(
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -142,10 +144,11 @@ public class MartyredController {
     }
 
     @PostMapping("/admin/martyred/update")
-    public String updateMartyred(
+    public String updateMartyredAdmin(
             @Validated @ModelAttribute("martyredRequest") final MartyredRequest request,
             final BindingResult bindingResult,
-            final RedirectAttributes redirectAttributes
+            final RedirectAttributes redirectAttributes,
+            Model model
     ) throws IOException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.martyredResponse", bindingResult);
@@ -158,7 +161,7 @@ public class MartyredController {
     }
 
     @PostMapping("/admin/martyred/delete")
-    public String deleteMartyred(
+    public String deleteMartyredAdmin(
             @RequestParam("id") Long martyredId,
             final RedirectAttributes redirectAttributes
     ) {

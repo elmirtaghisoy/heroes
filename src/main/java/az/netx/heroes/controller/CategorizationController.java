@@ -34,7 +34,7 @@ public class CategorizationController implements ControllerConstraints {
     private String ACCEPT_UUID;
 
     @GetMapping
-    public String getCategorizationPage(
+    public String getCategorizationPageAdmin(
             Model model
     ) {
         if (!model.containsAttribute("warRequest")) {
@@ -69,7 +69,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/war/create")
-    public String createWar(
+    public String createWarAdmin(
             @Validated @ModelAttribute("warRequest") final WarRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -85,7 +85,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/rank/create")
-    public String createRank(
+    public String createRankAdmin(
             @Validated @ModelAttribute("rankRequest") final RankRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -101,7 +101,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/post-category/create")
-    public String createPostCategory(
+    public String createPostCategoryAdmin(
             @Validated @ModelAttribute("postCategoryRequest") final PostCategoryRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -117,7 +117,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/reward/create")
-    public String createReward(
+    public String createRewardAdmin(
             @Validated @ModelAttribute("rewardRequest") final RewardRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -133,7 +133,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @GetMapping(value = "/war")
-    public String getWar(
+    public String getWarAdmin(
             @RequestParam("id") Long id,
             Model model
     ) {
@@ -144,7 +144,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @GetMapping(value = "/rank")
-    public String getRank(
+    public String getRankAdmin(
             @RequestParam("id") Long id,
             Model model
     ) {
@@ -155,7 +155,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @GetMapping(value = "/post-category")
-    public String getPostCategory(
+    public String getPostCategoryAdmin(
             @RequestParam("id") Long id,
             Model model
     ) {
@@ -166,7 +166,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @GetMapping(value = "/reward")
-    public String getReward(
+    public String getRewardAdmin(
             @RequestParam("id") Long id,
             Model model
     ) {
@@ -177,7 +177,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/war/update")
-    public String updateWar(
+    public String updateWarAdmin(
             @Validated @ModelAttribute("warRequest") final WarRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -193,7 +193,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/rank/update")
-    public String updateRank(
+    public String updateRankAdmin(
             @Validated @ModelAttribute("rankRequest") final RankRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -209,7 +209,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/post-category/update")
-    public String updatePostCategory(
+    public String updatePostCategoryAdmin(
             @Validated @ModelAttribute("postCategoryRequest") final PostCategoryRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -225,7 +225,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/reward/update")
-    public String updateReward(
+    public String updateRewardAdmin(
             @Validated @ModelAttribute("rewardRequest") final RewardRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
@@ -241,7 +241,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/war/delete")
-    public String deleteWar(
+    public String deleteWarAdmin(
             @RequestParam("id") Long warId,
             @RequestParam("uuid") String uuid,
             final RedirectAttributes redirectAttributes
@@ -256,7 +256,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/rank/delete")
-    public String deleteRank(
+    public String deleteRankAdmin(
             @RequestParam("id") Long rankId,
             @RequestParam("uuid") String uuid,
             final RedirectAttributes redirectAttributes
@@ -271,7 +271,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/post-category/delete")
-    public String deletePostCategory(
+    public String deletePostCategoryAdmin(
             @RequestParam("id") Long postCategoryId,
             @RequestParam("uuid") String uuid,
             final RedirectAttributes redirectAttributes
@@ -286,7 +286,7 @@ public class CategorizationController implements ControllerConstraints {
     }
 
     @PostMapping(value = "/reward/delete")
-    public String deleteReward(
+    public String deleteRewardAdmin(
             @RequestParam("id") Long rewardId,
             @RequestParam("uuid") String uuid,
             final RedirectAttributes redirectAttributes

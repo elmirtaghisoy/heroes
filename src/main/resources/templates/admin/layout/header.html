@@ -32,6 +32,18 @@
                         <a aria-current="page" class="nav-link text-uppercase"
                            th:href="@{/admin/user}">İstifadəçilər</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                           data-toggle="dropdown" href="#" id="navbarDropdownMenuLink"
+                           th:text="${loggedUser.username}">
+                            Dropdown link
+                        </a>
+                        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu" style="min-width: auto">
+                            <form method="post" style="display: inline" th:action="@{/logout}">
+                                <button class="btn btn-danger" type="submit">Cıxış</button>
+                            </form>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

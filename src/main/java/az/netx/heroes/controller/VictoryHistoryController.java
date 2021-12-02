@@ -26,7 +26,7 @@ public class VictoryHistoryController {
     private final PostCategoryService postCategoryService;
 
     @GetMapping("/admin/hist/all")
-    public String getAllHist(
+    public String getAllHistAdmin(
             Model model
     ) {
         model.addAttribute("histList", victoryHistoryService.getAllHist());
@@ -37,7 +37,7 @@ public class VictoryHistoryController {
     }
 
     @PostMapping("/admin/hist/update")
-    public String updateHist(
+    public String updateHistAdmin(
             @Validated @ModelAttribute("histRequest") final VictoryHistoryRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes

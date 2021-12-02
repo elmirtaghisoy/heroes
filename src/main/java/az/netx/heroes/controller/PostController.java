@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class PostController {
     private final PostCategoryService postCategoryService;
 
     @GetMapping("/admin/post")
-    public String getPostPage(
+    public String getPostPageAdmin(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
             @RequestParam(value = "from", required = false, defaultValue = "2000-01-01") String fromDate,
@@ -44,11 +43,8 @@ public class PostController {
             @RequestParam(value = "header", required = false) String header,
             @RequestParam(value = "category", required = false) Long categoryId,
             HttpServletRequest request,
-            Model model,
-            HttpSession session
+            Model model
     ) {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
-
         var criteria = new PostSearchCriteria();
         criteria.setFromDate(fromDate);
         criteria.setToDate(toDate);
@@ -73,12 +69,9 @@ public class PostController {
     }
 
     @GetMapping("/admin/post/create-page")
-    public String getCreatePage(
-            Model model,
-            HttpSession session
+    public String getCreatePageAdmin(
+            Model model
     ) {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
-
         if (!model.containsAttribute("postRequest")) {
             model.addAttribute("postRequest", new PostRequest());
         }
@@ -88,13 +81,10 @@ public class PostController {
     }
 
     @GetMapping("/admin/post/{id}")
-    public String getById(
+    public String getByIdAdmin(
             @PathVariable(value = "id") Long id,
-            Model model,
-            HttpSession session
+            Model model
     ) {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
-
         if (!model.containsAttribute("postResponse")) {
             PostResponse response = postService.getPostById(id);
             model.addAttribute("postResponse", response);
@@ -104,36 +94,29 @@ public class PostController {
     }
 
     @GetMapping(value = "/admin/post/get/delete")
-    public String getById4Delete(
+    public String getById4DeleteAdmin(
             @RequestParam("id") Long id,
-            Model model,
-            HttpSession session
+            Model model
     ) {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
-
         model.addAttribute("postResponse", postService.getPostById(id));
         return "admin/postRequestForm";
     }
 
     @GetMapping("/admin/post/{id}/file")
-    public String getFilesByObjId(
+    public String getFilesByObjIdAdmin(
             @PathVariable(value = "id") Long objId,
-            Model model,
-            HttpSession session
+            Model model
     ) {
-        model.addAttribute("loggedUser", session.getAttribute("LoggedUser"));
-
         model.addAttribute("files", postService.getFilesByObjId(objId));
         return "admin/files";
     }
 
     @PostMapping("/admin/post/create")
-    public String createPost(
+    public String createPostAdmin(
             @Validated @ModelAttribute("postRequest") final PostRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
     ) throws IOException {
-
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postRequest", bindingResult);
             redirectAttributes.addFlashAttribute("postRequest", request);
@@ -145,12 +128,11 @@ public class PostController {
     }
 
     @PostMapping("/admin/post/update")
-    public String updatePost(
+    public String updatePostAdmin(
             @Validated @ModelAttribute("postRequest") final PostRequest request,
             final BindingResult bindingResult,
             final RedirectAttributes redirectAttributes
     ) throws IOException {
-
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.postResponse", bindingResult);
             redirectAttributes.addFlashAttribute("postResponse", request);
@@ -162,18 +144,17 @@ public class PostController {
     }
 
     @PostMapping("/admin/post/delete")
-    public String deletePost(
+    public String deletePostAdmin(
             @RequestParam("id") Long id,
             final RedirectAttributes redirectAttributes
-    ) {
-
+    ) throws IOException {
         postService.deletePost(id);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
         return "redirect:/admin/post";
     }
 
     @PostMapping("/post/file/delete")
-    public String deleteFileById(
+    public String deleteFileByIdAdmin(
             @RequestParam(value = "id") Long fileId,
             @RequestParam(value = "objId") Long objId,
             final RedirectAttributes redirectAttributes
@@ -184,7 +165,7 @@ public class PostController {
     }
 
     @PostMapping("/admin/post/{id}/file")
-    public String saveFilesByObjId(
+    public String saveFilesByObjIdAdmin(
             @PathVariable("id") Long objId,
             @RequestParam("files") List<MultipartFile> files,
             final RedirectAttributes redirectAttributes
