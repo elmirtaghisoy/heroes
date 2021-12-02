@@ -9,6 +9,7 @@ public class MartyredSearchCriteria {
     private String name;
     private String surname;
     private String fatherName;
-    private String birthDate;
     private Long rankId;
+    private Long warId;
+    private Long rewardId;
 }

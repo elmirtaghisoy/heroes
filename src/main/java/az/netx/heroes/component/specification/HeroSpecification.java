@@ -9,7 +9,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -38,19 +37,19 @@ public class HeroSpecification implements Specification<Hero> {
             if (Objects.nonNull(request.getFatherName())) {
                 predicates.add(cb.like(root.get(Hero_.fatherName), "%" + request.getFatherName() + "%"));
             }
-            if (Objects.nonNull(request.getBirthDate()) && !request.getBirthDate().isEmpty()) {
-                predicates.add(
-                        cb.greaterThanOrEqualTo(root.get(Hero_.birthDate), LocalDate.parse(request.getBirthDate()))
-                );
-            }
-            if (Objects.nonNull(request.getBirthDate()) && !request.getBirthDate().isEmpty()) {
-                predicates.add(
-                        cb.lessThanOrEqualTo(root.get(Hero_.birthDate), LocalDate.parse(request.getBirthDate()))
-                );
-            }
             if (Objects.nonNull(request.getRankId()) && request.getRankId() != -1) {
                 predicates.add(
                         cb.equal(root.get(Hero_.rank), request.getRankId())
+                );
+            }
+            if (Objects.nonNull(request.getWarId()) && request.getWarId() != -1) {
+                predicates.add(
+                        cb.equal(root.join("wars").get("id"), request.getWarId())
+                );
+            }
+            if (Objects.nonNull(request.getRewardId()) && request.getRewardId() != -1) {
+                predicates.add(
+                        cb.equal(root.join("rewards").get("id"), request.getRewardId())
                 );
             }
         }

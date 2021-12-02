@@ -47,9 +47,10 @@ public class MartyredController {
             @RequestParam(value = "size", required = false, defaultValue = "8") int size,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "surname", required = false) String surname,
-            @RequestParam(value = "birthDate", required = false) String birthDate,
             @RequestParam(value = "fatherName", required = false) String fatherName,
             @RequestParam(value = "rank", required = false) Long rankId,
+            @RequestParam(value = "war", required = false) Long warId,
+            @RequestParam(value = "reward", required = false) Long rewardId,
             HttpServletRequest request,
             Model model
     ) {
@@ -57,8 +58,9 @@ public class MartyredController {
         criteria.setName(name);
         criteria.setSurname(surname);
         criteria.setFatherName(fatherName);
-        criteria.setBirthDate(birthDate);
         criteria.setRankId(rankId);
+        criteria.setWarId(warId);
+        criteria.setRewardId(rewardId);
 
         Paged<MartyredResponse> list = martyredService.searchMartyred(
                 page,
@@ -66,6 +68,9 @@ public class MartyredController {
                 criteria
         );
 
+        model.addAttribute("wars", warService.getAllWar());
+        model.addAttribute("rewards", rewardService.getAllReward());
+        model.addAttribute("ranks", rankService.getAllRank());
         model.addAttribute("objectList", list);
         model.addAttribute("srcUrl", martyredSearchPathBuilder(request));
 
@@ -170,9 +175,10 @@ public class MartyredController {
             @RequestParam(value = "size", required = false, defaultValue = "9") int size,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "surname", required = false) String surname,
-            @RequestParam(value = "birthDate", required = false) String birthDate,
             @RequestParam(value = "fatherName", required = false) String fatherName,
             @RequestParam(value = "rank", required = false) Long rankId,
+            @RequestParam(value = "war", required = false) Long warId,
+            @RequestParam(value = "reward", required = false) Long rewardId,
             HttpServletRequest request,
             Model model
     ) {
@@ -180,8 +186,9 @@ public class MartyredController {
         criteria.setName(name);
         criteria.setSurname(surname);
         criteria.setFatherName(fatherName);
-        criteria.setBirthDate(birthDate);
         criteria.setRankId(rankId);
+        criteria.setWarId(warId);
+        criteria.setRewardId(rewardId);
 
         Paged<MartyredResponse> list = martyredService.searchMartyred(
                 page,
@@ -190,6 +197,9 @@ public class MartyredController {
         );
 
 
+        model.addAttribute("wars", warService.getAllWar());
+        model.addAttribute("rewards", rewardService.getAllReward());
+        model.addAttribute("ranks", rankService.getAllRank());
         model.addAttribute("objectList", list);
         model.addAttribute("srcUrl", martyredSearchPathBuilder(request));
         model.addAttribute("ranks", rankService.getAllRank());

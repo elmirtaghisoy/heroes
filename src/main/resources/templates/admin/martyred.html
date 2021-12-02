@@ -90,16 +90,30 @@
                     </div>
                     <div class="row d-flex justify-content-center">
                         <div class="mb-4 col-4">
-                            <label class="form-label text-uppercase" for="lastRegDayLabel">Doğum Tarİx</label>
-                            <input class="form-control" id="lastRegDayLabel" name="from"
-                                   type="date">
+                            <label class="form-label text-uppercase" for="headerLabel">Rütbə</label>
+                            <select class="form-select" name="rank">
+                                <option value="-1"></option>
+                                <span th:each="rank : ${ranks}">
+                                    <option th:text="${rank.rankName}" th:value="${rank.id}"></option>
+                                </span>
+                            </select>
                         </div>
                         <div class="mb-4 col-4">
-                            <label class="form-label text-uppercase" for="headerLabel">Rütbə</label>
-                            <select class="form-select" name="category">
+                            <label class="form-label text-uppercase" for="headerLabel">Şəhidlik</label>
+                            <select class="form-select" name="war">
                                 <option value="-1"></option>
-                                <option value="1">Əsgər</option>
-                                <option value="2">Zabit</option>
+                                <span th:each="war : ${wars}">
+                                    <option th:text="${war.warName}" th:value="${war.id}"></option>
+                                </span>
+                            </select>
+                        </div>
+                        <div class="mb-4 col-4">
+                            <label class="form-label text-uppercase" for="headerLabel">Medal</label>
+                            <select class="form-select" name="reward">
+                                <option value="-1"></option>
+                                <span th:each="reward : ${rewards}">
+                                    <option th:text="${reward.rewardName}" th:value="${reward.id}"></option>
+                                </span>
                             </select>
                         </div>
                     </div>

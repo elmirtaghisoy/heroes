@@ -65,9 +65,10 @@ public class SearchUtil {
         String link = "";
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
-        String birthDate = request.getParameter("birthDate");
         String fatherName = request.getParameter("fatherName");
         String rank = request.getParameter("rank");
+        String war = request.getParameter("war");
+        String reward = request.getParameter("reward");
 
         if (Objects.nonNull(name)) {
             link += "&name=" + name;
@@ -75,14 +76,17 @@ public class SearchUtil {
         if (Objects.nonNull(surname)) {
             link += "&surname=" + surname;
         }
-        if (Objects.nonNull(birthDate)) {
-            link += "&birthDate=" + birthDate;
-        }
         if (Objects.nonNull(fatherName)) {
             link += "&fatherName=" + fatherName;
         }
         if (Objects.nonNull(rank)) {
             link += "&rank=" + rank;
+        }
+        if (Objects.nonNull(war)) {
+            link += "&war=" + war;
+        }
+        if (Objects.nonNull(reward)) {
+            link += "&reward=" + reward;
         }
 
         return link;
@@ -92,9 +96,10 @@ public class SearchUtil {
         String link = "";
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
-        String birthDate = request.getParameter("birthDate");
         String fatherName = request.getParameter("fatherName");
         String rank = request.getParameter("rank");
+        String war = request.getParameter("war");
+        String reward = request.getParameter("reward");
 
         if (Objects.nonNull(name)) {
             link += "&name=" + name;
@@ -102,14 +107,17 @@ public class SearchUtil {
         if (Objects.nonNull(surname)) {
             link += "&surname=" + surname;
         }
-        if (Objects.nonNull(birthDate)) {
-            link += "&birthDate=" + birthDate;
-        }
         if (Objects.nonNull(fatherName)) {
             link += "&fatherName=" + fatherName;
         }
         if (Objects.nonNull(rank)) {
             link += "&rank=" + rank;
+        }
+        if (Objects.nonNull(war)) {
+            link += "&war=" + war;
+        }
+        if (Objects.nonNull(reward)) {
+            link += "&reward=" + reward;
         }
 
         return link;
