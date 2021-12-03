@@ -30,6 +30,7 @@ public class UserController {
 
     private final UserService userService;
     private final ObjectMapper objectMapper;
+    private final HttpServletRequest request;
 
     @GetMapping("/admin/user")
     public String getUserPageAdmin(
@@ -47,8 +48,7 @@ public class UserController {
     @GetMapping("/admin/user/activate-page")
     public String getActivationPage(
             Principal principal,
-            Model model,
-            HttpServletRequest request
+            Model model
     ) {
         if (!model.containsAttribute("userResponse")) {
             UserResponse user = objectMapper.E2R(userService.getUserByUsername(principal.getName()));

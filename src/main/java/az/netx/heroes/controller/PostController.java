@@ -31,6 +31,7 @@ import static az.netx.heroes.util.SearchUtil.postSearchPathBuilder;
 @RequiredArgsConstructor
 public class PostController {
 
+    private final HttpServletRequest httpRequest;
     private final PostService postService;
     private final PostCategoryService postCategoryService;
 

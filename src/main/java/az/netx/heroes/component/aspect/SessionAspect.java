@@ -8,28 +8,41 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 @Aspect
 @Component
 public class SessionAspect {
 
     @Autowired
-    HttpSession session;
+    private HttpServletRequest request;
 
     @Pointcut("execution(public String az.netx.heroes.controller.*.*Admin(..))")
     public void sessionControllers() {
-
     }
 
-    @Before(value = "sessionControllers() && (args(..,model) || args(model))", argNames = "model")
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.PostMapping)")
+    public void postAction() {
+    }
+
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
+    public void getAction() {
+    }
+
+    @Before(value = "getAction() && sessionControllers() && (args(..,model))", argNames = "model")
     public void beforeExecuting(Model model) {
-        model.addAttribute("loggedUser", session.getAttribute("loggedUser"));
+        model.addAttribute(
+                "loggedUser",
+                request.getSession().getAttribute("loggedUser")
+        );
     }
 
-    @Before(value = "sessionControllers() && (args(..,redirectAttributes))", argNames = "redirectAttributes")
-    public void beforeExecuting(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("loggedUser", session.getAttribute("loggedUser"));
+    @Before(value = "postAction() && sessionControllers() && (args(..,redirectAttributes))", argNames = "redirectAttributes")
+    public void beforePosting(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute(
+                "loggedUser",
+                request.getSession().getAttribute("loggedUser")
+        );
     }
 
 }
