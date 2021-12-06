@@ -82,4 +82,19 @@ public class ClientController {
         return "client/contact";
     }
 
+    @GetMapping("/partner")
+    public String getPartnerPage(
+            Model model
+    ) {
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
+        return "client/partner";
+    }
+
+    @GetMapping("/team")
+    public String getTeamPage(
+            Model model
+    ) {
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
+        return "client/team";
+    }
 }

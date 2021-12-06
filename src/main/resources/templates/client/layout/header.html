@@ -9,17 +9,17 @@
                         <div class="d-lg-flex justify-content-lg-end align-items-lg-center">
                             <div class="mr-auto ml-auto">
 
-                                <div class="d-flex justify-content-center justify-content-lg-start">
-                                    <a class="logo animate" data-animation="fadeInLeft" data-delay="250">
-                                        <img alt="" src="/static/client/images/logo3.png">
-                                    </a>
-                                    <a class="logo animate" data-animation="fadeInLeft" data-delay="250">
-                                        <img alt="" src="/static/client/images/logo.png">
-                                    </a>
-                                    <a class="logo animate" data-animation="fadeInRight" data-delay="250">
-                                        <img alt="" src="/static/client/images/logo2.png">
-                                    </a>
-                                </div>
+                                <!--                                <div class="d-flex justify-content-center justify-content-lg-start">-->
+                                <!--                                    <a class="logo animate" data-animation="fadeInLeft" data-delay="250">-->
+                                <!--                                        <img alt="" src="/static/client/images/logo3.png">-->
+                                <!--                                    </a>-->
+                                <!--                                    <a class="logo animate" data-animation="fadeInLeft" data-delay="250">-->
+                                <!--                                        <img alt="" src="/static/client/images/logo.png">-->
+                                <!--                                    </a>-->
+                                <!--                                    <a class="logo animate" data-animation="fadeInRight" data-delay="250">-->
+                                <!--                                        <img alt="" src="/static/client/images/logo2.png">-->
+                                <!--                                    </a>-->
+                                <!--                                </div>-->
 
                             </div>
                         </div>
@@ -55,7 +55,7 @@
 
                                     <!-- blog -->
                                     <li>
-                                        <a style="cursor: pointer">Məqalələr</a>
+                                        <a style="cursor: pointer">Məqalə</a>
                                         <ul>
                                             <li th:each="cat :${categoryList}">
                                                 <a th:href="@{/post/{id}(id=${cat.id})}"
@@ -68,18 +68,29 @@
 
                                     <!-- shop -->
                                     <li>
-                                        <a style="cursor: pointer">Qəhrəmanlarımız</a>
+                                        <a style="cursor: pointer">Qəhrəmanlar</a>
                                         <ul>
                                             <li>
-                                                <a th:href="@{/martyred}">Şəhidlərimiz</a>
+                                                <a th:href="@{/martyred}">Şəhidlər</a>
                                             </li>
                                             <li>
-                                                <a th:href="@{/hero}">Qazilərimiz</a>
+                                                <a th:href="@{/hero}">Qazilər</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <!-- eof shop -->
 
+                                    <li>
+                                        <a>Haqqımızda</a>
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/partner}">Tərəfdaşlar</a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/team}">Komanda</a>
+                                            </li>
+                                        </ul>
+                                    </li>
 
                                     <!-- contacts -->
                                     <li>
@@ -96,7 +107,6 @@
                                     </li>
                                     <!-- eof contacts -->
                                 </ul>
-
 
                             </nav>
                             <!-- eof main nav -->
