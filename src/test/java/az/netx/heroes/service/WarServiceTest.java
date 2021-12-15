@@ -1,24 +1,52 @@
 //package az.netx.heroes.service;
 //
-//import org.junit.jupiter.api.AfterEach;
+//import az.netx.heroes.component.mapper.ObjectMapper;
+//import az.netx.heroes.repository.WarRepository;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
-//import org.springframework.boot.test.context.SpringBootTest;
+//import org.junit.jupiter.api.extension.ExtendWith;
+//import org.mockito.InjectMocks;
+//import org.mockito.Mock;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+//import org.springframework.test.context.ActiveProfiles;
+//import org.springframework.test.context.jdbc.Sql;
+//import org.springframework.test.context.junit.jupiter.SpringExtension;
 //
-//@SpringBootTest
+//import static org.assertj.core.api.Assertions.assertThat;
+//
+//@DataJpaTest
+//@ExtendWith(SpringExtension.class)
+//@ActiveProfiles("test")
 //class WarServiceTest {
+//
+//    @InjectMocks
+//    private WarService warService;
+//
+//    @Mock
+//    private ObjectMapper objectMapper;
+//
+//    @Autowired
+//    private WarRepository warRepository;
 //
 //
 //    @BeforeEach
-//    void setUp() {
+//    void init() {
+//        warService = new WarService(warRepository, objectMapper);
 //    }
 //
-//    @AfterEach
-//    void tearDown() {
+//
+//    @Test
+//    void injectedComponentsAreNotNull() {
+//        assertThat(warRepository).isNotNull();
+//        assertThat(warService).isNotNull();
 //    }
 //
 //    @Test
-//    void getAllWar() {
-//
+//    @Sql("classpath:/war.sql")
+//    void getAllActiveWars() {
+//        System.out.println(warRepository.findAllByStatus("ACTIVE"));
 //    }
+//
 //}
+//
