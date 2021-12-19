@@ -29,4 +29,5 @@ public class UserRequest {
     @NotBlank(message = "Soyadın daxil edin")
     private String surname;
     private String status;
+    private Integer isAdmin;
 }

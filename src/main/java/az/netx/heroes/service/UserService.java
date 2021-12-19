@@ -53,6 +53,7 @@ public class UserService implements UserDetailsService {
             User entity = objectMapper.R2E(request);
             entity.setStatus("ACTIVATED");
             entity.setIsEnable(1);
+            entity.setIsAdmin(request.getIsAdmin());
             entity.setPassword(passwordEncoder.encode(request.getPassword1()));
             if (userRepository.getById(request.getId()).getUsername().equals(request.getUsername())) {
                 userRepository.save(entity);

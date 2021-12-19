@@ -157,7 +157,7 @@ public class UserController {
                 return "redirect:/admin/user/activate-page";
             default:
                 redirectAttributes.addFlashAttribute("success", SUCCESS);
-                return "redirect:/admin/post";
+                return "redirect:/login";
         }
     }
 

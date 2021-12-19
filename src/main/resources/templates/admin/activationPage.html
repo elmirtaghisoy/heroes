@@ -1,4 +1,5 @@
-<html th:include="~{admin/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<html th:include="~{admin/layout/activationLayout.html :: activationLayout (~{::body},'home')}"
+      xmlns:th="http://www.thymeleaf.org">
 <head></head>
 <body>
 <div class="container">
@@ -43,6 +44,7 @@
                 <form action="#" method="post" th:action="@{'/admin/user/activate'}"
                       th:object="${userResponse}">
                     <input name="id" th:value="${userResponse.id}" type="hidden">
+                    <input name="isAdmin" th:value="${userResponse.isAdmin}" type="hidden">
                     <div class="row">
                         <div class="mb-3 col-4">
                             <label class="form-label text-uppercase" for="headerLabel">AD</label>
