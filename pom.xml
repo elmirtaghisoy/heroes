@@ -6,13 +6,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.6</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>az.netx</groupId>
     <artifactId>heroes</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>heroes</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Spring Boot Application</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -70,6 +69,20 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>az.netx.heroes.HeroesApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
