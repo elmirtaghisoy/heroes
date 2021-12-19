@@ -60,7 +60,7 @@ public class MessageController {
         return "admin/message";
     }
 
-    @PostMapping("/admin/message/read")
+    @GetMapping("/admin/message/read")
     public String getByIdAdmin(
             @RequestParam(value = "id") Long id,
             Model model

@@ -174,13 +174,13 @@ public class UserController {
     }
 
     @PostMapping("/admin/reset/user")
-    public String resetUser(
+    public String resetUserPassword(
             @RequestParam("id") Long id,
             final RedirectAttributes redirectAttributes
     ) {
         userService.resetUser(id);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/admin/user";
+        return "redirect:/login";
     }
 
 }

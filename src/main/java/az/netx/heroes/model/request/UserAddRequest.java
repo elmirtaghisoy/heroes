@@ -22,4 +22,5 @@ public class UserAddRequest {
     @NotNull(message = "Soyadın daxil edin")
     @NotBlank(message = "Soyadın daxil edin")
     private String surname;
+    private Integer isAdmin;
 }

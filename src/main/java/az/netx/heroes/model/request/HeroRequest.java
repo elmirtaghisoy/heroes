@@ -30,6 +30,7 @@ public class HeroRequest {
     @IsImage(message = "Əlavə etdiyiniz faylın formatı ancaq (JPG, JPEG, IMG, PNG) ola bilər.")
     private MultipartFile img;
     private String filePath;
+    @NotNull(message = "Rütbəni daxil edin.")
     private RankRequest rank;
     private List<RewardRequest> rewards;
     private List<WarRequest> wars;

@@ -143,7 +143,7 @@
                                 <td th:text="${message.email}"></td>
                                 <td th:text="${#temporals.format(message.readTs,'yyyy-MM-dd HH:mm')}"></td>
                                 <td>
-                                    <form method="post" style="margin: 0 !important;"
+                                    <form method="get" style="margin: 0 !important;"
                                           th:action="@{'/admin/message/read'}">
                                         <input name="id" th:value="${message.id}" type="hidden">
                                         <input class="btn mt-1 btn-warning text-uppercase"
@@ -169,7 +169,7 @@
                                 <td th:text="${message.email}"></td>
                                 <td>YENI</td>
                                 <td>
-                                    <form method="post" style="margin: 0 !important;"
+                                    <form method="get" style="margin: 0 !important;"
                                           th:action="@{'/admin/message/read'}">
                                         <input name="id" th:value="${message.id}" type="hidden">
                                         <input class="btn mt-1 btn-warning text-uppercase"

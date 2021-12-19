@@ -19,6 +19,7 @@ public class PostRequest {
     @NotNull(message = "Paylaşımın içəriyini daxil edin")
     @NotBlank(message = "Paylaşımın içəriyini daxil edin")
     private String context;
+    @NotNull(message = "Paylaşımın kateqoriyasını daxil edin.")
     private PostCategoryRequest category;
     @Transient
     @IsImage(message = "Əlavə etdiyiniz faylın formatı ancaq (JPG, JPEG, IMG, PNG) ola bilər.")

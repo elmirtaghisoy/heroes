@@ -40,6 +40,7 @@
                 <form enctype="multipart/form-data" method="post" th:action="@{'/admin/update/user'}"
                       th:object="${userAddRequest}">
                     <input th:field="*{id}" th:value="${userAddRequest.id}" type="hidden">
+                    <input th:field="*{isAdmin}" th:value="${userAddRequest.isAdmin}" type="hidden">
                     <div class="row">
                         <div class="mb-3 col-4">
                             <label class="form-label text-uppercase" for="headerLabel">İSTİFADƏÇİ ADI</label>

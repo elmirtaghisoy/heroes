@@ -88,8 +88,9 @@ public class UserService implements UserDetailsService {
 
     public String updateUser(UserAddRequest request) {
         User user = objectMapper.AR2E(request);
-        user.setPassword(passwordEncoder.encode("ADMIN"));
+        user.setPassword(userRepository.getById(request.getId()).getPassword());
         user.setIsEnable(1);
+        user.setIsAdmin(request.getIsAdmin());
         user.setStatus("ACTIVE");
         if (userRepository.getById(request.getId()).getUsername().equals(request.getUsername())) {
             userRepository.save(user);
@@ -107,7 +108,6 @@ public class UserService implements UserDetailsService {
 
     public void userActivity(Long id, String action) {
         User user = userRepository.getById(id);
-        System.out.println(action);
         if (action.equalsIgnoreCase("unblock")) {
             user.setIsEnable(1);
         } else if (action.equalsIgnoreCase("block")) {
@@ -118,8 +118,9 @@ public class UserService implements UserDetailsService {
 
     public void resetUser(Long id) {
         User user = userRepository.getById(id);
-        user.setPassword(passwordEncoder.encode("ADMIN"));
+        user.setIsAdmin(user.getIsAdmin());
         user.setStatus("DEACTIVE");
+        user.setPassword(passwordEncoder.encode("ADMIN"));
         user.setIsEnable(1);
         userRepository.save(user);
     }

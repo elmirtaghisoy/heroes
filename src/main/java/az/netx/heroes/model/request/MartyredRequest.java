@@ -32,6 +32,7 @@ public class MartyredRequest {
     private String filePath;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate wasMartyred;
+    @NotNull(message = "Rütbəni daxil edin.")
     private RankRequest rank;
     private List<RewardRequest> rewards;
     private List<WarRequest> wars;
