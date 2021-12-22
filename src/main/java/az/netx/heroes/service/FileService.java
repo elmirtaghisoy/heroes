@@ -1,8 +1,6 @@
 package az.netx.heroes.service;
 
-import az.netx.heroes.component.mapper.ObjectMapper;
 import az.netx.heroes.model.CustomFile;
-import az.netx.heroes.repository.FileRepository;
 import com.google.common.io.Files;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,9 +18,6 @@ import static az.netx.heroes.config.MvcConfig.UPLOAD_PATH;
 @Service
 @RequiredArgsConstructor
 public class FileService {
-
-    private final FileRepository fileRepository;
-    private final ObjectMapper objectMapper;
 
     public static String saveSingle(CustomFile customFile) throws IOException {
         String resultFilename = "";

@@ -34,6 +34,28 @@ public class PostController {
     private final PostService postService;
     private final PostCategoryService postCategoryService;
 
+//    @GetMapping(
+//            path = "/file/{category}/{folder}/{filename}",
+//            produces = MediaType.IMAGE_PNG_VALUE
+//    )
+//    public @ResponseBody
+//    byte[] getFile(
+//            @PathVariable(value = "category", required = false) String category,
+//            @PathVariable(value = "folder", required = false) String folder,
+//            @PathVariable(value = "filename", required = false) String filename
+//    ) {
+//        InputStream in = getClass()
+//                .getResourceAsStream("");
+//        return IOUtils.toByteArray(in);
+//    }
+
+
+//    @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public FileSystemResource getFile(@PathVariable("file_name") String fileName) {
+//        return new FileSystemResource(myService.getFileFor(fileName));
+//    }
+
     @GetMapping("/admin/post")
     public String getPostPageAdmin(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
