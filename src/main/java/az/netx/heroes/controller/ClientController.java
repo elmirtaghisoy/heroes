@@ -97,4 +97,22 @@ public class ClientController {
         model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
         return "client/team";
     }
+
+    @GetMapping("/member/{id}")
+    public String getTeamMember(
+            @PathVariable("id") Long id,
+            Model model
+    ) {
+        model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
+        if (id == 1) {
+            return "client/teamOne";
+        } else if (id == 2) {
+            return "client/teamTwo";
+        } else if (id == 3) {
+            return "client/teamThree";
+        } else if (id == 4) {
+            return "client/teamFour";
+        }
+        return "redirect:/";
+    }
 }

@@ -1,0 +1,168 @@
+<html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+
+<body>
+<div th:replace="client/layout/header.html::header"></div>
+
+<div class="header_absolute ds cover-background">
+    <section class="page_title padding-mobile cs s-py-60 s-py-md-80 s-py-xl-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="bold">Haqqımızda</h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a th:href="@{/}">Ana Səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item" style="cursor: default">
+                            Komanda
+                        </li>
+                        <li class="breadcrumb-item active" style="cursor: default">
+                            Kərİmova Xatun
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="ls s-py-50 single-team">
+    <div class="container ">
+        <div class="row ">
+
+
+            <div class="divider-30 divider-xl-95"></div>
+
+            <div class="col-12">
+                <div class="row c-gutter-50 vertical-center">
+
+
+                    <div class="col-md-5">
+                        <div>
+                            <img alt="" th:src="images/team/team-single-img.jpg">
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="divider-30 divider-md-0 divider-xl-0"></div>
+                        <h3 class="team-name">Kərİmova Xatun</h3>
+                        <p class="entry-description-profession divider-top-bottom">DƏSTƏK</p>
+                        <p class="social-icons">
+
+                            <a class="fa fa-facebook" href="#" title="facebook"></a>
+                            <a class="fa fa-twitter" href="#" title="twitter"></a>
+                            <a class="fa fa-linkedin" href="#" title="linkedin"></a>
+                            <a class="fa fa-google" href="#" title="google"></a>
+
+                        </p>
+
+                        <p>
+                            Kərimova Xatun Zaur qızı 1999-cu ildə Bakı şəhərində anadan olub.
+                            T. Abbasov adına 225 nömrəli tam orta məktəbi bitirib. Bakı Dövlət Universtitetinin Bakalavr
+                            pilləsini bitirib. Bakı Dövlət Universitetinin Tələbə Həmkar Təşkilatının Biologiya
+                            fakültəsinim Sədr vəzifəsini icra etmişdir. Hal- hazırda Səbail Bələdiyyəsində Vergri ve
+                            Rüsümlara nəzarət şöbəsinin baş mütəxəssisidir.
+                        </p>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<section class="s-pt-60 s-pt-md-80 s-pt-xl-90 s-pb-60 s-pb-md-80 s-pb-xl-150">
+    <div class="container">
+        <div class="row c-gutter-50 mobile-padding-normal">
+
+            <div class="col-sm-12 text-center">
+                <h1><span class="color-main">Komanda </span>yoldaşlarım</h1>
+                <div class="divider-20"></div>
+                <div class="fw-divider-special-center">
+                    <p class="special"></p>
+                </div>
+                <div class="divider-35 divider-md-65"></div>
+            </div>
+
+
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                <div class="card text-center">
+                    <img alt="" class="card-img-top" th:src="images/team/02.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a th:href="@{/member/3}">Elmİr Tağısoy</a>
+                        </h4>
+                        <p class="card-text">
+                            TEXNİKİ DƏSTƏK
+                        </p>
+                        <p class="card-text">
+                            <a class="fa fa-facebook " href="#" title="facebook"></a>
+                            <a class="fa fa-twitter " href="#" title="twitter"></a>
+                            <a class="fa fa-instagram " href="#" title="instagram"></a>
+                            <a class="fa fa-google " href="#" title="google"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider-40 d-sm-block d-md-none"></div>
+
+
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                <div class="card text-center">
+                    <img alt="" class="card-img-top" th:src="images/team/03.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a th:href="@{/member/1}">Mansurov Taleh</a>
+                        </h4>
+                        <p class="card-text">
+                            Layİhə rəhbərİ
+                        </p>
+                        <p class="card-text">
+                            <a class="fa fa-facebook " href="#" title="facebook"></a>
+                            <a class="fa fa-twitter " href="#" title="twitter"></a>
+                            <a class="fa fa-instagram " href="#" title="instagram"></a>
+                            <a class="fa fa-google " href="#" title="google"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider-40 d-md-block d-lg-none "></div>
+
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                <div class="card text-center">
+                    <img alt="" class="card-img-top" th:src="images/team/03.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a th:href="@{/member/4}">İmanov Rəşad</a>
+                        </h4>
+                        <p class="card-text">
+                            DƏSTƏK
+                        </p>
+                        <p class="card-text">
+                            <a class="fa fa-facebook " href="#" title="facebook"></a>
+                            <a class="fa fa-twitter " href="#" title="twitter"></a>
+                            <a class="fa fa-instagram " href="#" title="instagram"></a>
+                            <a class="fa fa-google " href="#" title="google"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>
