@@ -118,7 +118,8 @@
                                     th:field="*{wars}">
 
                                 <span th:each="warValSelected :${martyredResponse.wars}">
-                                       <option selected="selected" th:text="'* ' +${warValSelected.warName} +' *'"
+                                       <option th:class="already-selected-item"
+                                               th:text="${warValSelected.warName}"
                                                th:value="${warValSelected.id}"></option>
                                 </span>
 
@@ -140,7 +141,8 @@
                                     th:field="*{rewards}">
 
                                 <span th:each="rewardValSelected :${martyredResponse.rewards}">
-                                       <option selected th:text="'* '+${rewardValSelected.rewardName} +' *'"
+                                       <option th:class="already-selected-item"
+                                               th:text="${rewardValSelected.rewardName}"
                                                th:value="${rewardValSelected.id}"></option>
                                 </span>
 
@@ -152,9 +154,6 @@
 
                         </div>
                     </div>
-                    <script>
-
-                    </script>
                     <div class="row main-card-row-container">
                         <div class="col-12">
                             <label class="form-label text-uppercase" for="editor">Məlumat</label>
@@ -173,5 +172,11 @@
         </div>
     </div>
 </div>
+<script>
+    let list = document.getElementsByClassName("already-selected-item");
+    for (let i = 0; i < list.length; i++) {
+        list[i].selected = "selected";
+    }
+</script>
 </body>
 </html>
