@@ -43,6 +43,10 @@
         .custom-input {
             border-color: transparent transparent #000000;
         }
+
+        .goog-te-combo {
+            color: black !important;
+        }
     </style>
 </head>
 <body>
@@ -101,11 +105,15 @@
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
             pageLanguage: 'az',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
         }, 'google_translate_element');
     }
 </script>
-
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
         type="text/javascript"></script>
 </body>
