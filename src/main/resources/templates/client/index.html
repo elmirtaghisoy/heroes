@@ -252,12 +252,9 @@
                     </p>
                 </div>
             </div>
-
-
         </div>
     </div>
     <div class="divider-0 divider-lg-60"></div>
-
 </section>
 
 <section class="ls s-pt-60 s-pt-md-80 s-pt-xl-141 s-pb-40 s-pb-md-60 s-pb-xl-130" id="section_testimonials">
@@ -640,10 +637,27 @@
             data: data,
             success: function (response) {
                 $("#warInfo").html(response);
+                splitText();
+                addMoreButton(id);
             }
         });
     }
 
+    function addMoreButton(id) {
+        let histDiv = document.getElementById("warInfo")
+        histDiv.innerHTML += "" +
+            "" +
+            "        <a rel=\"bookmark\" href=\"/history/" + id + "\">\n" +
+            "            <time className=\"entry-date published updated\">Ətraflı oxu\n" +
+            "            </time>\n" +
+            "        </a>" +
+            "";
+    }
+
+    function splitText() {
+        let warHist = document.getElementById("war-hist");
+        warHist.textContent = warHist.textContent.substr(0, 500) + " ...";
+    }
 </script>
 </body>
 </html>
