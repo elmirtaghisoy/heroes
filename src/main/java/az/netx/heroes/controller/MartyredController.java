@@ -107,13 +107,22 @@ public class MartyredController {
 
             model.addAttribute("rankList", rankService.getAllRank());
 
-            model.addAttribute("warList", warService.findWarByNotInIds(
-                    response.getWars().stream().map(WarResponse::getId).collect(Collectors.toList())
-            ));
+            if (response.getWars().isEmpty()) {
+                model.addAttribute("warList", warService.getAllWar());
+            } else {
+                model.addAttribute("warList", warService.findWarByNotInIds(
+                        response.getWars().stream().map(WarResponse::getId).collect(Collectors.toList())
+                ));
+            }
 
-            model.addAttribute("rewardList", rewardService.findRewardByNotInIds(
-                    response.getRewards().stream().map(RewardResponse::getId).collect(Collectors.toList())
-            ));
+            if (response.getRewards().isEmpty()) {
+                model.addAttribute("rewardList", rewardService.getAllReward());
+            } else {
+                model.addAttribute("rewardList", rewardService.findRewardByNotInIds(
+                        response.getRewards().stream().map(RewardResponse::getId).collect(Collectors.toList())
+                ));
+            }
+
         }
         return "admin/updateMartyredPage";
     }
