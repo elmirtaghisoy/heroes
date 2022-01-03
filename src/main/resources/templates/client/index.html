@@ -645,13 +645,11 @@
 
     function addMoreButton(id) {
         let histDiv = document.getElementById("warInfo")
-        histDiv.innerHTML += "" +
-            "" +
-            "        <a rel=\"bookmark\" href=\"/history/" + id + "\">\n" +
-            "            <time className=\"entry-date published updated\">Ətraflı oxu\n" +
-            "            </time>\n" +
-            "        </a>" +
-            "";
+        histDiv.innerHTML += `
+        <div class="text-center">
+            <a href="/history/${id}" class="btn btn-outline-darkgrey large fw-400">Ətraflı</a>
+        </div>
+        `;
     }
 
     function splitText() {

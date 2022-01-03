@@ -59,10 +59,11 @@
                         <p id="editor" style="display: none" th:text="${martyred.about}">
                         </p>
                         <div id="output"></div>
+                        <p style="margin-top: 1rem; color: black;font-weight: 600;">Mükafatlar</p>
                         <ul th:each="reward :${martyred.rewards}">
                             <li th:text="${reward.rewardName}"></li>
                         </ul>
-
+                        <p style="color: black;font-weight: 600;">Döyüşlər</p>
                         <ul th:each="war :${martyred.wars}">
                             <li th:text="${war.warName}"></li>
                         </ul>
