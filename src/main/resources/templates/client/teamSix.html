@@ -1,0 +1,177 @@
+<html th:include="~{client/layout/layout.html :: layout (~{::body},'home')}" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+
+<body>
+<div th:replace="client/layout/header.html::header"></div>
+
+<div class="header_absolute ds cover-background">
+    <section class="page_title padding-mobile cs s-py-60 s-py-md-80 s-py-xl-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="bold">Haqqımızda</h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a th:href="@{/}">Ana Səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item" style="cursor: default">
+                            Komanda
+                        </li>
+                        <li class="breadcrumb-item active" style="cursor: default">
+                            Məhsətİ Hüseynova
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="ls s-py-50 single-team">
+    <div class="container ">
+        <div class="row ">
+
+
+            <div class="divider-30 divider-xl-95"></div>
+
+            <div class="col-12">
+                <div class="row c-gutter-50 vertical-center">
+
+
+                    <div class="col-md-5">
+                        <div>
+                            <img alt="" src="/static/client/images/team/m1.jpg">
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="divider-30 divider-md-0 divider-xl-0"></div>
+                        <h3 class="team-name">Məhsətİ Hüseynova</h3>
+                        <p class="entry-description-profession divider-top-bottom">Dəstək</p>
+                        <p class="social-icons">
+
+                            <a class="fa fa-google" data-placement="top" data-toggle="tooltip"
+                               href="#" title="talehmansur@gmail.com"></a>
+                            <a class="fa fa-linkedin " href="#" title="linkedin"></a>
+
+                        </p>
+
+                        <p>
+                            Məhsəti Hüseynova Əli qızı
+                            -Azərbaycanda İlk Sağlam Qidalanma mütəxəssisi və Yaşam Koçu
+                            -Azərbaycan-Türkiyə Qida Təhlükəsizliyi İB-nin sədri
+                            - Qida Təhlükəsizliyi Hərəkatını təsisçisi və rəhbəri
+                            -Beynəlxalq Təlimçi-Ekspert
+                            -www.saglamqida.az saytının həmtəsisçisi
+                            -“Gənclərin Töhfəsi” İctimai Birliyi - İcraçı direktoru
+                            -Qida Təhlükəsizliyi Hərəkatının həmtəsisçisi, rəhbəri
+                            -UNİCEF Azərbaycan Erkən Uşaqlıq Dövründə İnkişaf layihəsinin rəhbəri 2021
+                            -Ekologiya və Təbii Sərvətlər Nazirliyi yanında İctimai Şuranın üzvü
+                            - “Sağlam Qida” Könüllülərinin 1-ci Respublika, Şamaxı, Qarabağ və Gəncə forumunun
+                            təşkilatçısı
+                            -“www.saglamqida.az” saytının təsisçisi
+                            Kitabları
+                            -Azərbaycan dilində ilk dəfə “Qida təhlükəsizliyi və Geni dəyişdirilmiş orqanizmlər”
+                            mövzusunda nəşr olunan “Qida təhlükəsizliyi və İnsanı məhvə aparan genetik silah –GDO” adlı
+                            2 hissəli kitab, həmmüəllif
+                            -“Sağlam gələcək sağlam qidadan başlayır” adlı kitab, həmmüəllif
+                            -“Zafere Doğru Adımla”adlı kitab, həmmüəllif
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<section class="s-pt-60 s-pt-md-80 s-pt-xl-90 s-pb-60 s-pb-md-80 s-pb-xl-150">
+    <div class="container">
+        <div class="row c-gutter-50 mobile-padding-normal">
+
+            <div class="col-sm-12 text-center">
+                <h1><span class="color-main">Komanda </span>yoldaşlarım</h1>
+                <div class="divider-20"></div>
+                <div class="fw-divider-special-center">
+                    <p class="special"></p>
+                </div>
+                <div class="divider-35 divider-md-65"></div>
+            </div>
+
+
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                <div class="card text-center">
+                    <img alt="" class="card-img-top" src="/static/client/images/team/x2.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a th:href="@{/member/2}">Kərİmova Xatun</a>
+                        </h4>
+                        <p class="card-text">
+                            DƏSTƏK
+                        </p>
+                        <p class="card-text">
+                            <a class="fa fa-google" data-placement="top" data-toggle="tooltip"
+                               href="#" title="karimovaxatun@gmail.com"></a>
+                            <a class="fa fa-linkedin " href="#" title="linkedin"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider-40 d-sm-block d-md-none"></div>
+
+
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                <div class="card text-center">
+                    <img alt="" class="card-img-top" src="/static/client/images/team/e2.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a th:href="@{/member/3}">Elmİr Tağısoy</a>
+                        </h4>
+                        <p class="card-text">
+                            TEXNİKİ DƏSTƏK
+                        </p>
+                        <p class="card-text">
+                            <a class="fa fa-google" data-placement="top" data-toggle="tooltip"
+                               href="#" title="elmirtaghisoy@gmail.com"></a>
+                            <a class="fa fa-linkedin " href="https://www.linkedin.com/in/elmirtaghisoy/"
+                               title="linkedin"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider-40 d-md-block d-lg-none "></div>
+
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                <div class="card text-center">
+                    <img alt="" class="card-img-top" src="/static/client/images/team/r2.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a th:href="@{/member/4}">İmanov Rəşad</a>
+                        </h4>
+                        <p class="card-text">
+                            DƏSTƏK
+                        </p>
+                        <p class="card-text">
+                            <a class="fa fa-google" data-placement="top" data-toggle="tooltip"
+                               href="#" title="resad.imanov.2001@gmail.com"></a>
+                            <a class="fa fa-linkedin " href="#" title="linkedin"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

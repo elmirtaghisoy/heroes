@@ -52,7 +52,7 @@ public class VictoryHistoryController {
         return "redirect:/admin/hist/all";
     }
 
-    @GetMapping("/history")
+    @GetMapping("/zefer-tarixi")
     public String getAllHistClient(
             Model model
     ) {
@@ -64,7 +64,7 @@ public class VictoryHistoryController {
         return "client/hist";
     }
 
-    @GetMapping("/history/{id}")
+    @GetMapping("/zefer-tarixi/{id}")
     public String getHistClientById(
             @PathVariable(value = "id") Long id,
             Model model

@@ -25,7 +25,7 @@ public class ClientController {
     private final PostCategoryService postCategoryService;
     private final MessageService messageService;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index(
             Model model
     ) {
@@ -59,14 +59,14 @@ public class ClientController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.messageRequest", bindingResult);
             redirectAttributes.addFlashAttribute("messageRequest", request);
-            return "redirect:/";
+            return "redirect:/index";
         }
         messageService.createMessage(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/";
+        return "redirect:/index";
     }
 
-    @GetMapping("/contact")
+    @GetMapping("/elaqe")
     public String getContactPage(
             Model model
     ) {
@@ -82,7 +82,7 @@ public class ClientController {
         return "client/contact";
     }
 
-    @GetMapping("/partner")
+    @GetMapping("/terefdaslar")
     public String getPartnerPage(
             Model model
     ) {
@@ -90,7 +90,7 @@ public class ClientController {
         return "client/partner";
     }
 
-    @GetMapping("/team")
+    @GetMapping("/komanda")
     public String getTeamPage(
             Model model
     ) {
@@ -98,21 +98,25 @@ public class ClientController {
         return "client/team";
     }
 
-    @GetMapping("/member/{id}")
+    @GetMapping("/komanda/{id}")
     public String getTeamMember(
-            @PathVariable("id") Long id,
+            @PathVariable("id") String id,
             Model model
     ) {
         model.addAttribute("categoryList", postCategoryService.getAllPostCategory());
-        if (id == 1) {
+        if ("talehmansurov".equals(id)) {
             return "client/teamOne";
-        } else if (id == 2) {
+        } else if ("xatunkarimova".equals(id)) {
             return "client/teamTwo";
-        } else if (id == 3) {
+        } else if ("elmirtaghisoy".equals(id)) {
             return "client/teamThree";
-        } else if (id == 4) {
+        } else if ("rashadimanov".equals(id)) {
             return "client/teamFour";
+        } else if ("asimvaliyev".equals(id)) {
+            return "client/teamFive";
+        } else if ("meshetihuseynova".equals(id)) {
+            return "client/teamSix";
         }
-        return "redirect:/";
+        return "redirect:/index";
     }
 }

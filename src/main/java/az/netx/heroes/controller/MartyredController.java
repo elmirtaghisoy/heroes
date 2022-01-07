@@ -181,7 +181,7 @@ public class MartyredController {
 
     //CLIENT
 
-    @GetMapping("/martyred")
+    @GetMapping("/sehidler")
     public String clientGetMartyred(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "9") int size,
@@ -220,7 +220,7 @@ public class MartyredController {
         return "client/martyred";
     }
 
-    @GetMapping("/martyred/{id}")
+    @GetMapping("/sehid/{id}")
     public String clientGetMartyredById(
             @PathVariable(value = "id") Long id,
             Model model

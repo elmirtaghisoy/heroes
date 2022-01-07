@@ -15,7 +15,7 @@
                     <h1 class="bold">Haqqımızda</h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a th:href="@{/}">Ana Səhifə</a>
+                            <a th:href="@{/index}">Ana Səhifə</a>
                         </li>
                         <li class="breadcrumb-item active" style="cursor: default">
                             Komanda
@@ -31,14 +31,13 @@
     <div class="container">
         <div class="row">
             <div class="divider-20 divider-xl-80"></div>
-            <div class="col-md-3 col-sm-6">
-
+            <div class="col-md-4 col-sm-6">
                 <div class="text-center">
                     <div class="card text-center">
                         <img alt="" class="card-img-top" src="/static/client/images/team/t2.jpg">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a th:href="@{/member/1}">Mansurov Taleh</a>
+                                <a th:href="@{/komanda/talehmansurov}">Mansurov Taleh</a>
                             </h4>
                             <p class="card-text">
                                 Layİhə rəhbərİ
@@ -51,15 +50,14 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- .col-* -->
-            <div class="col-md-3 col-sm-6">
-
+            </div>
+            <div class="col-md-4 col-sm-6">
                 <div class="text-center">
                     <div class="card text-center">
                         <img alt="" class="card-img-top" src="/static/client/images/team/x2.jpg">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a th:href="@{/member/2}">Kərİmova Xatun</a>
+                                <a th:href="@{/komanda/xatunkarimova}">Kərİmova Xatun</a>
                             </h4>
                             <p class="card-text">
                                 DƏSTƏK
@@ -72,15 +70,60 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- .col-* -->
-            <div class="col-md-3 col-sm-6">
-
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="text-center">
+                    <div class="card text-center">
+                        <img alt="" class="card-img-top" src="/static/client/images/team/v2.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a th:href="@{/komanda/asimvaliyev}">Vəlİyev Asİm</a>
+                            </h4>
+                            <p class="card-text">
+                                DƏSTƏK
+                            </p>
+                            <p class="card-text">
+                                <a class="fa fa-google" data-placement="top" data-toggle="tooltip"
+                                   href="#" title="elmirtaghisoy@gmail.com"></a>
+                                <a class="fa fa-linkedin " href="https://www.linkedin.com/in/elmirtaghisoy/"
+                                   title="linkedin"></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider-0 divider-xl-30"></div>
+        </div>
+        <div class="row">
+            <div class="divider-20 divider-xl-80"></div>
+            <div class="col-md-4 col-sm-6">
+                <div class="text-center">
+                    <div class="card text-center">
+                        <img alt="" class="card-img-top" src="/static/client/images/team/m2.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a th:href="@{/komanda/meshetihuseynova}">Məhsətİ Hüseynova</a>
+                            </h4>
+                            <p class="card-text">
+                                DƏSTƏK
+                            </p>
+                            <p class="card-text">
+                                <a class="fa fa-google" data-placement="top" data-toggle="tooltip"
+                                   href="#" title="elmirtaghisoy@gmail.com"></a>
+                                <a class="fa fa-linkedin " href="https://www.linkedin.com/in/elmirtaghisoy/"
+                                   title="linkedin"></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
                 <div class="text-center">
                     <div class="card text-center">
                         <img alt="" class="card-img-top" src="/static/client/images/team/e2.jpg">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a th:href="@{/member/3}">Elmİr Tağısoy</a>
+                                <a th:href="@{/komanda/elmirtaghisoy}">Elmİr Tağısoy</a>
                             </h4>
                             <p class="card-text">
                                 TEXNİKİ DƏSTƏK
@@ -94,28 +137,25 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- .col-* -->
-            <div class="col-md-3 col-sm-6">
-
-                <div class="text-center">
-                    <div class="card text-center">
-                        <img alt="" class="card-img-top" src="/static/client/images/team/r2.jpg">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a th:href="@{/member/4}">İmanov Rəşad</a>
-                            </h4>
-                            <p class="card-text">
-                                DƏSTƏK
-                            </p>
-                            <p class="card-text">
-                                <a class="fa fa-google" data-placement="top" data-toggle="tooltip"
-                                   href="#" title="resad.imanov.2001@gmail.com"></a>
-                                <a class="fa fa-linkedin " href="#" title="linkedin"></a>
-                            </p>
-                        </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card text-center">
+                    <img alt="" class="card-img-top" src="/static/client/images/team/r2.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a th:href="@{/komanda/rashadimanov}">İmanov Rəşad</a>
+                        </h4>
+                        <p class="card-text">
+                            DƏSTƏK
+                        </p>
+                        <p class="card-text">
+                            <a class="fa fa-google" data-placement="top" data-toggle="tooltip"
+                               href="#" title="resad.imanov.2001@gmail.com"></a>
+                            <a class="fa fa-linkedin " href="#" title="linkedin"></a>
+                        </p>
                     </div>
                 </div>
-            </div><!-- .col-* -->
+            </div>
             <div class="divider-0 divider-xl-30"></div>
         </div>
     </div>

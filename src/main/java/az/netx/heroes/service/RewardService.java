@@ -26,7 +26,7 @@ public class RewardService {
     }
 
     public List<RewardResponse> findRewardByNotInIds(List<Long> ids) {
-        return rewardRepository.findAllByIdNotIn(ids)
+        return rewardRepository.findAllByIdNotInAndStatus(ids, "ACTIVE")
                 .stream()
                 .map(objectMapper::E2R)
                 .collect(Collectors.toList());

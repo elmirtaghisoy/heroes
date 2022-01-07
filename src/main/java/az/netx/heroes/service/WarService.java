@@ -26,7 +26,7 @@ public class WarService {
     }
 
     public List<WarResponse> findWarByNotInIds(List<Long> ids) {
-        return warRepository.findAllByIdNotIn(ids)
+        return warRepository.findAllByIdNotInAndStatus(ids, "ACTIVE")
                 .stream()
                 .map(objectMapper::E2R)
                 .collect(Collectors.toList());

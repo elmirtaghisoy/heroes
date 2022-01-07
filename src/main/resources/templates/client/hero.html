@@ -17,7 +17,7 @@
                     <h1 class="bold">QazİlərİmİZ</h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a th:href="@{/}">Ana Səhifə</a>
+                            <a th:href="@{/index}">Ana Səhifə</a>
                         </li>
                         <li class="breadcrumb-item">
                             <a style="cursor: default">Qazilərimiz</a>
@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="card card-body">
-                <form method="get" th:action="@{'/hero'}">
+                <form method="get" th:action="@{'/qaziler'}">
                     <div class="row d-flex justify-content-center">
                         <div class="mb-4 col-sm-4 col-12">
                             <label class="form-label text-uppercase" for="headerLabel">Ad</label>
@@ -96,7 +96,7 @@
                         <img alt="" class="card-img-top" th:src="${hero.filePath}">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a th:href="@{/hero/{id}(id=${hero.id})}"
+                                <a th:href="@{/qazi/{id}(id=${hero.id})}"
                                    th:text="'Qazİ '+${hero.name} +' ' +${hero.surname}">
                                 </a>
                             </h4>
@@ -117,14 +117,14 @@
                         th:classappend="${!objectList.paging.isPrevEnabled()? 'disabled' : ''}">
                         <a class="page-link"
                            tabindex="-1"
-                           th:href="@{'/hero?page=' + ${objectList.paging.pageNumber - 1}+ ${srcUrl}}">Previous</a>
+                           th:href="@{'/qazi?page=' + ${objectList.paging.pageNumber - 1}+ ${srcUrl}}">Previous</a>
                     </li>
                     <th:block th:each="item : ${objectList.paging.getItems()}">
                         <li class="page-item"
                             th:classappend="${item.index == objectList.paging.pageNumber? 'active' : ''}"
                             th:if="${item.pageItemType.name() == 'PAGE'}">
                             <a class="page-link"
-                               th:href="@{'/hero?page=' + ${item.index}+ ${srcUrl}}"
+                               th:href="@{'/qazi?page=' + ${item.index}+ ${srcUrl}}"
                                th:text="${item.index}"></a>
                         </li>
                         <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
@@ -134,7 +134,7 @@
                     <li class="page-item"
                         th:classappend="${!objectList.paging.isNextEnabled()? 'disabled' : ''}">
                         <a class="page-link"
-                           th:href="@{'/hero?page=' + ${objectList.paging.pageNumber + 1}+ ${srcUrl}}">Next</a>
+                           th:href="@{'/qazi?page=' + ${objectList.paging.pageNumber + 1}+ ${srcUrl}}">Next</a>
                     </li>
                 </ul>
             </nav>
