@@ -175,7 +175,7 @@ public class HeroController {
     }
 
     //CLIENT
-    @GetMapping("/qaziler")
+    @GetMapping("/hero")
     public String clientGetHero(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "9") int size,
@@ -214,7 +214,7 @@ public class HeroController {
         return "client/hero";
     }
 
-    @GetMapping("/qazi/{id}")
+    @GetMapping("/hero/{id}")
     public String clientGetHeroById(
             @PathVariable(value = "id") Long id,
             Model model

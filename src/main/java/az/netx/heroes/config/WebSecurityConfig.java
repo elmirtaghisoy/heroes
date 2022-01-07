@@ -48,10 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/index")
+                .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .permitAll().and()
-                .exceptionHandling().accessDeniedPage("/index");
+                .exceptionHandling().accessDeniedPage("/");
 
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);

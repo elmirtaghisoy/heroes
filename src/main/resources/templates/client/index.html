@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-2 col-lg-3 col-md-4 col-11">
-                    <a class="logo" th:href="@{/index}">
+                    <a class="logo" th:href="@{/}">
                         <h4>ZəfərTarİxİ</h4>
                     </a>
                 </div>
@@ -47,11 +47,11 @@
                             <ul class="nav sf-menu">
 
                                 <li>
-                                    <a th:href="@{/index}">Ana Səhifə</a>
+                                    <a th:href="@{/}">Ana Səhifə</a>
                                 </li>
 
                                 <li>
-                                    <a th:href="@{/zefer-tarixi}">Zəfər Tariximiz</a>
+                                    <a th:href="@{/history}">Zəfər Tariximiz</a>
                                 </li>
 
                                 <!-- blog -->
@@ -72,10 +72,10 @@
                                     <a style="cursor: pointer">Qəhrəmanlar</a>
                                     <ul>
                                         <li>
-                                            <a th:href="@{/sehidler}">Şəhidlər</a>
+                                            <a th:href="@{/martyred}">Şəhidlər</a>
                                         </li>
                                         <li>
-                                            <a th:href="@{/qaziler}">Qazilər</a>
+                                            <a th:href="@{/hero}">Qazilər</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -88,14 +88,14 @@
                                             <a th:href="@{/terefdaslar}">Tərəfdaşlar</a>
                                         </li>
                                         <li>
-                                            <a th:href="@{/komanda}">Komanda</a>
+                                            <a th:href="@{/team}">Komanda</a>
                                         </li>
                                     </ul>
                                 </li>
 
                                 <!-- contacts -->
                                 <li>
-                                    <a th:href="@{/elaqe}">Əlaqə</a>
+                                    <a th:href="@{/contact}">Əlaqə</a>
                                 </li>
 
                                 <li>
@@ -195,13 +195,13 @@
             <div class="col-md-6 col-sm-12 animate" data-animation="bigEntrance" data-delay="50">
                 <div class="ls icon-box text-center">
                     <h4>
-                        <a th:href="@{/sehidler}">Qəhrəmanlarımız</a>
+                        <a th:href="@{/martyred}">Qəhrəmanlarımız</a>
                     </h4>
 
                     <p>
                         Qarabağ döyüşündə iştirak etmiş Şəhidlərimiz haqqında məlumatlar.
                     </p>
-                    <a class="simple_link" th:href="@{/sehidler}">Ətraflı</a>
+                    <a class="simple_link" th:href="@{/martyred}">Ətraflı</a>
 
                 </div>
                 <div class="divider-40 d-sm-block d-md-none"></div>
@@ -209,13 +209,13 @@
             <div class="col-md-6 col-sm-12 animate" data-animation="bigEntrance" data-delay="50">
                 <div class="ls icon-box text-center">
                     <h4>
-                        <a th:href="@{/zefer-tarixi}">Zəfər Tarİxİmiz</a>
+                        <a th:href="@{/history}">Zəfər Tarİxİmiz</a>
                     </h4>
 
                     <p>
                         44 günlük vətən müharibəsi haqqında məlumatlar.
                     </p>
-                    <a class="simple_link" th:href="@{/zefer-tarixi}">Ətraflı</a>
+                    <a class="simple_link" th:href="@{/history}">Ətraflı</a>
 
                 </div>
                 <div class="divider-40 d-sm-block d-md-none"></div>
@@ -647,7 +647,7 @@
         let histDiv = document.getElementById("warInfo")
         histDiv.innerHTML += `
         <div class="text-center">
-            <a href="/zefer-tarixi/${id}" class="btn btn-outline-darkgrey large fw-400">Ətraflı</a>
+            <a href="/history/${id}" class="btn btn-outline-darkgrey large fw-400">Ətraflı</a>
         </div>
         `;
     }

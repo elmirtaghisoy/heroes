@@ -25,7 +25,7 @@ public class ClientController {
     private final PostCategoryService postCategoryService;
     private final MessageService messageService;
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index(
             Model model
     ) {
@@ -59,14 +59,14 @@ public class ClientController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.messageRequest", bindingResult);
             redirectAttributes.addFlashAttribute("messageRequest", request);
-            return "redirect:/index";
+            return "redirect:/";
         }
         messageService.createMessage(request);
         redirectAttributes.addFlashAttribute("success", SUCCESS);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
-    @GetMapping("/elaqe")
+    @GetMapping("/contact")
     public String getContactPage(
             Model model
     ) {
@@ -90,7 +90,7 @@ public class ClientController {
         return "client/partner";
     }
 
-    @GetMapping("/komanda")
+    @GetMapping("/team")
     public String getTeamPage(
             Model model
     ) {
@@ -98,7 +98,7 @@ public class ClientController {
         return "client/team";
     }
 
-    @GetMapping("/komanda/{id}")
+    @GetMapping("/member/{id}")
     public String getTeamMember(
             @PathVariable("id") String id,
             Model model
@@ -117,6 +117,6 @@ public class ClientController {
         } else if ("meshetihuseynova".equals(id)) {
             return "client/teamSix";
         }
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

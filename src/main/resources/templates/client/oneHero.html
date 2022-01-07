@@ -18,7 +18,7 @@
                     </h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a th:href="@{/index}">Ana Səhifə</a>
+                            <a th:href="@{/}">Ana Səhifə</a>
                         </li>
                         <li class="breadcrumb-item">
                             <a style="cursor: default">Qazilərimiz</a>
@@ -95,7 +95,7 @@
                     <img alt="" class="card-img-top" th:src="${hr.filePath}">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a th:href="@{/sehid/{id}(id=${hr.id})}"
+                            <a th:href="@{/hero/{id}(id=${hr.id})}"
                                th:text="${hr.name} +' '+${hr.surname} +' '+${hr.fatherName}">
                             </a>
                         </h4>
